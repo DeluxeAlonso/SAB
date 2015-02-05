@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SAB.Domain.Acquisition.Supplier>
+@if (ViewBag.pageIndex != null)
+{
+
+    <input type="hidden" name="pageIndex" id="PRO_pageIndex" value="@ViewBag.pageIndex" />
+
+}
+else
+{
+    <input type="hidden" name="pageIndex" id="PRO_pageIndex" value="1" />
+
+}
+<table class="table-responsive table table-striped" id="providerTable">
+    <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th> </th>
+    </tr>
+    @foreach (var supplier in Model)
+    {
+        <tr>
+            <td>@supplier.Id</td>
+            <td>@supplier.Name</td>
+            <td>
+                <input type="radio" name="Provider" />
+            </td>
+        </tr>
+    }
+
+
+</table>
+<div class="col-md-12 col-md-offset-3 form-horizontal">
+    <div class="form-group ">
+        <div>
+            <ul class="pagination">
+                <li><a id="PRO_btnFirst">Primero</a></li>
+                <li><a id="PRO_btnPrev">&laquo;</a></li>
+
+                <li>
+                    @if (ViewBag.pageIndex != null)
+                    {
+
+                        <span>@ViewBag.pageIndex</span>
+
+                    }
+                    else
+                    {
+                        <span>1</span>
+                    }
+                </li>
+                <li><a id="PRO_btnNext">&raquo;</a></li>
+                <li><a id="PRO_btnLast">Último</a></li>
+            </ul>
+        </div>
+        <label for="searchText" class="col-md-2">Ir a la página</label>
+        <div class="col-md-2">
+            <input type="text" class="form-control" id="PRO_pageIndexChange">
+        </div>
+
+
+    </div>
+</div>   

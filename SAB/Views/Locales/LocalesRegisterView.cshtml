@@ -1,0 +1,114 @@
+﻿@model SAB.Domain.Library.Local
+@{
+    ViewBag.Title = "Registrar biblioteca";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Locales", "LocalesRegister", "Locales")</li>
+            <li class="active">Registrar</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Registrar biblioteca</h1>
+    </div>
+</div>
+
+<form action="@Url.Action("Save","Locales")" method="post">
+    @Html.ValidationSummary(true)
+    <div class="col-md-10">
+
+        <div class="form-group">
+            <label for="searchText">Nombre:</label>
+            @*<input type="text" name="Name" class="form-control">*@
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @required = "required", @maxlength = "50" })
+            @*@Html.EditorFor(model => model.Name)*@
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="form-group">
+            <label for="biblioteca">Fecha de apertura:</label>
+            @Html.TextBoxFor(model => model.Opening_Date, new { @class = "form-control generic-datepicker", @required = "required" })
+            @*@if (Model == null)
+            {
+                <input type="date" name="Opening_Date" class="form-control">
+            }
+            else
+            {
+                <input type="date" name="Opening_Date" value="@string.Concat(Model.Opening_Date.Year,"-",Model.Opening_Date.Month,"-", Model.Opening_Date.Day)">
+            }*@      
+            @Html.ValidationMessageFor(model => model.Opening_Date)
+        </div>
+        <div class="form-group">
+            <label for="searchText">Dirección:</label>
+            @*<input type="text" name="Address" class="form-control">*@
+            @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @required = "required", @maxlength = "100" })
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6 margin-bottom-sm">
+                    <label for="fields">Distrito:</label>
+                    @*<input type="text" name="Distric" class="form-control">*@
+                    @Html.TextBoxFor(model => model.Distric, new { @class = "form-control", @required = "required", @maxlength = "50" })
+                    @Html.ValidationMessageFor(model => model.Distric)
+                </div>
+                <div class="col-md-6">
+                    <label for="biblioteca">Ciudad:</label>
+                    @*<input type="text" name="City" class="form-control">*@
+                    @Html.TextBoxFor(model => model.City, new { @class = "form-control", @required = "required", @maxlength = "50" })
+                    @Html.ValidationMessageFor(model => model.City)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6 margin-bottom-sm">
+                    <label for="searchText">Correo electrónico:</label>
+                    @*<input type="text" name="Mail" class="form-control">*@
+                    @Html.TextBoxFor(model => model.Mail, new { @class = "form-control", @maxlength = "50", @type="email" })
+                    @Html.ValidationMessageFor(model => model.Mail)
+                </div>
+                <div class="col-md-6">
+                    <label for="fields">Teléfono:</label>
+                    @*<input type="text" name="Phone" class="form-control">*@
+                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @maxlength = "20" })
+                    @Html.ValidationMessageFor(model => model.Phone)
+                </div>
+            </div>
+        </div>
+        @*<div class="form-group">
+            <div class="row">
+                <div class="col-md-6 margin-bottom-sm">
+                    <label for="biblioteca">N° de secciones:</label>
+                    <input type="text" name="searchText" value=" " placeholder="Búsqueda ..." class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="fields">N° de pisos:</label>
+                    <input type="text" name="searchText" value=" " placeholder="Búsqueda ..." class="form-control">
+                </div>
+            </div>
+        </div>*@
+
+
+        <div class="form-group">
+            
+            @*<div class="col-sm-2">
+                <button type="button" onclick="@Url.Action("LocalesSearch","Locales")" class="btn btn-primary" value="Cancelar" >Cancelar</button>
+            </div>*@
+            <div class="col-sm-4">
+
+                <button type="submit" class="btn btn-primary"  >
+                Guardar
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</form>

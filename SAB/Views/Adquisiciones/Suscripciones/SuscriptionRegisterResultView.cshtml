@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Registro Suscripcion";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Suscripcion", "RegisterSuscription", "Suscripcion")</li>
+            <li class="active">Registrar </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Registrar Suscripción</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    <fieldset disabled>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="disabledSelect">Tipo Publicación</label>
+                        <select id="disabledSelect" class="form-control">
+                            <option>Revista</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="disabledSelect">Título de Publicación</label>
+                        <select id="disabledSelect" class="form-control">
+                            <option>Somos</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="disabledSelect">Editorial</label>
+                        <select id="disabledSelect" class="form-control">
+                            <option>Caretas</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div class="form-group">
+        <div class="col-sm-offset-6 col-sm-2">
+            <input type="button" class="btn btn-primary" value="Guardar" onclick="window.location.href='RegisterSuscription'" />
+        </div>
+        <div class="col-sm-offset-3 col-sm-1">
+            <input type="button" class="btn btn-primary" value="Cancelar" onclick="window.location.href='RegisterSuscription'" />
+        </div>
+    </div>
+</div>
+
+

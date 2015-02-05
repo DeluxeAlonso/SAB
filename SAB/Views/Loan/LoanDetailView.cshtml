@@ -1,0 +1,94 @@
+﻿@using SAB.Domain.Loan;
+@{
+    ViewBag.Title = "Confirmación del Préstamo";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Préstamos", "LoanRegister", "Loan")</li>
+            <li class="active">Confirmación</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Confirmación del Préstamo</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    @{IList<Loan> loans = (IList<Loan>)ViewData["loan_list"]; }
+    <form action="@Url.Action("Save", "Loan", new {l = loans })" method="post">
+        <table class="table-responsive table table-striped">
+            <tr>
+                <td align="center">Código de Publicación</td>
+                <td align="center">Titulo de Publicación</td>
+                <td align="center">Código de Item</td>
+                <td align="center">Fecha de Inicio</td>
+                <td align="center">Fecha de Devolución</td>
+            </tr>
+            @foreach (Loan l in loans)
+            {
+            <tr>
+                <td align="center">@l.Loan_Item.Publication.Id</td>
+                <td align="center">@l.Loan_Item.Publication.Title</td>
+                <td align="center">@l.Loan_Item.Id</td>
+                <td align="center">@l.Register_Date</td>
+                <td align="center">@l.End_Date</td>
+                <td>
+                </td>
+            </tr>
+            }
+
+        </table>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-1"></div>
+                    <div class="col-md-6">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Guardar</button>
+                    </div>
+                    <div class="col-md-1">
+                        <input type="button" class="btn btn-primary pull-left" value="Cancelar" onclick="window.location.href='LoanRegister'" />
+                    </div>
+                </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <label class="control-label">
+                                <!--for="inputFechaInicio" class="control-label"-->
+                                ¿Estas seguro que quieres registrar
+                            </label>
+                            <label class="control-label">
+                                este Préstamo?
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+

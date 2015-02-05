@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "PurchaseOrderReport";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>Reportes</li>
+            <li class="active">Orden de Compra</li>
+        </ol>
+    </div>
+</div>
+
+<h2>Reporte Orden De Compra</h2>
+
+<div class="row">
+    <div class="col-sm-12">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Estado</label>
+                    <div class="col-sm-10">
+                        <div class="radio-inline radio">
+                            <label>
+                                <input type="checkbox" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                Aceptado
+                            </label>
+                        </div>
+                        <div class="radio-inline radio">
+                            <label>
+                                <input type="checkbox" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                Rechazado
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Fecha</label>
+                <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <label class="col-sm-1">Desde</label>
+                        <div class="col-sm-2">
+                            <input type="date">
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <label class="col-sm-1">Hasta</label>
+                        <div class="col-sm-2">
+                            <input type="date">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+
+                <div class="col-sm-offset-2 col-sm-1">
+
+                    <button type="submit" class="btn btn-primary">Limpiar</button>
+                </div>
+                <div class="col-sm-offset-1 col-sm-1">
+                    
+                    @Html.ActionLink("Consultar", "PurchaseOrderReportResult", "Report",new { @class = "btn btn-primary" })
+                        
+                </div>                
+            </div>
+
+        </form>
+    </div>
+
+</div>

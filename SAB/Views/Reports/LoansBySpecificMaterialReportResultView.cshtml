@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "Reporte de préstamos por materfial específico";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Reportes", "LoansBySpecificMaterialReport", "Reports")</li>
+            <li>Reporte</li>
+            <li class="active">Reporte de préstamos por material específico</li>
+        </ol>
+    </div>
+</div>
+
+<h2></h2>
+
+
+<div class="row">
+
+    <div class="col-sm-12">
+        <form class="form-horizontal" role="form">
+
+            <div class="form-group">
+                <div class="col-sm-offset-0 col-sm-1 ">
+                    <button type="submit" class="btn btn-primary">Exportar</button>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <p class="text-right">Fecha : 26/09/2014</p>
+                    <p class="text-right">Hora  : 20:56 pm  </p>
+                    <p class="text-right">Página: 01/01     </p>
+                    <h2 class="text-center"><strong>Reporte de préstamos por material específico</strong></h2>
+                    <h3 class="text-center"><strong>Código: @ViewData["nombre"]</strong></h3>
+                    <h3 class="text-center"><strong>Nombre: @ViewData["nombre2"]</strong></h3>
+                    <h3 class="text-center"><strong>Desde 01/09/2014 hasta 25/09/2014</strong></h3>
+                </div>
+                <div class="panel-body" style="font-size: medium">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table-striped col-sm-10">
+                                <thead>
+                                    <tr>
+                                        <th>N°</th>
+                                        <th>Código de usuario</th>
+                                        <th>Nombre</th>
+                                        <th>Fecha de préstamo</th>
+                                        <th>¿Devolvió a tiempo?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>USR-14313</td>
+                                        <td>Mario Pérez</td>
+                                        <td>01/09/2014</td>
+                                        <td>Sí</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>USR-14457</td>
+                                        <td>Juana Natividad</td>
+                                        <td>01/09/2014</td>
+                                        <td>Sí</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>USR-14277</td>
+                                        <td>Mariella Gutierrez</td>
+                                        <td>02/09/2014</td>
+                                        <td>No</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div>
+                                <ul class="pagination">
+                                    <li><a href="#">&laquo;</a></li>
+                                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">&raquo;</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+

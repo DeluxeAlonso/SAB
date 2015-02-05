@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewBag.Title = "AutorRegistrarView";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicaciones", "AutorRegistrarView", "Publicaciones")</li>
+            <li>@Html.ActionLink("Autor", "AutorRegistrarView", "Autor")</li>
+            <li class="active">Registrar</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Registrar Autor</h1>
+    </div>
+</div>
+
+@using (Html.BeginForm("NewAuthor", "Author")) 
+{ 
+
+    <div class="col-md-10">
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-3">
+                    <label for="tipo">Nombres </label>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="Name" id="Name" pattern="[A-Za-zá-ú\s]+" title="Solo letras y espacios" maxlength="50" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-3">
+                    <label for="tipo">Apellido Parterno </label>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="First_last_Name" id="First_last_Name" pattern="[A-Za-zá-ú\s]+" title="Solo letras y espacios" maxlength="50" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-3">
+                    <label for="tipo">Apellido Materno </label>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="Second_last_Name" id="Second_last_Name" pattern="[A-Za-zá-ú\s]+" title="Solo letras y espacios" maxlength="50">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-3">
+                    <label for="tipo">País de origen </label>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <select class="form-control" name="Country" id="Country" required>
+                            <option value="">Seleccione</option>
+                            <option>Alemania</option>
+                            <option>Argentina</option>
+                            <option>Australia</option>
+                            <option>Bolivia</option>
+                            <option>Brasil</option>
+                            <option>Canada</option>
+                            <option>Chile</option>
+                            <option>China</option>
+                            <option>Colombia</option>
+                            <option>Ecuador</option>
+                            <option>España</option>
+                            <option>Estados Unidos</option>
+                            <option>Francia</option>
+                            <option>Italia</option>
+                            <option>Japón</option>
+                            <option>Mexico</option>
+                            <option>Perú</option>
+                            <option>Rusia</option>
+                            <option>Uruguay</option>
+                            <option>Venezuela</option>
+                            <option>Otros</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-3">
+                    <label for="tipo">Ciudad de origen </label>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="Hometown" id="Hometown" pattern="[A-Za-zá-ú\s]+" title="Solo letras y espacios" maxlength="50" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            @Html.ActionLink("Cancelar", "AuthorSearch", "Author", new { @class = "btn btn-primary pull-right" })
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+        </div>
+
+    </div>
+
+
+    <!-- Boton Registrar -->
+    <div class="modal fade" id="buttonRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label">
+                            Se ha registrado los datos del autor satisfactoriamente.
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+}

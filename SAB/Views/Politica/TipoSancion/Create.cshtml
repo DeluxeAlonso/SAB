@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "TipoSancionCreate";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Politicas", "Index", "Home")</li>
+            <li>@Html.ActionLink("Tipo de Sanción", "Search", "TipoSancion")</li>
+            <li class="active">Registrar</li>
+        </ol>
+    </div>
+</div>
+<form action="@Url.Action("Save","TipoSancion")" method="post">
+    <div class="row">
+        <div class="col-md-10">
+            <h1 class="title text-left">Registrar Tipo de sanción</h1>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class=" col-md-8">
+                        <label for="searchText">Nombre</label>
+                        <input type="text" class="form-control" placeholder="">
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="searchText">Unidad</label>
+                        <select class="form-control">
+                            <option>Dias</option>
+                            <option>Dinero</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="searchText">Cantidad</label>
+
+                        <input type="text" class="form-control">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+
+
+                        <label for="searchText">Fecha desde:</label>
+
+                        <input type="date" class="form-control">
+
+
+                    </div>
+                    <div class="col-md-4">
+
+
+                        <label for="searchText">Fecha hasta:</label>
+
+                        <input type="date" class="form-control">
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!--Botones Limpiar, cancelar, guardar-->
+            <div class=" col-md-8">
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-4">
+
+                </div>
+
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary pull-right">
+                        Guardar
+                    </button>
+
+                    
+                </div>
+                <!--
+                <div class="col-md-3">
+                    @Html.ActionLink("Guardar", "Show", "Publication", new { id = 1 }, new { @class = "btn btn-primary pull-right" })
+                </div>
+                <div class="col-md-3">
+                    @Html.ActionLink("Eliminar", "Show", "Publication", new { id = 1 }, new { @class = "btn btn-primary pull-right" })
+                </div>
+                    -->
+                <!--BOTON
+                <button type="button" class="btn btn-primary pull-right">
+                    Action
+                </button>
+                    -->
+            </div>
+        </div>
+    </div>
+
+</form> 
+

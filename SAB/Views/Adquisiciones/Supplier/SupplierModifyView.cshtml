@@ -1,0 +1,150 @@
+﻿@using SAB.Domain.Acquisition
+@{
+    ViewBag.Title = "Detalle Proveedor";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li class="active">Proveedor </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Detalle Proveedor</h1>
+    </div>
+</div>
+@{Supplier proveedor = (Supplier)ViewData["supplier"]; }
+<form action="@Url.Action("Update", "Supplier", new { id = @proveedor.Id })" method="post">
+    <div class="col-md-10">
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Código</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1"  disabled="disabled" value="@proveedor.Id" name="id">
+                </div>
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Fecha de Registro</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" disabled="disabled" value="@proveedor.RegisterDate">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Nombre</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" value="@proveedor.Name" required="required" name="nombre" pattern="[a-zA-Z ]*" oninvalid="setCustomValidity('Please enter letters')">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Contacto</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" value="@proveedor.Contacto" required="required" name="contacto" pattern="[a-zA-Z ]*" oninvalid="setCustomValidity('Please enter letters')">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">RUC</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" disabled="disabled" value="@proveedor.Ruc">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Telefono</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" value="@proveedor.Telephone" required="required" name="telefono" pattern="[0-9 ]*" oninvalid="setCustomValidity('Please enter numbers')">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="" value="@proveedor.Email" required="required" name="correo">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Dirección</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" value="@proveedor.Address" required="required" name="direccion" pattern="[A-Za-z] [A-Za-z0-9 ]*" oninvalid="setCustomValidity('Please enter valid characters')">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12" style="height:30px;"></div>
+
+
+        <!--Botones Limpiar, cancelar, guardar-->
+        <div class=" col-md-3">
+
+        </div>
+        <div class="col-md-3">
+
+        </div>
+
+        <div class="col-md-3">
+            <input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Guardar" />
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <label class="control-label">
+                                <!--for="inputFechaInicio" class="control-label"-->
+                                ¿Estas seguro que quieres guardar los
+                            </label>
+                            <label class="control-label">
+                                cambios para este Proveedor?
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label class="control-label">
+                        <!--for="inputFechaInicio" class="control-label"-->
+                        ¿Estas seguro que quieres guardar los
+                    </label>
+                    <label class="control-label">
+                        cambios para este Proveedor?
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Aceptar</button>
+            </div>
+
+        </div>
+    </div>
+</div>

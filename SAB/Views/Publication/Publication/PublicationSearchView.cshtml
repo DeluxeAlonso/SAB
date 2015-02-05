@@ -1,0 +1,111 @@
+﻿@using SAB.Domain.Publication
+@{
+    ViewBag.Title = "Búsqueda de Publicación";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicaciones", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicaciones", "PublicationSearch", "Publication")</li>
+            <li class="active">Buscar</li>
+        </ol>
+    </div>
+</div>
+
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/Publication/PublicationRegister")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Nueva Publicación
+        </a>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda Publicación</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+</div>
+
+<!---------- BUSCAR PUBLICACION ------------->
+
+<div class="col-md-10">
+
+
+    @using (Html.BeginForm("PublicationSearchResult", "Publication"))
+    {
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Codigo</label>
+                    <input class="form-control" type="text" name="codigo" pattern="[0-9]*" title="Solo números" maxlength="10" />
+                </div>
+                <div class="col-md-6">
+                    <label for="searchText">Tipo Publicación</label>
+                    <select class="form-control" name="Id_Type">
+                        <option value="0">Todos</option>
+                        @foreach (var tipo in (IEnumerable<SAB.Domain.Publication.PublicationType>)ViewData["publicationType"])
+                        {
+                            var tipoPublicacion = ViewData["Id_Type"];
+
+                            if (tipo.Id.Equals(tipoPublicacion))
+                            {
+                                <option selected value="@tipo.Id">@tipo.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@tipo.Id">@tipo.Name</option>
+                            }
+                        }
+                    </select>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="text">Autor</label>
+                    <input type="text" class="form-control" name="nameAuthor" id="nameAuthor" pattern="[A-Za-zá-ú\s]+" title="Solo letras y espacios" value="@ViewData["nameAuthor"]" maxlength="50" />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="text">Editorial</label>
+                    <input type="text" class="form-control" name="nameEditorial" id="nameEditorial" pattern="[A-Za-zá-ú\s]+" title="Solo letras y espacios" value="@ViewData["nameEditorial"]" maxlength="50" />
+                </div>
+            </div>
+        </div>
+
+        if (ViewBag.pageIndex != null)
+        {
+            <input type="hidden" value="@ViewBag.pageIndex" name="pageIndex" id="PRS_pageIndex" class="form-control">
+        }
+        else
+        {
+            <input type="hidden" value="1" name="pageIndex" id="PRS_pageIndex">
+        }
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary pull-right">Buscar</button>
+        </div>
+
+    }
+</div>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Publication.js")"></script>
+}

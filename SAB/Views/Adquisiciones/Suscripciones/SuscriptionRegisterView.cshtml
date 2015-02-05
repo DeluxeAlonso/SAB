@@ -1,0 +1,204 @@
+﻿@{
+    ViewBag.Title = "Registrar Suscripcion";
+}
+
+@using SAB.Domain.Publication
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Suscripcion", "RegisterSuscription", "Suscripcion")</li>
+            <li class="active">Registrar </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Registrar Suscripción</h1>
+        <div class="col-md-10">
+            @if (TempData["message"] != null)
+            {
+                <div class="alert alert-success" role="alert">@TempData["message"]</div>
+            }
+            @if (TempData["alert"] != null)
+            {
+                <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@{
+    SAB.Domain.Publication.PublicationTitle publication = Model;
+}
+
+@using (Html.BeginForm("Save", "Suscripcion")) { 
+    <div class="col-md-10">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Publicación</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="publicationName" id="publicationName" value="" required readonly>
+                        <input type="hidden" name="publicationID" id="publicationID">
+                        
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" data-toggle="modal" data-target="#addPublicacionModal">Buscar</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="searchText">Descripción</label>
+                    <input class="form-control" type="text" name="description">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input class="form-control hidden" type="text" name="state" value="Registrado" readonly>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="searchText" hidden>Fecha Registro</label>
+                    <input class="form-control hidden" type="text" name="RegTime" value="@ViewData["Fecha"]">
+                    
+                    <input class="form-control" type="hidden" name="Id_Publication" id ="publicationID" value="" />
+                    <input class="form-control" type="hidden" name="Id_Editorial" id="editorialID" value="" />
+                    <input class="form-control" type="hidden" name="Id_TypePublication" id="typeID" value="" />
+                  
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+        <div class="form-group">
+            
+            <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+        </div>
+    </div>
+}
+
+<div id="addPublicacionModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Agregar publicación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="col-md-12">
+                        <form action="@Url.Action("PublicationSearch", "PurchaseOrder")" method="post" id="publicationForm">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="searchText">Titulo</label>
+                                    <input type="text" name="txtTitulo" class="form-control">
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="searchText">Autor</label>
+                                    <input type="text" name="txtAutor" class="form-control">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <select name="tipoPublicacion" class="form-control">
+                                        <option value="0">--Todos--</option>
+                                        @foreach (PublicationType publicationType in ViewBag.PublicationTypes)
+                                        {
+                                            <option value="@publicationType.Id">@publicationType.Name</option>
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button id="btnPublicationSearch" class="btn btn-primary pull-right">Buscar</button>
+
+                            </div>
+                            <br><br />
+                            <br><br />
+                        </form>
+                    </div>
+                    <form action="@Url.Action("DetailView", "Suscripcion")" class="form-horizontal" method="post" role="form">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div id="resultPublication">
+                                    <table class="table-responsive table table-striped" id="publicationTable">
+                                        <tr>
+                                            <th class="cod">Cód. Publicación</th>
+                                            <th class="titulo">Título</th>
+                                            
+                                            <th class="text-center"> </th>
+                                        </tr>
+                                        @foreach (var publicacion in (IEnumerable<PublicationTitle>)ViewData["Publications"])
+                                        {
+                                            if (publicacion.State.Equals("Activo"))
+                                            {
+
+                                                <tr data-idEditorial="@publicacion.Id_Editorial" data-idType="@publicacion.Id_Type">
+                                                    <td>@publicacion.Id</td>
+                                                    <td>@publicacion.Title</td>
+                                                    
+                                                    <td>
+                                                        <input type="radio" name="publicaciones" />
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <ul class="pagination">
+                                        <li><a href="#">&laquo;</a></li>
+                                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>
+                                        <li><a href="#">&raquo;</a></li>
+                                    </ul>
+
+                                    <button id="addPublication" type="submit" class="btn btn-primary pull-right" data-dismiss="modal">Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Suscription.js")"></script>
+    
+}
+
+
+
+
+
+
+
+
+

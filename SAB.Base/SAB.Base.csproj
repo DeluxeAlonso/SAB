@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FAD84BBF-EE89-4220-A129-93ABDA39D816}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SAB.Base</RootNamespace>
+    <AssemblyName>SAB.Base</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Acquisition\IPurchaseOrderDetailRepository.cs" />
+    <Compile Include="Acquisition\IPurchaseOrderRepository.cs" />
+    <Compile Include="Acquisition\IPurchaseRequestDetailRepository.cs" />
+    <Compile Include="Acquisition\IPurchaseRequestRepository.cs" />
+    <Compile Include="Acquisition\IRenewalRepository.cs" />
+    <Compile Include="Acquisition\ISupplierRepository.cs" />
+    <Compile Include="Acquisition\ISuscriptionRepository.cs" />
+    <Compile Include="Assets\IAssetsRepository.cs" />
+    <Compile Include="Assets\ITypeAssetRepository.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="Library\ILocalRepository.cs" />
+    <Compile Include="Loan\ILoanRepository.cs" />
+    <Compile Include="Politica\IDevolutionProfileRepository.cs" />
+    <Compile Include="Politica\IUserProfileRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publication\IAuthorRepository.cs" />
+    <Compile Include="Publication\IEditorialRepository.cs" />
+    <Compile Include="Publication\IPublicationItemRepository.cs" />
+    <Compile Include="Publication\IPublicationTitleRepository.cs" />
+    <Compile Include="Publication\IPublicationTopicRepository.cs" />
+    <Compile Include="Publication\IPublicationTypeRepository.cs" />
+    <Compile Include="Publication\ITopicRepository.cs" />
+    <Compile Include="Sanctions\ISanctionRepository.cs" />
+    <Compile Include="User\IActionRepository.cs" />
+    <Compile Include="Reserve\IReserveRepository.cs" />
+    <Compile Include="User\IDocumentTypeRepository.cs" />
+    <Compile Include="User\IUserAccountRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SAB.Domain\SAB.Domain.csproj">
+      <Project>{d2dd4fdf-e5bd-420e-9d4c-3cce42f04c13}</Project>
+      <Name>SAB.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

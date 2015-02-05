@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D2DD4FDF-E5BD-420E-9D4C-3CCE42F04C13}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SAB.Domain</RootNamespace>
+    <AssemblyName>SAB.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Acquisition\PurchaseRequestDetailN.cs" />
+    <Compile Include="Acquisition\Renewal.cs" />
+    <Compile Include="Assets\Asset.cs" />
+    <Compile Include="Assets\TypeAsset.cs" />
+    <Compile Include="Loan\LoanType.cs" />
+    <Compile Include="Acquisition\Suscription.cs" />
+    <Compile Include="Acquisition\PurchaseRequestDetail.cs" />
+    <Compile Include="Politica\DevolutionProfile.cs" />
+    <Compile Include="Politica\UserProfile.cs" />
+    <Compile Include="Publication\Editorial.cs" />
+    <Compile Include="Publication\PublicationTopic.cs" />
+    <Compile Include="Publication\Topic.cs" />
+    <Compile Include="Reserve\Reserve.cs" />
+    <Compile Include="Sanctions\Sanction.cs" />
+    <Compile Include="Sanctions\SanctionType.cs" />
+    <Compile Include="User\ActionType.cs" />
+    <Compile Include="Acquisition\Supplier.cs" />
+    <Compile Include="Acquisition\PurchaseOrderDetail.cs" />
+    <Compile Include="Acquisition\PurchaseRequest.cs" />
+    <Compile Include="Acquisition\PurchaseOrder.cs" />
+    <Compile Include="Acquisition\Reception.cs" />
+    <Compile Include="Library\Assets.cs" />
+    <Compile Include="Library\Local.cs" />
+    <Compile Include="Loan\Loan.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publication\Author.cs" />
+    <Compile Include="Publication\PublicationTitle.cs" />
+    <Compile Include="Publication\PublicationItem.cs" />
+    <Compile Include="Publication\PublicationType.cs" />
+    <Compile Include="User\DocumentType.cs" />
+    <Compile Include="User\UserAccount.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

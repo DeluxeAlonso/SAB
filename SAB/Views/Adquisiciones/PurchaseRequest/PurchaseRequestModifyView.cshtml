@@ -1,0 +1,158 @@
+﻿@{
+    ViewBag.Title = "PurchaseRequestModifyView";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Adquisiciones", "Adquisiciones", "Adquisiciones")</li>
+            <li>@Html.ActionLink("PurchaseRequest", "PurchaseRequest", "PurchaseRequest")</li>
+            <li class="active">Detalle</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Detalle de Solictud de Compra</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <div class="form-group">
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="searchText">Código :</label>
+                        <input type="text" name="searchText" value="S-0001" class="form-control" disabled="disabled">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="searchText">Proveedor :</label>
+                        <input type="text" name="searchText" value="..." class="form-control" disabled="disabled">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="searchText">Fecha :</label>
+                        <input type="date" name="searchText" value="2013-01-10" class="form-control" disabled="disabled">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="searchText">Solicitante :</label>
+                        <input type="text" name="searchText" value="Carlos Mayta" class="form-control" disabled="disabled">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="searchText">Estado :</label>
+                        <input type="text" name="searchText" value="Pendiente" class="form-control" disabled="disabled">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="searchText">Descripción :</label>
+                        <input type="text" name="searchText" value="Libros de Literatura" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        <div><label></label></div>
+        <div class="col-md-5">
+            <button type="button" class="btn btn-success pull-right" disabled="disabled">Aprobar</button>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn btn-danger pull-left" disabled="disabled">Rechazar</button>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-offset-1 col-lg-8">
+        <div><label></label></div>
+        <div><label></label></div>
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">Materiales</div>
+            <table class="table">
+                <tr>
+                    <th class="text-left">Titulo</th>
+                    <th>Autor</th>
+                    <th>Cantidad</th>
+                </tr>
+                <tr>
+                    <td><input type="text" name="searchText" value="Bajo la misma estrella" class="form-control"></td>
+                    <td><input type="text" name="searchText" value="Jhon Green" class="form-control"></td>
+                    <td><input type="text" name="searchText" value="8" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="searchText" value="Si decido quedarme" class="form-control"></td>
+                    <td><input type="text" name="searchText" value="Gayle Forman" class="form-control"></td>
+                    <td><input type="text" name="searchText" value="6" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="searchText" value="En llamas" class="form-control"></td>
+                    <td><input type="text" name="searchText" value="Suzanne Collins" class="form-control"></td>
+                    <td><input type="text" name="searchText" value="12" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="searchText" value="" class="form-control"></td>
+                    <td><input type="text" name="searchText" value="" class="form-control"></td>
+                    <td><input type="text" name="searchText" value="" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="searchText" value="" class="form-control"></td>
+                    <td><input type="text" name="searchText" value="" class="form-control"></td>
+                    <td><input type="text" name="searchText" value="" class="form-control"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-offset-8">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#buttonSave">Guardar</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Boton Guardar -->
+<form action="@Url.Action("UpdatePurchaseRequest", "PurchaseRequest", new { id = 2 })" method="post">
+    <div class="modal fade" id="buttonSave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label">
+                            ¿Está seguro que desea guardar los cambio la Solictud de Compras seleccionado?
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>

@@ -1,0 +1,206 @@
+﻿@{
+    ViewBag.Title = "PurchaseRequestRegisterView";
+}
+@using SAB.Domain.Acquisition
+@using SAB.Domain.Publication
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Orden de Compra", "Create", "PurchaseOrder")</li>
+            <li class="active">Registrar Solicitud de Compra</li>
+        </ol>
+    </div>
+    <div class="col-md-10">
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success" role="alert">@TempData["message"]</div>
+        }
+        @if (TempData["alert"] != null)
+        {
+            <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+        }
+
+    </div>
+</div>
+
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/PurchaseRequest/NewPublicationRequest")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Nueva Publicación
+        </a>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-10">
+        <h1 class="title text-left">Registrar Solicitud de Compra</h1>
+        @using (Html.BeginForm("Save", "PurchaseRequest"))
+        {
+
+            <div class="form-group">
+
+
+
+                <div class="row">
+                    <div class=" col-md-8">
+                        <div class="panel">
+                            <label>Descripción:</label>
+                            <textarea rows="10" cols="60" name="descripcion" required></textarea>
+                        </div>
+                    </div>
+                    <div class=" col-md-8">
+
+                        <div class="panel panel-default">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading text-center">Materiales</div>
+                            <!-- Table -->
+                            <table class="table" id="AddedPublicationTable">
+                                <tr>
+                                    <th class="col-md-1">Código</th>
+                                    <th class="col-md-4">Producto</th>
+                                    <th class="col-md-2">Cantidad Solicitada</th>
+                                    <th class="col-md-2"></th>
+                                </tr>
+                                @if (@ViewData["publicationIDs"] != null)
+                                {
+                                    string[] arrayPublication = (string[])ViewData["publicationIDs"];
+                                    string[] arrayPublicationName = (string[])ViewData["publicationNames"];
+                                    string[] arrayQuantities = (string[])ViewData["publicationQuantities"];
+                                    for (int i = 0; i < ((int)ViewData["numPublications"]); i++)
+                                    {
+                                        <tr>
+                                            <td>@(arrayPublication[i])<input type="checkbox" name="publicationIDs" value="@(arrayPublication[i])" hidden checked></td>
+
+                                            <td>@(arrayPublicationName[i])<input type="text" name="publicationNames" value="@(arrayPublicationName[i])" hidden></td>
+
+                                            <td><input name="publicationQuantities" type="number" class="form-control" placeholder="" value="@(arrayQuantities[i])" min="1" max="100" required></td>
+
+                                            <td class="text-center"><a class="deleteEntry"><i class="margin-right-icon glyphicon glyphicon-remove"></i></a></td>
+
+                                        </tr>
+                                    }
+                                }
+
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <br><br />
+                        <button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#addPublicacionModal">
+                            Agregar
+                        </button>
+                        <br><br />
+                        <br><br />
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        <!--Botones Limpiar, cancelar, guardar-->
+            <div class=" col-md-8">
+
+                <div class="col-md-4">
+                    @Html.ActionLink("Cancelar", "Search", "PurchaseRequest",  new { @class = "btn btn-primary pull-right" })
+                </div>
+
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary pull-right">
+                        Guardar
+                    </button>
+                </div>
+
+            </div>
+        }
+    </div>
+</div>
+
+<div id="addPublicacionModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+
+                <h4 class="modal-title" id="myModalLabel">Agregar publicación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form action="@Url.Action("PublicationSearch", "PurchaseOrder")" method="post" id="publicationForm">
+                        <div class="col-md-12">
+
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="searchText">Titulo</label>
+                                    <input type="text" name="txtTitulo" class="form-control">
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="searchText">Autor</label>
+                                    <input type="text" name="txtAutor" class="form-control">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <select name="tipoPublicacion" class="form-control">
+                                        <option value="0">--Todos--</option>
+                                        @foreach (PublicationType publicationType in ViewBag.PublicationTypes)
+                                        {
+                                            <option value="@publicationType.Id">@publicationType.Name</option>
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button id="btnPublicationSearch" class="btn btn-primary pull-right">Buscar</button>
+
+                            </div>
+                            <br><br />
+                            <br><br />
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div id="resultPublication">
+                                    @{
+                                        IEnumerable<PublicationTitle> listPublication = ViewBag.Publications;
+                                        Html.RenderPartial("~/Views/Adquisiciones/PurchaseOrder/_PartialPublicationTable.cshtml", listPublication);
+
+                                    }
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <button id="addPublication" class="btn btn-primary pull-right" data-dismiss="modal">Agregar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/PurchaseRequest.js")"></script>
+}

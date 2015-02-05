@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "DetailLibraryUser";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Usuario", "Index", "Home")</li>
+            <li class="active">Detalle Usuario</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <h1 class="title text-left">Detalle usuario</h1>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="searchText">DNI</label>
+
+                    <input type="text" class="form-control" disabled="disabled" value="07215863">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-md-8">
+                    <label for="searchText">Nombre</label>
+                    <input type="text" class="form-control" placeholder=""  value="Juan">
+                    <label for="searchText">Apellidos</label>
+                    <input type="text" class="form-control" placeholder=""  value="Perez Guzman">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="searchText">Fecha de Nacimiento</label>
+
+                    <input type="date" class="form-control"  value="1991-01-26">
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <label for="searchText">Correo electrónico</label>
+
+                    <input type="text" class="form-control"  value="jperez@hotmail.com">
+
+                </div>
+            </div>
+            
+        </div>
+
+
+
+
+        <!--Botones Limpiar, cancelar, guardar-->
+        <div class=" col-md-8">
+            <div class="col-md-4">
+                <button type="button" class="btn btn-primary pull-right">
+                    Eliminar
+                </button>
+            </div>
+            <div class="col-md-4">
+                @Html.ActionLink("Modificar", "Index", "Home", new { id = 1 }, new { @class = "btn btn-primary pull-right" })
+            </div>
+
+            <div class="col-md-4">
+                @Html.ActionLink("Guardar", "Search", "LibraryUser", new { id = 1 }, new { @class = "btn btn-primary pull-right"})
+            </div>
+            <!--
+            <div class="col-md-3">
+                @Html.ActionLink("Guardar", "Show", "Publication", new { id = 1 }, new { @class = "btn btn-primary pull-right" })
+            </div>
+            <div class="col-md-3">
+                @Html.ActionLink("Eliminar", "Show", "Publication", new { id = 1 }, new { @class = "btn btn-primary pull-right" })
+            </div>
+                -->
+            <!--BOTON
+            <button type="button" class="btn btn-primary pull-right">
+                Action
+            </button>
+                -->
+        </div>
+    </div>
+</div>

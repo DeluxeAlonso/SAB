@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Modificar Suscripción";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Suscripcion", "SearchSuscription", "Suscripcion")</li>
+            <li>@Html.ActionLink("Buscar", "SearchSuscription", "Suscripcion")</li>
+            <li>@Html.ActionLink("Detalle", "DetailView", "Suscripcion")</li>
+            <li class="active">Modificar </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Modificar Suscripción</h1>
+    </div>
+</div>
+
+<form action="@Url.Action("Update", "Suscripcion", new { id = 2 })" method="post">
+    <div class="col-md-10">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Código</label>
+                        <input class="form-control" id="disabledImput" type="text" value="1" disabled>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Fecha de Registro</label>
+                        <input class="form-control" id="disabledImput" type="text" value="25/09/2014" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Titulo</label>
+                        <input class="form-control" id="disabledImput" type="text" value="Somos">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Editorial</label>
+                        <input class="form-control" id="disabledImput" type="text" value="Somos">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Tipo de Pulblicacion</label>
+                        <input class="form-control" id="disabledImput" type="text" value="Revista Impresa" >
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Estado</label>
+                        <input class="form-control" id="disabledImput" type="text" value="Registrada" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label">
+                            <!--for="inputFechaInicio" class="control-label"-->
+                            ¿Estas seguro que quieres guardar los
+                        </label>
+                        <label class="control-label">
+                            cambios para esta suscripción?
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+</form>
+
+
+

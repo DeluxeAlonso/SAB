@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "AuthorSearchView";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicaciones", "AuthorSearch", "Author")</li>
+            <li>@Html.ActionLink("Autor", "AuthorSearch", "Author")</li>
+            <li class="active">Buscar</li>
+        </ol>
+    </div>
+</div>
+
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/Author/AuthorRegister")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Nuevo Autor
+        </a>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda Autor</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+</div>
+
+<div class="col-md-10">
+    @using (Html.BeginForm("AuthorSearchResult", "Author")) 
+    { 
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Código</label>
+                    <input type="text" class="form-control" name="codigo" id="codigo" pattern="[0-9]*" title="Solo números" maxlength="10" />
+                </div>
+                <div class="col-md-6">
+                    <label for="searchText">País</label>
+                    <div class="form-group">
+                        <select class="form-control" name="pais" id="pais">
+                            <option>Todos</option>
+                            <option>Alemania</option>
+                            <option>Argentina</option>
+                            <option>Australia</option>
+                            <option>Bolivia</option>
+                            <option>Brasil</option>
+                            <option>Canada</option>
+                            <option>Chile</option>
+                            <option>China</option>
+                            <option>Colombia</option>
+                            <option>Ecuador</option>
+                            <option>España</option>
+                            <option>Estados Unidos</option>
+                            <option>Francia</option>
+                            <option>Italia</option>
+                            <option>Japón</option>
+                            <option>Mexico</option>
+                            <option>Perú</option>
+                            <option>Rusia</option>
+                            <option>Uruguay</option>
+                            <option>Venezuela</option>
+                            <option>Otros</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre" pattern="[A-Za-zá-ú\s]+{1,50}" maxlength="50" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                @if (ViewBag.pageIndex != null)
+                {
+                    <input type="hidden" value="@ViewBag.pageIndex" name="pageIndex" id="PRS_pageIndex" class="form-control">
+                }
+                else
+                {
+                    <input type="hidden" value="1" name="pageIndex" id="PRS_pageIndex">
+                }
+            </div>
+            <div class="form-group col-sm-offset-11">
+                <button class="btn btn-primary pull-right" type="submit" id="btnAuthorSearchResut">Buscar</button>
+            </div>
+        </div>    
+    }
+</div>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Publication.js")"></script>
+}

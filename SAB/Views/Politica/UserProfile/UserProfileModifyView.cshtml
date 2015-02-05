@@ -1,0 +1,262 @@
+﻿@model SAB.Domain.Politica.UserProfile
+@using SAB.Domain.User
+@using SAB.Domain.Publication
+@using SAB.Domain.Politica
+@{
+    ViewBag.Title = "UserProfileDetailView";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Perfil de usuario", "UserProfileDetail", "UserProfile")</li>
+            <li class="active">Detalle</li>
+        </ol>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/mustache.js")"></script>
+    <script src="@Url.Content("~/Scripts/main.js")"></script>
+    <script src="@Url.Content("~/Scripts/UserProfile.js")"></script>
+
+
+}
+@{UserProfile userProfile = (UserProfile)ViewData["userProfile"];}
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Detalle de perfil de usuario</h1>
+    </div>
+</div>
+
+<form action="@Url.Action("Update", "UserProfile", new { id = @userProfile.Id })" method="post">
+  
+    <div class="col-md-10">
+
+        <div class="form-group">
+            <label for="searchText">Código:</label>
+            <input class="form-control" id="disabledImput" type="text" value="@userProfile.Id" disabled>
+        </div>
+        <div class="form-group">
+            <label for="searchText">Nombre:</label>
+            <input type="text" name="name" value="@userProfile.Name" placeholder="Búsqueda ..." class="form-control" required="required" maxlength="50" pattern="[a-zA-Z]*" oninvalid="setCustomValidity('Please enter letters')">
+        </div>
+        <div class="form-group">
+            <label for="searchText">Descripción:</label>
+            <input type="text" name="description" value="@userProfile.Description" placeholder="Búsqueda ..." class="form-control" maxlength="50" required="required">
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6 margin-bottom-sm">
+                    <label for="searchText">Tipos de publicación que puede sacar:</label>
+                    <p></p>
+                    @{IEnumerable<PublicationType> publicaciones = (IEnumerable<PublicationType>)ViewData["publicaciones"]; }
+                    @{List<PublicationType> publicacionById = (List<PublicationType>)ViewData["publicacionById"]; }
+
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <!-- Table -->
+                        <table id="publicationTablem" class="table">
+                            <tr>
+                                <th>Tipo Publicación</th>
+                                <th></th>
+                            </tr>
+                            @foreach (PublicationType r in publicaciones)
+                            {
+                                if (publicacionById.Any(prod => prod.Id == r.Id))
+                                { 
+                                <tr>
+                                    <td>@r.Name</td>
+                                    <td><input type="checkbox" name="selectedPublication" value="@r.Id" checked="checked"></td>
+
+                                </tr>
+                                }
+                                else { 
+                                <tr>
+                                    <td>@r.Name</td>
+                                    <td><input  type="checkbox" name="selectedPublication" value="@r.Id" ></td>
+
+                                </tr>
+                                
+                                }
+                            }
+
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+        
+
+        <div class="col -md-3">
+            <label for="fields">Número de materiales que puede sacar a la vez:</label>
+            <input type="number" name="maxMaterial" value="@userProfile.MaxMaterial"  class="form-control" min="1" max="5" required>
+        </div>
+
+        <p></p>
+
+        <div class="form-group">
+            <label for="searchText">Asignación de tareas en el sistema:</label>
+            <p></p>
+            <div class=" col-md-8">
+                @{IEnumerable<ActionType> acciones = (IEnumerable<ActionType>)ViewData["acciones"]; }
+                @{List<ActionType> accionById = (List<ActionType>)ViewData["accionById"]; }
+
+
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <!-- Table -->
+                    <table id="actionTablem" class="table">
+                        <tr>
+                            <th>Tareas</th>
+                            <th></th>
+                        </tr>
+                        @foreach (ActionType r in acciones)
+                        {
+                            if (accionById.Any(prod => prod.Id == r.Id))
+                                { 
+                            <tr>
+                                <td>@r.Name</td>
+                                <td><input checked="checked" type="checkbox" name="selectedAction" value="@r.Id" ></td>
+
+                            </tr>
+                            
+                        }
+                            else { 
+                             <tr>
+                                <td>@r.Name</td>
+                                <td><input type="checkbox" name="selectedAction" value="@r.Id" ></td>
+
+                            </tr>
+                            
+                            
+                            
+                            }
+                        }
+
+
+
+                    </table>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+        <div class="form-group">
+            <label for="searchText">Asignación de tiempos máximos de devolución según el periodo de tiempo:</label>
+            <p></p>
+            <div class="row">
+                <div class=" col-md-8">
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <!-- Table -->
+                        <table class="table">
+                            <tr>
+                                <th>Periodo desde</th>
+                                <th>Periodo hasta</th>
+                                <th>Descripción</th>
+                                <th>Tiempo máximo de devolución</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Días regulares</td>
+                                <td><input type="number" name="day" class="form-control" value="@userProfile.MaxDays" required="required" /></td>
+                                
+                            </tr>
+                            @{IList<DevolutionProfile> devoluciones = (IList<DevolutionProfile>)ViewData["devolutionById"]; }
+
+                            @if (devoluciones != null)
+                            {
+                                foreach (DevolutionProfile r in devoluciones)
+                                {
+                                    <tr>
+                                        <td><input type="date" name="fechaDesde" class="form-control" value=@r.From.ToString("yyyy-MM-dd") /></td>
+                                        <td><input type="date" name="fechaHasta" class="form-control"  value=@r.To.ToString("yyyy-MM-dd") /></td>
+                                        <td><input type="text" name="descriptions" class="form-control"  value="@r.Description" /></td>
+                                        <td><input type="number" name="days" class="form-control"  value="@r.Days" min="1" max="5"/></td>
+                                        <td><a href="#" class="glyphicon glyphicon-remove remove_row"></a></td>
+
+                                    </tr>
+                                }
+                            }
+
+                            <tr>
+                                <td><input type="date" name="fechaDesde" class="form-control" /></td>
+                                <td><input type="date" name="fechaHasta" class="form-control" /></td>
+                                <td><input type="text" name="descriptions" class="form-control" /></td>
+                                <td><input type="number" name="days" class="form-control" /></td>
+                                <td><a href="#" class="glyphicon glyphicon-remove remove_row"></a></td>
+                            </tr>
+                            <tr class="add_row" data-tpl="hitosTpl">
+                                <td><a href="#">Agregar fila</a></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Guardar" />
+        </div>
+    </div>
+
+    <script type="template/mustache" id="hitosTpl">
+        <tr>
+            <td><input type="date" name="fechaDesde" class="form-control" /></td>
+            <td><input type="date" name="fechaHasta" class="form-control" /></td>
+            <td><input type="text" name="descriptions" class="form-control" /></td>
+            <td><input type="number" name="days" min="1" max="5"class="form-control" /></td>
+            <td><a href="#" class="glyphicon glyphicon-remove remove_row"></a></td>
+        </tr>
+    </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label">
+                            <!--for="inputFechaInicio" class="control-label"-->
+                            ¿Estas seguro que quieres guardar los
+                        </label>
+                        <label class="control-label">
+                            cambios para este perfil de usuario?
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>

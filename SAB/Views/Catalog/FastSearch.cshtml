@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Búsqueda rápida";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li>@Html.ActionLink("Home", "Index", "Home")</li>
+          <li>@Html.ActionLink("Catálogo en línea", "FastSearch", "Catalog")</li>
+          <li class="active">Búsqueda rápida</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda rápida</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+
+    <form action="@Url.Action("FastSearchResult", "Catalog")" class="form-horizontal" method="post" role="form">
+        <div class="form-group">
+            <label for="searchText">Búsqueda</label>
+            <input type="text" name="searchText" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6 margin-bottom-sm">
+                    <label for="biblioteca">Biblioteca</label>
+
+                    @Html.DropDownList("local", null, "Todas", new { @class = "form-control" })
+                </div>
+                <div class="col-md-6">
+                    <label for="fields">Búsqueda por</label>
+                    <select name="searchFor" class="form-control">
+                        <option value="0">Todos los campos</option>
+                        <option value="1">Título</option>
+                        <option value="2">Autor</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                @if (ViewBag.pageIndex != null)
+                {
+
+                    <input type="hidden" value="@ViewBag.pageIndex" name="pageIndex" id="PRS_pageIndex" class="form-control">
+
+                }
+                else
+                {
+                    <input type="hidden" value="1" name="pageIndex" id="PRS_pageIndex">
+                }
+            </div>
+            <button type="submit" class="btn btn-primary pull-right" id="btnCatalogSearch">Buscar</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Catalog.js")"></script>
+}

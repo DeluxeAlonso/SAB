@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewBag.Title = "Buscar perfil de usuario";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Perfil de usuario", "UserProfileSearch", "UserProfile")</li>
+            <li class="active">Búsqueda</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Buscar perfil de usuario</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="tipo">Código:</label>
+                <input type="text" name="searchText" value=" " placeholder="Search..." class="form-control">
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Nombre:</label>
+                    <input type="text" name="searchText" value=" " placeholder="Search..." class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="tipo">Acceso al sistema:</label>
+                <select name="titulo" class="form-control">
+                    <option value="0">Búsqueda rápida del catálogo</option>
+                    <option value="1">Búsqueda avanzada del catálogo</option>
+                    <option value="2">Solicitud de orden de compra</option>
+                    <option value="10">Realizar préstamo</option>
+                    <option value="11">Realizar reserva</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="tipo">Tipo de publicación que puede sacar:</label>
+                <select name="titulo" class="form-control">
+                    <option value="10">Todos</option>
+                    <option value="0">Libro</option>
+                    <option value="1">Periódico</option>
+                    <option value="2">Revista</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="button" class="btn btn-primary pull-right" value="Buscar" />
+            </div>
+        </div>
+    </div>
+    <form action="/UserProfile/UserProfileDetail" class="form-horizontal" method="post" role="form">
+        <div class="col-md-10">
+            <div class="row">
+
+                <table class="table-responsive table table-striped">
+                    <tr>
+                        <th class="cod">Cód. del Perfil</th>
+                        <th class="titulo">Nombre</th>
+                        <th class="tipo">Descripción</th>
+                        <th class="tipo"></th>
+                    </tr>
+                    <tr>
+                        <td>PRO001</td>
+                        <td>Empleado</td>
+                        <td>Empleado de San Miguel</td>
+                        <td>
+                            <a href="@Url.Action("UserProfileDetail", "UserProfile", new { id = 2 })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                            <a href="@Url.Action("UserProfileModify", "UserProfile", new { id = 2 })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                            <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PRO002</td>
+                        <td>Profesor de universidad</td>
+                        <td>Profesor de facultad</td>
+                        <td>
+                            <a href="@Url.Action("UserProfileDetail", "UserProfile", new { id = 2 })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                            <a href="@Url.Action("UserProfileModify", "UserProfile", new { id = 2 })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                            <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PRO003</td>
+                        <td>Profesor de informática</td>
+                        <td>Profesor de informática con derecho a compra</td>
+                        <td>
+                            <a href="@Url.Action("UserProfileDetail", "UserProfile", new { id = 2 })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                            <a href="@Url.Action("UserProfileModify", "UserProfile", new { id = 2 })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                            <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PRO004</td>
+                        <td>Alumno de ingeniería</td>
+                        <td>Alumno universitario con derecho a largos plazos</td>
+                        <td>
+                            <a href="@Url.Action("UserProfileDetail", "UserProfile", new { id = 2 })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                            <a href="@Url.Action("UserProfileModify", "UserProfile", new { id = 2 })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                            <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+                        </td>
+                    </tr>
+                </table>
+
+                <div>
+                    <ul class="pagination">
+                        <li><a href="#">&laquo;</a></li>
+                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+
+   
+</div>
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label class="control-label">
+                        <!--for="inputFechaInicio" class="control-label"-->
+                        ¿Estas seguro que quieres eliminar
+                    </label>
+                    <label class="control-label">
+                        este perfil de usuario?
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <a href="@Url.Action("Delete", "UserProfile", new { id = 4 })" class="btn btn-primary">Aceptar</a>
+            </div>
+
+        </div>
+    </div>
+</div>

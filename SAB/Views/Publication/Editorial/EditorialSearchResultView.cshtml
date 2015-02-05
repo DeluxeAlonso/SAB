@@ -1,0 +1,170 @@
+﻿
+@{
+    ViewBag.Title = "EditorialListView";
+}
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Editorial", "EditorialSearch", "Editorial")</li>
+            <li>@Html.ActionLink("Buscar", "EditorialSearch", "Editorial")</li>
+            <li class="active">Resultados </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/Editorial/EditorialRegister")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Nueva Editorial
+        </a>
+    </div>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda Editorial</h1>
+    </div>
+</div>
+
+
+<div class="row">
+    <form action="@Url.Action("EditorialSearchResult", "Editorial")" method="post" id="PRS_SearchForm">
+        <div class="col-md-10">
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="searchText">Código</label>
+                        <input class="form-control" type="text" name="codigo" pattern="[0-9]*" title="Solo números" value="@ViewData["codigo"]" maxlength="10" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="searchText">Razón Social</label>
+                        <input type="text" class="form-control" name="nombre" pattern="[A-Za-zá-ú\s]+" title="Solo letras y espacios" value="@ViewData["nombre"]" maxlength="50" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="searchText">Desde</label>
+                        <input class="form-control generic-datepicker" type="text" name="desde" id="desde" min="1800-01-01" max="@ViewData["hoy"]"  value="@ViewData["desde"]" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="searchText">Hasta</label>
+                        <input class="form-control generic-datepicker" type="text" name="hasta" id="hasta" min="1800-01-01" max="@ViewData["hoy"]" value="@ViewData["hasta"]" />
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                @if (ViewBag.pageIndex != null)
+                {
+                    <input type="hidden" value="@ViewBag.pageIndex" name="pageIndex" id="PRS_pageIndex" class="form-control">
+                }
+                else
+                {
+                    <input type="hidden" value="1" name="pageIndex" id="PRS_pageIndex">
+                }
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary pull-right">Buscar</button>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<!---------- LISTA EDITORIAL ------------->
+
+<div class="form-group">
+    <div class="col-md-10">
+        <div class="row">
+
+            <table class="table-responsive table table-striped">
+                <tr>
+                    <th>Código</th>
+                    <th>Razón Social</th>
+                    <th>RUC</th>
+                    <th></th>
+                </tr>
+                @foreach (var editorial in Model)
+                {
+                    <tr>
+                        <td>@editorial.Id</td>
+                        <td>@editorial.Company_Name </td>
+                        <td>@editorial.RUC</td>
+                        <td>
+                            <a href="@Url.Action("EditorialDetail", "Editorial", new { id = editorial.Id })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                            <a href="@Url.Action("EditorialModify", "Editorial", new { id = editorial.Id })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>                           
+                        </td>
+                    </tr>
+                }
+            </table>
+
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+
+                    <form action="@Url.Action("Delete", "Topic")" method="post">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <label class="control-label">
+                                        ¿Estas seguro que quieres Eliminar esta Editorial?
+                                    </label>
+                                </div>
+                            </div>
+                            <input type="hidden" name="element_id" class="deleteElementInput" value="0" />
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Aceptar</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            @*----------------------------Paginacion---------------------------------*@
+
+            <div class="col-md-12 col-md-offset-3 form-horizontal">
+                <div class="form-group ">
+                    <div>
+                        <ul class="pagination">
+                            <li><a id="PRS_btnFirst">Primero</a></li>
+                            <li><a id="PRS_btnPrev">&laquo;</a></li>
+
+                            <li>
+                                @if (ViewBag.pageIndex != null)
+                                {
+                                    <span>@ViewBag.pageIndex</span>
+                                }
+                                else
+                                {
+                                    <span>1</span>
+                                }
+                            </li>
+                            <li><a id="PRS_btnNext">&raquo;</a></li>
+                            <li><a id="PRS_btnLast">Último</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Publication.js")"></script>
+}
+
+

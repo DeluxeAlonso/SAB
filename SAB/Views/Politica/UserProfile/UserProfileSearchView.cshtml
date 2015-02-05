@@ -1,0 +1,206 @@
+﻿@using SAB.Domain.User
+@using SAB.Domain.Publication
+@using SAB.Domain.Politica
+@{
+    ViewBag.Title = "Buscar perfil de usuario";
+    
+    
+}
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/mustache.js")"></script>
+    <script src="@Url.Content("~/Scripts/main.js")"></script>
+    <script src="@Url.Content("~/Scripts/UserProfile.js")"></script>
+
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Perfil de usuario", "UserProfileSearch", "UserProfile")</li>
+            <li class="active">Búsqueda</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/UserProfile/UserProfileRegister")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Nuevo Perfil
+        </a>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Buscar perfil de usuario</h1>
+    </div>
+</div>
+
+<form action="@Url.Action("UserProfileList","UserProfile")" method="post" id="PRS_SearchForm">    
+<div class="col-md-10">
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="tipo">Código:</label>
+                <input type="number" name="searchCode" value="@ViewData["searchcode"]" min="1" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Nombre:</label>
+                    <input type="text" name="searchName" value="@ViewData["searchname"]" class="form-control" maxlength="50" pattern="[a-zA-Z]*" oninvalid="setCustomValidity('Please enter letters')">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="tipo">Acceso al sistema:</label>
+                @{IEnumerable<ActionType> acciones = (IEnumerable<ActionType>)ViewData["acciones"]; }
+                <select id="ActionSelected" name="ActionSelected" class="form-control">
+                    <option value=0>Todos</option>
+
+                    @{
+                  int j = 1;
+                  foreach (ActionType r in acciones)
+                  {
+                      if ((int)(ViewData["ActionSelected"]) == @r.Id) {
+                          <option value="@r.Id" selected>@r.Name</option>
+                    }
+                    else  {<option value="@r.Id" >@r.Name</option>}
+                      
+                      j++;
+                  }
+                    }
+
+
+
+                </select>
+
+
+
+            </div>
+            <div class="col-md-6">
+                <label for="tipo">Tipo de publicación que puede sacar:</label>
+                @{IEnumerable<PublicationType> publicaciones = (IEnumerable<PublicationType>)ViewData["publicaciones"]; }
+                <select id="PublicactionSelected" name="PublicactionSelected" class="form-control">
+                    <option value=0>Todos</option>
+
+                    @{
+                  int i = 1;
+                  foreach (PublicationType r in publicaciones)
+                  {
+                      if ((int)(ViewData["PublicactionSelected"]) == @r.Id)
+                      {
+                          <option value="@r.Id" selected>@r.Name</option>
+                    }
+                    else { <option value="@r.Id" >@r.Name</option>}
+                      i++;
+                  }
+                    }
+
+
+
+                </select>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12" style="height:30px;"></div>
+    <div class="form-group">
+        
+        <button class="btn btn-primary pull-right" type="submit">Buscar</button>
+
+    </div>
+    <div class="col-sm-12" style="height:30px;"></div>
+    <div class="col-sm-12" style="height:30px;"></div>
+
+
+</div>
+</form>
+
+   
+   
+
+    @{IEnumerable<UserProfile> allprofiles = (IEnumerable<UserProfile>)ViewData["allprofiles"]; }
+
+    <form action="/UserProfile/UserProfileDetail" class="form-horizontal" method="post" role="form">
+        <div class="col-md-10">
+            <div class="row">
+
+                <table class="table-responsive table table-striped">
+                    <tr>
+                        <th class="cod">Cód. del Perfil</th>
+                        <th class="titulo">Nombre</th>
+                        <th class="tipo">Descripción</th>
+                        <th class="tipo"></th>
+                    </tr>
+
+                    @if (allprofiles != null)
+                    {
+                        foreach (UserProfile r in allprofiles)
+                        {
+
+                            <tr>
+
+                                <td>@r.Id</td>
+                                <td>@r.Name</td>
+                                <td>@r.Description</td>
+                                <td>
+
+                                    <a href="@Url.Action("UserProfileDetail", "UserProfile", new { id = @r.Id })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                                    <a href="@Url.Action("UserProfileModify", "UserProfile", new { id = @r.Id })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                                    <a class="DeleteUserProfile" data-id="@r.Id"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+
+
+                                </td>
+                            </tr>
+                        }
+                    }
+
+
+
+
+                </table>
+            </div>
+                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <label class="control-label">
+                                        ¿Estas seguro que quieres Eliminar este Perfil?
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <button id="btnAcceptDeleteUserProfile" data-dismiss="modal" class="btn btn-primary">Aceptar</button>
+                            </div>
+
+                        </div>
+                    
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+    
+
+

@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "NewPublicationRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using SAB.Domain.Acquisition
+@using SAB.Domain.Publication
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Solicitud de Compra", "PurchaseRequestSearch", "PurchaseRequest")</li>
+            <li class="active">Registrar Solicitud de Compra</li>
+        </ol>
+    </div>
+    <div class="col-md-10">
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success" role="alert">@TempData["message"]</div>
+        }
+        @if (TempData["alert"] != null)
+        {
+            <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+        }
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-10">
+        <h1 class="title text-left">Solicitar Nueva de Publicacion</h1>
+        @using (Html.BeginForm("SaveNew", "PurchaseRequest"))
+        {
+
+            
+    <div class="row">
+        <table class="table" id="AddedPublicationTable">
+            <tr>
+                <th class="col-md-1">ISBN</th>
+                <th class="col-md-2">Publicación</th>
+                <th class="col-md-2">Proveedor</th>
+                <th class="col-md-1">Precio Referencial</th>
+                <th class="col-md-2"></th>
+            </tr>
+            <tr>
+                <td><input type="text" name="ISBNs" pattern="[0-9]*" title="Solo números" required></td>
+                <td><input type="text" name="publicaciones"></td>
+                <td><input type="text" name="proveedores"></td>
+                <td><input type="number" step="0.01" name="precios"></td>
+                <td class="text-center"><a class="deleteEntry"><i class="margin-right-icon glyphicon glyphicon-remove"></i></a></td>
+            </tr>
+
+        </table>
+
+
+        <a href="#" id="addFila">Agregar fila</a>
+    </div>
+        <!--Botones Limpiar, cancelar, guardar-->
+            <div class=" col-md-8">
+
+                <div class="col-md-4">
+                    @Html.ActionLink("Cancelar", "Search", "PurchaseRequest", new { @class = "btn btn-primary pull-right" })
+                </div>
+
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary pull-right">
+                        Guardar
+                    </button>
+                </div>
+
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
+
+
+
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/PurchaseRequest.js")"></script>
+}

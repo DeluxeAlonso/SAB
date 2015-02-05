@@ -1,0 +1,295 @@
+﻿
+@using SAB.Extension
+@using SAB.Domain.User
+
+@{List<int> acciones = (List<int>)Session["acciones"];}
+@{UserAccount usuario = (UserAccount)Session["usuario"];}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/ico" href="~/Images/favicon.ico">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+               @*<img class="nav navbar-nav navbar-left" src="@Url.Content("~/images/logo_sinName.png")" alt="" height="50" width="130" />*@
+            </div>
+            <div class="navbar-collapse collapse">
+               @if ( usuario!=null )
+                        {
+                  
+                 <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink(usuario.Name.ToString(), "UserProfile", "Account")</li>
+                </ul>
+               }
+             
+               
+                     
+               @if ( usuario==null )
+                        {
+                <ul class="nav navbar-nav navbar-right">
+        
+                    <li>@Html.ActionLink("Iniciar sesión", "Login", "Account")</li>
+                </ul>
+               }
+
+               else { 
+               
+               <ul class="nav navbar-nav navbar-right">
+        
+                    <li>@Html.ActionLink("Cerrar sesión", "Logout", "Account")</li>
+                </ul>
+                    
+               }
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div>
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="@Url.Content("~/Home/Index")"><i class="fa fa-dashboard fa-fw"></i> Acerca de</a>
+
+                        </li>
+                        @if ( usuario!=null && ( acciones.Contains(3)))
+                        {
+                        <li class="@Url.MakeActiveClass("Assets")">
+                            <a href="#"><i class="fa fa-book fa-fw"></i> Activos <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li>@Html.ActionLink("Registrar", "Create", "Assets")</li>
+                                <li>@Html.ActionLink("Buscar", "Search", "Assets")</li>
+                                <li class="@Url.MakeActiveClass("AssetsType")">
+                                    <a href="@Url.Content("~/AssetsType/SearchResult")">Tipo Activo</a>
+                                </li>
+                            </ul>
+                        </li>
+                        }
+                        @if (usuario != null && (acciones.Contains(4) || acciones.Contains(6) ||
+                            acciones.Contains(5)))
+                                {
+
+                        <li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Adquisiciones<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse" style="height: 0px;">
+                              
+                                @if ( usuario!=null && ( acciones.Contains(4)))
+                                {
+                                    
+     
+                                  <li class="@Url.MakeActiveClass("Suscripcion")">
+                                    <a href="@Url.Content("~/Suscripcion/SearchSuscription")">Suscripcion</a>
+                                  </li>
+
+                                }
+                                @if ( usuario!=null && ( acciones.Contains(4)))
+                                {
+                                <li class="@Url.MakeActiveClass("Supplier")">
+                                    <a href="@Url.Content("~/Supplier/SupplierSearch")">Proveedor</a>
+                                </li>
+                                }
+                                @if ( usuario!=null && ( acciones.Contains(6)))
+                                {
+                                <li class="@Url.MakeActiveClass("PurchaseRequest")">
+                                    <a href="@Url.Content("~/PurchaseRequest/PurchaseRequestSearchResult2")">Solicitud de Compra</a>
+                                </li>
+                                }       
+                            @if ( usuario!=null && ( acciones.Contains(5)))
+                            {
+                                <li class="@Url.MakeActiveClass("PurchaseOrder")">
+                                    <a href="@Url.Content("~/PurchaseOrder/Search")">Orden de Compra</a>
+                                </li>
+                            }   
+                            
+                            </ul>
+
+                        </li>
+                        }
+                        <li class="@Url.MakeActiveClass("Catalog")">
+                            <a href="#"><i class="fa fa-book fa-fw"></i> Catálogo en linea<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li>@Html.ActionLink("Búsqueda rápida", "FastSearch", "Catalog")</li>
+                                <li>@Html.ActionLink("Búsqueda avanzada", "AdvanceSearch", "Catalog")</li>
+                            </ul>
+                        </li>
+                        @if ( usuario!=null && ( acciones.Contains(9)))
+                        {
+                        
+                        <li class="@Url.MakeActiveClass("Locales")">
+                        
+                            <a href="@Url.Content("~/Locales/LocalesSearch")"><i class="fa fa-book fa-fw"></i>Bibliotecas</a>
+
+                        
+                          
+                        </li>
+                        
+                        }
+                        
+                        @if ( usuario!=null && ( acciones.Contains(10)))
+                        {                            
+                            
+                             
+                        <li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Usuarios<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse" style="height: 0px;">
+                              
+                                  <li class="@Url.MakeActiveClass("Personal")">
+                                    <a href="@Url.Content("~/Account/SearchPersonal")">Personal</a>
+ 
+                                </li>
+
+                                
+                                <li class="@Url.MakeActiveClass("UserAccount")">
+                                    <a href="@Url.Content("~/Account/SearchLector")">Lector</a>
+                                   
+                                </li>
+                            </ul>
+
+                        </li>      
+
+                        }                        
+                        @if ( usuario!=null && ( acciones.Contains(11)))
+                        {
+                        <li>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Publicaciones<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse" style="height: 0px;">
+                                <li class="@Url.MakeActiveClass(" author")">
+                                    <a href="@Url.Content("~/Author/AuthorSearch")">Autor</a>
+                                    
+                                </li>
+                                <li class="@Url.MakeActiveClass(" editorial")">
+                                    <a href="@Url.Content("~/Editorial/EditorialSearch")">Editorial</a>
+                                    
+                                </li>
+                                <li class="@Url.MakeActiveClass(" topic")">
+                                    <a href="@Url.Content("~/Topic/TopicSearch")">Tema</a>
+                                </li>
+                                <li class="@Url.MakeActiveClass(" publication")">
+                                    <a href="@Url.Content("~/Publication/PublicationSearch")">Publicación</a>
+                                </li>
+                                <li class="@Url.MakeActiveClass(" publicationtype")">
+                                    <a href="@Url.Content("~/PublicationType/Search")">Tipo Publicación</a>
+
+                                </li>
+                            </ul>
+                        </li>
+                        }   
+
+                        @if ( usuario!=null && ( acciones.Contains(12)))
+                        {
+                        
+                        <li class="@Url.MakeActiveClass("Loan")">
+                        
+                            <a href="@Url.Content("~/Loan/LoanSearch")"><i class="fa fa-book fa-fw"></i>Prestamos</a>
+
+                        
+                          
+                        </li>
+                            
+                            
+                            
+                        }
+                       
+                        @if ( usuario!=null && ( acciones.Contains(13)))
+                        {
+                             <li class="@Url.MakeActiveClass("Reserves")">
+                                <a href="#"><i class="fa fa-wrench fa-fw"></i>Reservas<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level collapse">
+                                    <li>@Html.ActionLink("Cubículos", "Cubicles", "Reserves")</li>
+                                </ul>
+                            </li>
+                        }
+                        @if (usuario != null && (acciones.Contains(21) || acciones.Contains(20)
+                            || acciones.Contains(19) || acciones.Contains(18) || acciones.Contains(17) || acciones.Contains(16)))
+                                {
+                        <li class="@Url.MakeActiveClass("Reports")">
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Reportes <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                
+                                @if ( usuario!=null && ( acciones.Contains(16)))
+                                {
+                                <li>@Html.ActionLink("Orden de Compra", "PurchaseOrderReport", "Reports")</li>
+                                }                                
+                                @if (usuario != null && (acciones.Contains(17)))
+                                {
+                                 <li>@Html.ActionLink("Préstamos por material específico", "LoansBySpecificMaterialReport", "Reports")</li>
+                                }
+                                @if ( usuario!=null && ( acciones.Contains(18)))
+                                {
+                                <li>@Html.ActionLink("Publicaciones Nuevas", "NewPublicationReport", "Reports")</li>
+                                }
+                                @if ( usuario!=null && ( acciones.Contains(19)))
+                                {
+                                <li>@Html.ActionLink("Publicaciones más pedidas", "MostWantedMaterialReport", "Reports")</li>
+                                }
+                                @if ( usuario!=null && ( acciones.Contains(20)))
+                                {
+                                <li>@Html.ActionLink("Préstamos de un usuario", "UserLoansReport", "Reports")</li>
+                                }
+                                @if ( usuario!=null && ( acciones.Contains(21)))
+                                {
+                                <li>@Html.ActionLink("Sanciones", "SanctionsReport", "Reports")</li>
+                                }
+                                </ul>
+                        </li>
+                        
+                        }
+                        @if (usuario != null && (acciones.Contains(15)))
+                        {
+                        <li>
+                            <a href="@Url.Content("~/UserProfile/UserProfileSearch")"><i class="fa fa-files-o fa-fw"></i>Perfil</a>
+                           
+                        </li>
+                            
+                              <!-- <ul class="nav nav-second-level collapse" style="height: 0px;">
+                                <li class="@Url.MakeActiveClass("UserProfile")">
+                                    <a href="@Url.Content("~/UserProfile/UserProfileSearch")">Tipo Perfil</a>
+                                  
+                                </li>
+                                <!-- Sanciones
+                                <li>
+                                    
+                                        <a href="#">Tipo de Sanción</a>
+                                    <ul class="nav nav-third-level">
+                                        <li>@Html.ActionLink("Registrar", "Create", "TipoSancion")</li>
+                                        <li>@Html.ActionLink("Buscar", "Search", "TipoSancion")</li>
+                                    </ul>
+                                </li>
+                                
+                            </ul>
+                             -->
+                        }
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <div class=" col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main" id="page-wrapper">
+                @RenderBody()
+            </div>
+        </div>
+
+    </div>
+     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/main.js")
+     
+    @RenderSection("scripts", required: false)
+</body>
+</html>

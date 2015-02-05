@@ -1,0 +1,168 @@
+﻿@model IEnumerable<SAB.Domain.Publication.PublicationType>
+@{
+    ViewBag.Title = "PublicationTypeSaveResultView";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Reservas", "Publications", "Reserves")</li>
+            <li class="active">Tipo Publicación</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Buscar Tipo Publicación</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+
+</div>
+
+<div class="row">
+    @using (Html.BeginForm("SearchResult", "PublicationType"))
+    {
+        <div class="col-md-10">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="tipo">Código</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="codigo" pattern="[0-9]*" title="Solo números" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="tipo">Nombre</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="nombre" pattern="[A-Za-z\s]+" title="Solo letras y espacios">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <button type="submit" class="btn btn-primary pull-right">Buscar</button>
+            </div>
+        </div>
+    }
+</div>
+
+<!---------- LISTA TIPO PUBLICACION ------------->
+
+<div class="form-group">
+    <div class="col-md-10">
+        <div class="row">
+
+            <table class="table-responsive table table-striped">
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>País</th>
+                    <th></th>
+                </tr>
+                @foreach (var publicationType in Model) 
+                {
+                    <tr>
+                        <td>@publicationType.Id</td>
+                        <td>@publicationType.Name</td>
+                        <td>@publicationType.Description</td>
+                        <td>
+                            <a href="@Url.Action("Detail", "PublicationType", new { id = publicationType.Id })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                            <a href="@Url.Action("Modify", "PublicationType", new { id = publicationType.Id })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                            <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+                        </td>
+                    </tr>
+                }
+            </table>
+
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <label class="control-label">
+                                    ¿Estas seguro que quieres Eliminar este Tipo Pulucación?
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button id="btnAcceptDeleteAuthor" data-dismiss="modal" class="btn btn-primary">Aceptar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <ul class="pagination">
+                    <li><a href="#">&laquo;</a></li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label class="control-label">
+                        <!--for="inputFechaInicio" class="control-label"-->
+                        ¿Estas seguro que quieres Eliminar los
+                    </label>
+                    <label class="control-label">
+                        cambios para este Tipo de Sanción?
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <a href="@Url.Action("Delete", "PublicationType", new { id = 4 })" class="btn btn-primary">Aceptar</a>
+            </div>
+
+        </div>
+    </div>
+</div>

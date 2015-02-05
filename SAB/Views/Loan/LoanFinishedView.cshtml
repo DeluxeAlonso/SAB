@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "Detalle";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Préstamos", "LoanRegister", "Loan")</li>
+            <li>@Html.ActionLink("Búsqueda", "LoanSearch", "Loan")</li>
+            <li class="active">Detalle</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Detalle</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    <form action="@Url.Action("LoanList", "Loan")" class="form-horizontal" method="post" role="form">
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Código de Publicación:</label>
+                    <input class="form-control" id="disabledImput" type="text" placeholder="00001" disabled>
+                </div>
+                <div class="col-md-6">
+                    <label for="searchText">Código de Item:</label>
+                    <input class="form-control" id="disabledImput" type="text" placeholder="00000007" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Código de Usuario:</label>
+                    <input class="form-control" id="disabledImput" type="text" placeholder="20092049" disabled>
+                </div>
+                <div class="col-md-6">
+                    <label for="searchText">Fecha de Inicio:</label>
+                    <input class="form-control" id="disabledImput" type="text" placeholder="25/09/2014" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                        <label for="searchText">Estado:</label>
+                    </div>
+                    <div class="radio-inline radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked disabled>
+                            Aceptado
+                        </label>
+                    </div>
+                    <div class="radio-inline radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked disabled>
+                            Finalizado
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="searchText">Fecha Fin:</label>
+                    <input class="form-control" id="disabledImput" type="text" placeholder="26/09/2014" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary pull-right">Volver</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

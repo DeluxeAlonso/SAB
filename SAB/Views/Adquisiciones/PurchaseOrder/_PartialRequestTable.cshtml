@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SAB.Domain.Acquisition.PurchaseRequest>
+
+@if (ViewBag.pageIndex != null)
+{
+
+    <input type="hidden" name="pageIndex" id="PR_pageIndex" value="@ViewBag.pageIndex" />
+
+}
+else
+{
+    <input type="hidden" name="pageIndex" id="PR_pageIndex" value="1" />
+
+}
+
+<table class="table-responsive table table-striped" id="PetitionersTable">
+    <tr>
+        <th>Código</th>
+        <th>Solicitante</th>
+        <th>Fecha</th>
+        <th>Estado</th>
+        <th></th>
+    </tr>
+    @foreach (var purchaseRequest in Model)
+    {
+        if (purchaseRequest.Estado.Equals("Activo"))
+        {
+
+            <tr>
+                <td>@purchaseRequest.Id</td>
+                <td>@purchaseRequest.UserName</td>
+                <td>@purchaseRequest.Date.ToShortDateString()</td>
+                <td>@purchaseRequest.Estado</td>
+                <td>
+                    <input type="radio" name="solicitantes">
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+<div class="col-md-12 col-md-offset-3 form-horizontal">
+    <div class="form-group ">
+        <div>
+            <ul class="pagination">
+                <li><a id="PR_btnFirst">Primero</a></li>
+                <li><a id="PR_btnPrev">&laquo;</a></li>
+
+                <li>
+                    @if (ViewBag.pageIndex != null)
+                    {
+
+                        <span>@ViewBag.pageIndex</span>
+
+                    }
+                    else
+                    {
+                        <span>1</span>
+                    }
+                </li>
+                <li><a id="PR_btnNext">&raquo;</a></li>
+                <li><a id="PR_btnLast">Último</a></li>
+            </ul>
+        </div>
+        <label for="searchText" class="col-md-2">Ir a la página</label>
+        <div class="col-md-2">
+            <input type="text" class="form-control" id="PR_pageIndexChange">
+        </div>
+
+
+    </div>
+</div> 

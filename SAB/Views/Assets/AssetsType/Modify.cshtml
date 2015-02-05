@@ -1,0 +1,78 @@
+﻿@using SAB.Domain.Assets
+@{
+    ViewBag.Title = "Detalle Tipo de Activo";
+}
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Modificar Tipo de Activo</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Tipo de Activos", "Search", "AssetsType")</li>
+            <li class="active">Detalle </li>
+        </ol>
+    </div>
+</div>
+@{TypeAsset tipo = (TypeAsset)ViewData["tipo"];}
+<div class="col-md-10">
+
+    <form action="@Url.Action("Update", "AssetsType", new { id = @tipo.Id })" method="post">
+        <div class="col-md-10">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="searchText">Cód. Tipo de Activo</label>
+                            <input class="form-control" id="disabledImput" name="id" type="text" value="@tipo.Id" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="searchText">Estado</label>
+                            <input class="form-control" id="disabledImput" type="text" value="@tipo.Status" disabled>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="searchText">Nombre</label>
+                            <input class="form-control" id="disabledImput" name="name" type="text" value="@tipo.Name" maxlength="25" pattern="[A-Za-z] [A-Za-z0-9 ]" oninvalid="setCustomValidity('Please enter valid characters')">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label for="searchText">Descripción</label>
+                            <input class="form-control" id="1" type="text" name="description" value="@tipo.Description" maxlength="50" pattern="[A-Za-z] [A-Za-z0-9 ]" oninvalid="setCustomValidity('Please enter valid characters')">
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12" style="height:30px;"></div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary pull-right">
+                            Modificar
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </form>
+</div>

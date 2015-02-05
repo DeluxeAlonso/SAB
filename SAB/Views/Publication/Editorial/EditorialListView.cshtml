@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "EditorialListView";
+}
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda Editorial</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Editorial", "EditorialSearch", "Editorial")</li>
+            <li>@Html.ActionLink("Buscar", "EditorialSearch", "Editorial")</li>
+            <li class="active">Resultados </li>
+        </ol>
+    </div>
+</div>
+
+<div class="col-md-10">
+    <form action="@Url.Action("EditorialList", "Editorial")" class="form-horizontal" method="post" role="form">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                        <label for="searchText">Razón Social:</label>
+                        <input type="text" name="searchText" value=" " placeholder="Search..." class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="tipo">Fecha de Ingreso:</label>
+                    <input type="text" name="searchText" value=" " placeholder="Search..." class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="tipo">Estado</label>
+                    <select name="titulo" class="form-control">
+                        <option value="0">Activo</option>
+                        <option value="1">Inactivo</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-primary pull-right">Buscar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <style>
+        table, th, td {
+        }
+
+        th, td {
+            padding: 5px;
+        }
+
+        th, td {
+            text-align: center;
+        }
+
+            th.cod {
+                width: 20%;
+            }
+
+            th.tipo {
+                width: 15%;
+            }
+    </style>
+    <form action="@Url.Action("EditorialShow", "Editorial")" class="form-horizontal" method="post" role="form">
+        <div class="col-md-10">
+            <div class="row">
+                <table class="table-responsive table table-striped">
+                    <tr>
+                        <th class="cod">Cód. Editorial</th>
+                        <th class="titulo">Razón Social</th>
+                        <th class="tipo">Ruc</th>
+                        <th class="tipo"></th>
+                    </tr>
+                    <tr>
+                        <td>E001</td>
+                        <td>Navarrete</td>
+                        <td>12345645</td>
+                        <td>
+                            <label><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>E002</td>
+                        <td>Gestión y Sistemas</td>
+                        <td>12312345</td>
+                        <td>
+                            <label><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>E003</td>
+                        <td>Tekton Labs</td>
+                        <td>12345646</td>
+                        <td>
+                            <label><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked></label>
+                        </td>
+                    </tr>
+                </table>
+
+                <div>
+                    <ul class="pagination">
+                        <li><a href="#">&laquo;</a></li>
+                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-offset-4">
+                    <button class="btn btn-primary pull-right">Ver Detalle</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+

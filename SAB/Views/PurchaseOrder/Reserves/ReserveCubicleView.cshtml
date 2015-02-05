@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Reservar nuevo cubículo";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li>@Html.ActionLink("Home", "Index", "Home")</li>
+          <li>@Html.ActionLink("Reservas", "Publications", "Reserves")</li>
+          <li class="active">Reservar Cubículos</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Reservar nuevo cubículo</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <form action="/" method="post">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="from">Fecha:</label>
+                        <input type="text" name="from" value=" " class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="hour">Hora:</label>
+                        <select name="hour" class="form-control">
+                            @for (int i = 0; i < 24; i++)
+                            {
+                                <option value="@i">@i:00</option> 
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                     <div class="form-group">
+                        <label for="time">Tiempo:</label>
+                        <select name="hour" class="form-control">
+                            <option value="0">1h</option>
+                            <option value="1">2h</option>
+                            <option value="2">3h</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="">&nbsp;</label>
+                        <div>
+                            <button class="btn btn-primary pull-right">Buscar</button>
+                        </div>                   
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-10">
+        
+        <form action="@Url.Action("ReserveCubicle","Reserves")" method="post">
+            <table class="table-responsive table table-stripped">
+                <tr>
+                    <th>Lugar</th>
+                    <th>Biblioteca</th>
+                    <th>Disponibilidad</th>
+                    <th>Selección</th>
+                </tr>
+                <tr>
+                    <td> C-23 </td>
+                    <td> Biblioteca Secundaria </td>
+                    <td> 2h </td>
+                    <td><a href="#"><i class="glyphicon glyphicon-ok"></i></a></td> 
+                </tr>
+                <tr>
+                    <td> C-23 </td>
+                    <td> Biblioteca Central </td>
+                    <td> 2h </td>                   
+                    <td><a href="#"><i class="glyphicon glyphicon-ok"></i></a></td> 
+                </tr>
+                <tr>
+                    <td> C-23 </td>
+                    <td> Biblioteca Tercera</td>
+                    <td> 2h </td>
+                    <td><a href="#"><i class="glyphicon glyphicon-ok"></i></a></td> 
+                </tr>
+                <tr>
+                    <td> C-23 </td>
+                    <td> Biblioteca Central </td>
+                    <td> 2h </td>
+                    <td><a href="#"><i class="glyphicon glyphicon-ok"></i></a></td> 
+                </tr>
+                <tr>
+                    <td> C-23 </td>
+                    <td> Biblioteca Alterna </td>
+                    <td> 2h </td>
+                    <td><a href="#"><i class="glyphicon glyphicon-ok"></i></a></td> 
+                </tr>
+
+            </table>
+            <div class="col-sm-8">
+                <ul class="pagination">
+                    <li><a href="#">&laquo;</a></li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-4 text-right">
+                <button type="submit" class="btn btn-primary">Reservar</button>
+            </div>
+        </form>
+        
+        
+    </div>
+
+</div>

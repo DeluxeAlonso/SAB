@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "SearchResult";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Orden de Compra", "Search", "PurchaseOrder")</li>
+            <li class="active">Búsqueda Orden de Compra</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda Orden de Compra</h1>
+
+    </div>
+</div>
+
+
+<div class="col-md-10 search-result">
+    <div>
+        <div class="item-result">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h4>0344249</h4>
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <p>Fecha: 01/10/2013.141592653589</p>
+                            <p>Estado: Aprobado.</p>
+                            <p>Orden de abastecimiento hecha por profesor 5453243.</p>
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ActionLink("Ver detalle", "Detail", "PurchaseOrder", new { id = 1 }, new { @class = "btn btn-primary pull-right" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="item-result">
+            <div class="row">
+
+                <div class="col-sm-8">
+                    <h4>8100361</h4>
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <p>Fecha: 15/03/2013</p>
+                            <p>Estado: Aprobado.</p>
+                            <p>Orden de abastecimiento por inicio de clases 2013.</p>
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ActionLink("Ver detalle", "Detail", "PurchaseOrder", new { id = 1 }, new { @class = "btn btn-primary pull-right" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="item-result">
+            <div class="row">
+
+                <div class="col-sm-8">
+                    <h4>5444649</h4>
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <p>Fecha: 24/12/2011</p>
+                            <p>Estado: Rechazado.</p>
+                            <p>Campaña especial de Navidad 2011.</p>
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ActionLink("Ver detalle", "Detail", "PurchaseOrder", new { id = 1 }, new { @class = "btn btn-primary pull-right" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+        <ul class="pagination">
+            <li><a href="#">&laquo;</a></li>
+            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+    </div>
+</div>

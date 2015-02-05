@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Registrar Suscripcion";
+}
+
+<h2>Registrar Suscripcion</h2>
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Suscripcion", "RegistrarSuscripcion", "Suscripcion")</li>
+            <li class="active">Registrar </li>
+        </ol>
+    </div>
+</div>
+
+<div class="col-md-10">
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="tipo">Tipo Publicacion</label>
+                <select name="tipo" class="form-control">
+                    <option value="0">Todas</option>
+                    <option value="1">Revista</option>
+                    <option value="2">Periódico</option>
+                    <option value="3">Libro</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="tipo">Título Publicación</label>
+                <select name="titulo" class="form-control">
+                    <option value="0">Seleccione</option>
+                    <option value="1">Somos</option>
+                    <option value="2">Caretas</option>
+                    <option value="3">El Comercio</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Fecha de Ingreso</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">
+                <script type="text/JavaScript"> var f = new Date(); document.write(f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear()); </script>
+            </p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary">Aceptar</button>
+        <button class="btn btn-primary">Cancelar</button>
+    </div>
+</div>
+
+

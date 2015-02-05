@@ -1,0 +1,178 @@
+﻿@using SAB.Domain.User
+@using SAB.Domain.Library
+@using SAB.Domain.Politica
+@{
+    ViewBag.Title = "Detalle Personal";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li class="active">Personal </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Detalle Personal</h1>
+    </div>
+</div>
+@{IEnumerable<UserProfile> perfiles = (IEnumerable<UserProfile>)ViewData["perfiles"];}
+@{IEnumerable<Local> bibliotecas = (IEnumerable<Local>)ViewData["bibliotecas"];}
+@{UserAccount usuario = (UserAccount)ViewData["usuario"];}
+ <form action="@Url.Action("UpdateSystemPersonal", "Account", new { id = @usuario.Id })" method="post">
+     <div class="col-md-10">
+         <div class="form-group">
+             <div class="row">
+
+                 <div class="col-md-6">
+                     <label for="exampleInputEmail1">Código</label>
+                     <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="" required="required" value="@usuario.Id" disabled="disabled">
+                 </div>
+                 <div class="col-md-6">
+                     <label for="exampleInputEmail1">Nombres</label>
+                     <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="" required="required" value="@usuario.Name" disabled="disabled">
+                 </div>
+
+
+             </div>
+         </div>
+
+         <div class="form-group">
+             <div class="row">
+
+                 <div class="col-md-6">
+                     <label for="exampleInputEmail1">Apellido Paterno</label>
+                     <input type="text" name="lastname1" class="form-control" id="exampleInputEmail1" placeholder="" required="required" value="@usuario.Lastname1" disabled="disabled">
+                 </div>
+                 <div class="col-md-6">
+                     <label for="exampleInputEmail1">Apellido Materno</label>
+                     <input type="text" name="lastname2" class="form-control" id="exampleInputEmail1" placeholder="" required="required" value="@usuario.Lastname2" disabled="disabled">
+                 </div>
+
+             </div>
+         </div>
+
+         <div class="form-group">
+
+             <div class="row">
+
+                 <div class="col-md-6">
+                     <label for="exampleInputEmail1">Tipo Documento</label>
+                     <input type="email" name="correo" class="form-control" id="exampleInputEmail1" placeholder="" required="required" value="@usuario.Document.Name" disabled="disabled">
+                 </div>
+                 <div class="col-md-6">
+                     <label for="exampleInputEmail1">Numero Documento</label>
+                     <input type="text" name="dni" class="form-control" id="exampleInputEmail1" placeholder="" required="required" value="@usuario.NumeroDocumento" disabled="disabled">
+                 </div>
+                 
+
+
+             </div>
+         </div>
+
+
+
+         <div class="form-group">
+             <div class="row">
+                 <div class="col-md-6">
+                     <label for="tipo">Tipo Empleado</label>
+
+                     <select required="required" name="tipo" class="form-control">
+                         @{
+                             
+                             int i = 1;
+                             foreach (UserProfile r in perfiles)
+                             {
+                                 if (r.Id == usuario.IdPerfil)
+                                 {
+                                     <option value="@r.Id" selected>@r.Name</option>}
+                                 else
+                                 {
+                                     <option value="@r.Id" >@r.Name</option>}
+                                 i++;
+                             }
+                         }
+                     </select>
+
+                 </div>
+
+                 <div class="col-md-6">
+                     <label for="tipo">Biblioteca</label>
+                     <select required="required" name="biblioteca" class="form-control">
+                         @{
+                             
+
+                             foreach (Local r in bibliotecas)
+                             {
+                                 if (r.Id == usuario.IdBiblioteca)
+                                 {
+                                     <option value="@r.Id" selected >@r.Name</option>}
+                                 else
+                                 {
+                                     <option value="@r.Id" >@r.Name</option>}
+
+                             }
+                         }
+                     </select>
+                 </div>
+             </div>
+         </div>
+
+
+         <div class="form-group">
+
+             <div class="row">
+                
+                 <div class="col-md-6">
+                     <label for="exampleInputEmail1">Correo Electrónico</label>
+                     <input type="email" name="correo" class="form-control" id="exampleInputEmail1" placeholder="" required="required" value="@usuario.Correo" disabled="disabled">
+                 </div>
+
+
+             </div>
+         </div>
+      </div>
+             <div class="col-sm-12" style="height:30px;"></div>
+             <div class="form-group">
+                 <div class="col-md-4">
+                     <button type="submit" class="btn btn-primary pull-right">
+                         Modificar
+                     </button>
+
+
+                 </div>
+
+
+             </div>
+
+</form>
+  
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label">
+                            <!--for="inputFechaInicio" class="control-label"-->
+                            ¿Estas seguro que quieres guardar los
+                        </label>
+                        <label class="control-label">
+                            cambios para este Empleado?
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>

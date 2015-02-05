@@ -1,0 +1,68 @@
+﻿@model SAB.Domain.Publication.Editorial
+@{
+    ViewBag.Title = "Modificar";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Editorial", "Index", "Home")</li>
+            <li>@Html.ActionLink("Buscar", "EditorialSearch", "Editorial")</li>
+            <li class="active">Detalle</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Detalle Editorial</h1>
+    </div>
+</div>
+
+@{
+    SAB.Domain.Publication.Editorial editorial = Model;
+}
+
+@using (Html.BeginForm("Update", "Editorial"))
+{
+    <div class="col-md-10">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Cód. Editorial</label>
+                    <input type="text" class="form-control" name="Id" id="Id" value="@editorial.Id" readonly />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Fecha de Registro</label>
+                    <input type="text" class="form-control" name="RegisterDate" id="RegisterDate" value="@editorial.RegisterDate.ToShortDateString()" readonly />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Razón Social</label>
+                    <input type="text" class="form-control" name="Company_Name" id="Company_Name" value="@editorial.Company_Name" maxlength="50" required/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">RUC</label>
+                    <input type="text" class="form-control" name="RUC" id="RUC" pattern="[0-9]{11}" title="11 digitos" value="@editorial.RUC" size="11" required/>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <button class="btn btn-primary  pull-right" type="submit" >Guardar</button>
+            </div>
+        </div>
+
+    </div>
+
+}

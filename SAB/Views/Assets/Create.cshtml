@@ -1,0 +1,141 @@
+﻿@{
+    ViewBag.Title = "Registrar Activos";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Activos", "Create", "Assets")</li>
+            <li class="active">Registrar</li>
+        </ol>
+    </div>
+</div>
+
+@{IEnumerable<SAB.Domain.Assets.TypeAsset> tipoActivos = (IEnumerable<SAB.Domain.Assets.TypeAsset>)ViewData["tipoActivos"]; }
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Registrar Activo</h1>
+    </div>
+</div>
+
+    <form action="@Url.Action("Save","Assets")" method="post">
+        <div class="form-group">
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="tipo">Nombre: </label>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <input type="text" name="name" value="" class="form-control" required="required" maxlength="50" pattern="[a-zA-Z0-9 ]*" oninvalid="setCustomValidity('Please enter valid characters')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="tipo">Tipo de Activo :</label>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <select name="idAssetType" class="form-control" required="required">
+                                <option value="">Selecione</option>
+
+                                @{
+                                   
+                                    foreach (SAB.Domain.Assets.TypeAsset r in tipoActivos)
+                                    {
+                                        <option value="@r.Id">@r.Name</option>
+                                       
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="tipo">Ubicación: </label>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                          @{IEnumerable<SAB.Domain.Library.Local> locales = (IEnumerable<SAB.Domain.Library.Local>)ViewData["locales"]; }
+                        <select id="ActionSelected" name="location" class="form-control" required="required">
+                            <option value="">Selecione</option>
+
+                            @{
+                                int j = 1;
+                                foreach (SAB.Domain.Library.Local r in locales)
+                                {
+                                    <option value="@r.Id">@r.Name</option>
+                                    j++;
+                                }
+                            }
+
+
+
+                        </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="tipo">Descripción: </label>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <input type="text" name="description" maxlength="50" value="" class="form-control" required pattern="[A-Za-z] [A-Za-z0-9 ]" oninvalid="setCustomValidity('Please enter valid characters')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="tipo">Capacidad: </label>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <input type="number" name="quantity" value=""  min="3" max="10"class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+</div>
+            <div class="col-sm-12" style="height:30px;"></div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary pull-right">
+                        Guardar
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+</form>

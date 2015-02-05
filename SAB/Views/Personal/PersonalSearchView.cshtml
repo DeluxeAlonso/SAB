@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Buscar Personal";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Personal", "PersonalSearch", "Personal")</li>
+            <li class="active">Buscar </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda de Personal</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+
+    <form action="@Url.Action("SearchPersonalResult", "Personal")" class="form-horizontal" method="post" role="form">
+        <div class=" form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Código</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                </div>
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">DNI</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                
+
+                <div class="col-md-6">
+                    <label for="tipo">Tipo Empleado</label>
+                    <select name="tipo" class="form-control">
+                        <option value="0">Seleccione</option>
+                        <option value="1">Administrador de Compras</option>
+                        <option value="2">Administrador de Biblioteca</option>
+                        <option value="3">Bibliotecario</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="tipo">Local</label>
+                    <select name="tipo" class="form-control">
+                        <option value="0">Seleccione</option>
+                        <option value="1">Sede Principal</option>
+                        <option value="2">Sede Secundaria</option>
+                        <option value="3">Total</option>
+
+                    </select>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Nombres</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Apellidos</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Fecha de Registro desde:</label>
+                    <input type="date" name="searchText" value=" " placeholder="Búsqueda ..." class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="searchText">Fecha de Registro hasta:</label>
+                    <input type="date" name="searchText" value=" " placeholder="Búsqueda ..." class="form-control">
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="col-sm-12" style="height:30px;"></div>
+        <div class="form-group">
+            <button class="btn btn-primary pull-right">Buscar</button>
+        </div>
+    </form>
+    </div>
+

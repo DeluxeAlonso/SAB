@@ -1,0 +1,79 @@
+﻿@using SAB.Domain.Assets
+@{
+    ViewBag.Title = "Detalle Tipo de Activo";
+}
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Detalle Tipo de Activo</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Tipo de Activos", "Search", "AssetsType")</li>
+            <li class="active">Detalle </li>
+        </ol>
+    </div>
+</div>
+@{TypeAsset tipo = (TypeAsset)ViewData["tipo"];}
+<div class="col-md-10">
+
+    <form action="@Url.Action("Modify", "AssetsType")" method="post">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Cód. Tipo de Activo</label>
+                        <input class="form-control" name="id" id="disabledImput" type="text" value="@tipo.Id" disabled>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Estado</label>
+                        <input class="form-control" id="disabledImput" type="text" value="@tipo.Status" disabled>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Nombre</label>
+                        <input class="form-control" id="disabledImput" type="text" value="@tipo.Name" disabled>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label for="searchText">Descripción</label>
+                        <input class="form-control" id="1" type="text" value="@tipo.Description" disabled>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-sm-12" style="height:30px;"></div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+
+                    </div>
+                    <div class="col-sm-4">
+
+
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.ActionLink("Modificar", "Modify", "AssetsType", new { id = @tipo.Id }, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+</form>
+</div>

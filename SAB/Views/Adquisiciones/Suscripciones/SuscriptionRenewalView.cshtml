@@ -1,0 +1,84 @@
+﻿@model SAB.Domain.Acquisition.Renewal
+@{
+    ViewBag.Title = "Renovar Suscripción";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Suscripcion", "DetailView", new { id = ViewData["id_suscripcion"] })</li>
+            <li class="active">Renovar </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Renovar Suscripción</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+</div>
+
+<form action="@Url.Action("Renew","Suscripcion")" method="post">
+
+    <div class="col-md-10">
+        <div class="form-group">
+            <label for="searchText">Codigo suscripción:</label>
+            <input class="form-control" type="text" disabled value="@ViewData["id_suscripcion"]"/>
+            <input type="hidden" id="id_suscription" name="id_suscription" value="@ViewData["id_suscripcion"]" />
+        </div>
+        <div class="form-group">
+            <label for="searchText">Nombre de la publicación:</label>
+            <input class="form-control" type="text" disabled value="@ViewData["publicacion"]" />
+            <input class="form-control" type="hidden" id="publication" name="publication" value="@ViewData["publicacion"]" />
+        </div>
+        <div class="form-group">
+            <label for="biblioteca">Cantidad:</label>
+            <input class="form-control" id="amount" name="amount" type="number" min="1" max="999999" required value="@ViewData["cantidad"]"/>
+        </div>
+        <div class="form-group">
+            <label for="searchText">Fecha de inicio:</label>
+            <input class="form-control generic-datepicker" id="start_Date" name="start_Date" type="text" required value="@ViewData["fecha_inicio"]" />
+            @Html.ValidationMessageFor(model => model.Start_date)
+        </div>
+        <div class="form-group">
+            <label for="searchText">Fecha de fin:</label>
+            <input class="form-control generic-datepicker" id="end_Date" name="end_Date" type="text" required value="@ViewData["fecha_fin"]" />
+            @Html.ValidationMessageFor(model => model.End_date)
+        </div>
+        <div class="form-group">
+            <label for="searchText">Frecuencia:</label>
+            <select id="frequency" name="frequency" class="form-control" required >
+                <option value="@ViewData["frecuencia"]">@ViewData["frecuencia"]</option>
+                @if ((string)ViewData["frecuencia"] != "Semanal") { <option value="Semanal">Semanal</option> }
+                @if ((string)ViewData["frecuencia"] != "Mensual") { <option value="Mensual">Mensual</option> }
+                @if ((string)ViewData["frecuencia"] != "Bimestral") { <option value="Bimestral">Bimestral</option> }
+                @if ((string)ViewData["frecuencia"] != "Trimestral") { <option value="Trimestral">Trimestral</option> }
+                @if ((string)ViewData["frecuencia"] != "Semestral") { <option value="Semestral">Semestral</option> }
+                @if ((string)ViewData["frecuencia"] != "Anual") { <option value="Anual">Anual</option> }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="searchText">Costo (S/.):</label>
+            <input class="form-control" id="renewal_cost" name="renewal_cost" type="number" step="any" min="0" max="999999" value="@ViewData["costo"]"/>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-primary">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

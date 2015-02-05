@@ -1,0 +1,189 @@
+﻿@model IEnumerable<SAB.Domain.Library.Local>
+@{
+    ViewBag.Title = "Buscar bibliotecas";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Locales", "LocalesSearch", "Locales")</li>
+            <li class="active">Búsqueda</li>
+        </ol>
+    </div>
+</div>
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/Locales/LocalesRegister")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Nueva Biblioteca
+        </a>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda de biblioteca</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+    <form action="@Url.Action("LocalesList", "Locales")" method="post">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="tipo">Código:</label>
+                    <input type="text" name="Id" class="form-control" value="@ViewData["id"]">
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Nombre:</label>
+                        <input type="text" name="Name" class="form-control" value="@ViewData["nombre"]">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="tipo">Ciudad:</label>
+                    <input type="text" name="City" class="form-control" value="@ViewData["ciudad"]">
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Distrito:</label>
+                        <input type="text" name="Distric" class="form-control" value="@ViewData["distrito"]">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12">
+                    <input type="submit" class="btn btn-primary pull-right" value="Buscar" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+    @*<form action="/Locales/LocalesDetail" class="form-horizontal" method="post" role="form">*@
+        <div class="col-md-10">
+            <div class="row">
+
+                <table class="table-responsive table table-striped">
+                    <tr>
+                        <th class="cod">Código</th>
+                        <th class="titulo">Nombre</th>
+                        <th>Dirección</th>
+                        <th class="tipo">Distrito</th>
+                        <th>Ciudad</th>
+                        <th class="tipo text-center"></th>
+                    </tr>
+                    @if (Model != null)
+                    {
+                        foreach (var local in Model) {
+                        <tr>
+                        <td>@local.Id</td>
+                        <td>@local.Name</td>
+                        <td>@local.Address</td>
+                        <td>@local.Distric</td>
+                        <td>@local.City</td>
+                        <td>
+                            <a href="@Url.Action("LocalesDetail", "Locales", new { id = local.Id })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                            <a href="@Url.Action("LocalesModify", "Locales", new { id = local.Id })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                            @*<a href="@Url.Action("Delete", "Locales", new { id = local.Id })"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>*@
+                            <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove deleteElementClick" data-id="@local.Id" data-toggle="modal" data-target="#deleteModal"></i></a>
+                        </td>
+
+                        </tr>
+                        }
+                    }
+                    
+                    
+                </table>
+
+                @*<div>
+                    <ul class="pagination">
+                        <li><a href="#">&laquo;</a></li>
+                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>*@
+
+            </div>
+        </div>
+    @*</form>*@
+
+
+@*<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label class="control-label">
+                        <!--for="inputFechaInicio" class="control-label"-->
+                        ¿Estas seguro que quieres eliminar
+                    </label>
+                    <label class="control-label">
+                        esta biblioteca?
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Aceptar</button>
+            </div>
+
+        </div>
+    </div>
+</div>*@
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <form action="@Url.Action("Delete", "Locales")" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label">
+                            <!--for="inputFechaInicio" class="control-label"-->
+                            ¿Estas seguro que quieres eliminar
+                        </label>
+                        <label class="control-label">
+                            esta biblioteca?
+                        </label>
+                    </div>
+                </div>
+                <input type="hidden" name="element_id" class="deleteElementInput" value="0" />
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+

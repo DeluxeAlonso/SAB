@@ -1,0 +1,5 @@
+C:\Users\joca\Desktop\SW\Project\trunk\SAB\SAB.Domain\bin\Release\SAB.Domain.dll
+C:\Users\joca\Desktop\SW\Project\trunk\SAB\SAB.Domain\bin\Release\SAB.Domain.pdb
+C:\Users\joca\Desktop\SW\Project\trunk\SAB\SAB.Domain\obj\Release\SAB.Domain.dll
+C:\Users\joca\Desktop\SW\Project\trunk\SAB\SAB.Domain\obj\Release\SAB.Domain.pdb
+C:\Users\joca\Desktop\SW\Project\trunk\SAB\SAB.Domain\obj\Release\SAB.Domain.csprojResolveAssemblyReference.cache

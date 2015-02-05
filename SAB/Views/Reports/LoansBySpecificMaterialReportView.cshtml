@@ -1,0 +1,96 @@
+﻿@using SAB.Domain.Publication
+@{
+    ViewBag.Title = "Reporte de préstamos por material específico";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>Reportes</li>
+            <li class="active">Reporte de préstamos por material específico</li>
+        </ol>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Reporte de préstamos por material específico</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+
+</div>
+
+@{bool esPublicacion = (bool)ViewData["espublicacion"]; }
+@if (esPublicacion == false)
+{
+    <div class="alert alert-danger" role="alert">El código de publicación ingresado no existe.</div>
+}
+
+@{bool reportSuccess = (bool)ViewData["reportsuccess"]; }
+@if (reportSuccess)
+{
+    <div class="alert alert-success" role="alert">El reporte fue generado en Excel exitosamente en la carpeta D:\.</div>
+}
+
+
+<div class="col-md-10">
+    <form action="@Url.Action("LoansBySpecificMaterialReportResult", "Reports")" class="form-horizontal" method="post" role="form">
+
+        <div class="form-group">
+            <div class="col-sm-10">
+                <div class="col-md-6">
+                    <label for="searchText">Código del material:</label>
+                    <input type="number" required="required" min="1" max="9999" name="publication_id" value="@ViewData["publication_id"]" class="form-control">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label for="inputEmail3" class="col-sm-2 control-label">Fecha</label>
+            <div class="col-sm-10">
+                <div class="col-sm-10">
+                    <label class="col-sm-1">Desde</label>
+                    <input type="date" name="from" value="@ViewData["from"]" placeholder="Búsqueda ..." class="form-control">
+                </div>
+                <div class="col-sm-10">
+                    <label class="col-sm-1">Hasta</label>
+                    <input type="date" name="to" value="@ViewData["to"]" placeholder="Búsqueda ..." class="form-control">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div>
+                        <br>
+                        <button class="btn btn-primary pull-right"><i class="glyphicon glyphicon-floppy-open"></i>    Consultar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </form>
+
+
+</div>

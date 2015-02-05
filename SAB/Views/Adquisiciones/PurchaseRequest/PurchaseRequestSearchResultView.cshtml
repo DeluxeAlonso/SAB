@@ -1,0 +1,253 @@
+﻿@model IEnumerable<SAB.Domain.Acquisition.PurchaseRequest>
+@{
+    ViewBag.Title = "PurchaseRequestSearchResultView";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Adquisiciones", "Adquisiciones", "Adquisiciones")</li>
+            <li>@Html.ActionLink("Solicitud de Compra", "PurchaseRequest", "PurchaseRequest")</li>
+            <li class="active">Búsqueda</li>
+        </ol>
+    </div>
+</div>
+
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/PurchaseRequest/PurchaseRequestRegister")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Nueva Solicitud de Compra
+        </a>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda de Solicitud de Compra</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+</div>
+
+<div class="col-md-10">
+    <form action="@Url.Action("PurchaseRequestSearchResult2", "PurchaseRequest")" method="post" id="PRS_SearchForm">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Código</label>
+                    <input type="number" name="codigo" value="@ViewData["codigo"]" class="form-control">
+                </div>   
+                <div class="col-md-6">
+                    <label for="searchText">Solicitante</label>
+
+                    <input type="text" name="solicitante" class="form-control" value="@ViewData["solicitante"]">
+
+
+                </div>             
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Fecha desde</label>
+                    <input type="date" name="fechaDesde" value="@ViewData["fechaD"]" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="searchText">Fecha hasta</label>
+                    <input type="date" name="fechaHasta" value="@ViewData["fechaH"]" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                
+                <div class="col-md-6">
+                    <label for="searchText">Estado</label>
+                    <select name="state" class="form-control">
+                        <option value="Todos">Todos</option>
+                        <option value="Aprobado">Aprobado</option>
+                        <option value="Rechazado">Rechazado</option>
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Eliminado">Eliminado</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div><label></label></div>
+
+        <div class="form-group">
+            <div>
+                @if (ViewBag.pageIndex != null)
+                {
+
+                    <input type="hidden" value="@ViewBag.pageIndex" name="pageIndex" id="PRS_pageIndex" class="form-control">
+
+                }
+                else
+                {
+                    <input type="hidden" value="1" name="pageIndex" id="PRS_pageIndex">
+                }
+            </div>
+            <button class="btn btn-primary pull-right" type="submit" id="btnPurchaseRequestSearch">Buscar</button>
+
+        </div>
+
+    </form>
+</div>
+
+<div class="col-md-8">
+    <div class="row">
+        <table class="table-responsive table table-striped">
+            <tr>
+                <th>Código</th>
+                <th>Solicitante</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th></th>
+            </tr>
+            @foreach (var purchaseRequest in Model)
+            {
+                
+                <tr>
+                    
+                    <td>@purchaseRequest.Id</td>
+                    <td>@purchaseRequest.UserName</td>
+                    <td>@purchaseRequest.Date.Date.ToShortDateString()</td>
+                    <td>@purchaseRequest.Estado</td>
+                    <td>
+                        <a href="@Url.Action("PurchaseRequestDetail", "PurchaseRequest", new { id = @purchaseRequest.Id, tipo = @purchaseRequest.IdRequestType})"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                        <a href="@Url.Action("PurchaseRequestModify", "PurchaseRequest", new { id = @purchaseRequest.Id, tipo = @purchaseRequest.IdRequestType })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                        <a class="DeletePurchaseRequest" data-id="@purchaseRequest.Id"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+
+                    </td>
+                </tr>
+                
+            }
+
+            <!--
+            <tr>
+                <td>S0001</td>
+                <td>Carlos Mayta</td>
+                <td>01/10/2013</td>
+                <td>Pendiente</td>
+                <td>
+                    <a href="@Url.Action("PurchaseRequestDetail", "PurchaseRequest", new { id = 3 })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                    <a href="@Url.Action("PurchaseRequestModify", "PurchaseRequest", new { id = 3 })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                    <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModalPurchaseRequest"></i></a>
+                </td>
+            </tr>
+            <tr>
+                <td>S0002</td>
+                <td>Daekef Abarca</td>
+                <td>15/03/2013</td>
+                <td>Aprobado</td>
+                <td>
+                    <a href="@Url.Action("PurchaseRequestDetail", "PurchaseRequest", new { id = 3 })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                    <a href="@Url.Action("PurchaseRequestModify", "PurchaseRequest", new { id = 3 })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                    <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModalPurchaseRequest"></i></a>
+                </td>
+            </tr>
+            <tr>
+                <td>S0003</td>
+                <td>Kevin Brown</td>
+                <td>24/12/2011</td>
+                <td>Rechazado</td>
+                <td>
+                    <a href="@Url.Action("PurchaseRequestDetail", "PurchaseRequest", new { id = 3 })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                    <a href="@Url.Action("PurchaseRequestModify", "PurchaseRequest", new { id = 3 })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                    <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModalPurchaseRequest"></i></a>
+                </td>
+            </tr>
+            <tr>
+                <td>S0004</td>
+                <td>Luis Guitierrez</td>
+                <td>12/03/2012</td>
+                <td>Pendiente</td>
+                <td>
+                    <a href="@Url.Action("PurchaseRequestDetail", "PurchaseRequest", new { id = 3 })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                    <a href="@Url.Action("PurchaseRequestModify", "PurchaseRequest", new { id = 3 })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                    <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModalPurchaseRequest"></i></a>
+                </td>
+            </tr>
+            -->
+        </table>
+
+        @*----------------------------Paginacion---------------------------------*@
+
+        <div class="col-md-12 col-md-offset-3 form-horizontal">
+            <div class="form-group ">
+                <div>
+                    <ul class="pagination">
+                        <li><a id="PRS_btnFirst">Primero</a></li>
+                        <li><a id="PRS_btnPrev">&laquo;</a></li>
+
+                        <li>
+                            @if (ViewBag.pageIndex != null)
+                            {
+
+                                <span>@ViewBag.pageIndex</span>
+
+                            }
+                            else
+                            {
+                                <span>1</span>
+                            }
+                        </li>
+                        <li><a id="PRS_btnNext">&raquo;</a></li>
+                        <li><a id="PRS_btnLast">Último</a></li>
+                    </ul>
+                </div>
+                <label for="searchText" class="col-md-2">Ir a la página</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="PRS_pageIndexChange">
+                </div>
+
+
+            </div>
+        </div>
+
+        @*----------------------------Fin---------------------------------*@
+    </div>
+</div>
+
+<!-- Modal Detele Author-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label class="control-label">
+                        ¿Estas seguro que quieres Eliminar los cambios para esta Solicitud de Compra?
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button id="btnAcceptDeletePurchaseRequest" data-dismiss="modal" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/PurchaseRequest.js")"></script>
+}

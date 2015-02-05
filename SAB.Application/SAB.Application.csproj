@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{065391E8-18A9-4F1F-A465-8B557981C354}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SAB.Application</RootNamespace>
+    <AssemblyName>SAB.Application</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Acquisition\PurchaseOrderApplication.cs" />
+    <Compile Include="Acquisition\PurchaseOrderDetailApplication.cs" />
+    <Compile Include="Acquisition\PurchaseRequestApplication.cs" />
+    <Compile Include="Acquisition\PurchaseRequestDetailApplication.cs" />
+    <Compile Include="Acquisition\RenewalApplication.cs" />
+    <Compile Include="Acquisition\SupplierApplication.cs" />
+    <Compile Include="Acquisition\SuscriptionApplication.cs" />
+    <Compile Include="Assets\AssetsApplication.cs" />
+    <Compile Include="Assets\TypeAssetApplication.cs" />
+    <Compile Include="Catalog\CatalogAplication.cs" />
+    <Compile Include="Library\LocalApplication.cs" />
+    <Compile Include="Loan\LoanApplication.cs" />
+    <Compile Include="Politica\DevolutionProfileApplication.cs" />
+    <Compile Include="Politica\UserProfileApplication.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publication\AuthorApplication.cs" />
+    <Compile Include="Publication\EditorialApplication.cs" />
+    <Compile Include="Publication\PublicationItemApplication.cs" />
+    <Compile Include="Publication\PublicationTitleApplication.cs" />
+    <Compile Include="Publication\PublicationTopicApplication.cs" />
+    <Compile Include="Publication\PublicationTypeApplication.cs" />
+    <Compile Include="Publication\TopicApplication.cs" />
+    <Compile Include="Sanctions\SanctionApplication.cs" />
+    <Compile Include="User\ActionTypeApplication.cs" />
+    <Compile Include="User\DocumentTypeApplication.cs" />
+    <Compile Include="User\UserAccountApplication.cs" />
+    <Compile Include="Reserve\ReserveAplication.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SAB.Base\SAB.Base.csproj">
+      <Project>{fad84bbf-ee89-4220-a129-93abda39d816}</Project>
+      <Name>SAB.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAB.Domain\SAB.Domain.csproj">
+      <Project>{d2dd4fdf-e5bd-420e-9d4c-3cce42f04c13}</Project>
+      <Name>SAB.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

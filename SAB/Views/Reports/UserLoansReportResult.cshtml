@@ -1,0 +1,77 @@
+﻿@using SAB.Domain.Loan;
+@{
+    ViewBag.Title = "Préstamos de usuario";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>Reportes</li>
+            <li class="active">Reporte de préstamos de un usuario</li>
+        </ol>
+    </div>
+</div>
+@{IList<Loan> loans = (IList<Loan>)ViewData["loans"]; }
+<form action="@Url.Action("ExportToExcel", "Loan")" class="form-horizontal" method="post" role="form">
+    <div class="row form-group form-horizontal">
+        <div class="col-sm-2">
+            @if (loans != null && loans.Count > 0) { 
+                <button class="btn btn-primary">Exportar</button>
+            }
+            else
+            {
+                <button class="btn btn-primary" disabled>Exportar</button>
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10">
+            <div>
+                
+                <div class="panel-heading">
+                    <p class="text-right">Fecha : @ViewData["Fecha"]</p>
+                    <p class="text-right">Hora  : @ViewData["Hora"]  </p>
+                    <h2 class="text-center"><strong>Reporte de Préstamos del usuario @ViewData["user_name"]</strong></h2>
+                    <h3 class="text-center"><strong>Desde @ViewData["Desde"] hasta @ViewData["Hasta"]</strong></h3>
+                </div>
+
+                @{ Loan l = new Loan(); }
+                @if (loans != null && loans.Count > 0)
+                {
+                    <table class="table-responsive table table-striped">
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre del material</th>
+                            <th>Tipo de préstamo</th>
+                            <th>Fecha de préstamo</th>
+                            <th>Fecha fin</th>
+                            <th>Estado</th>
+                        </tr>
+                        @for (int i = 1; i <= loans.Count; i++)
+                        {
+
+                            { l = loans[i - 1]; }
+                            <tr>
+                                <td> @i </td>
+                                <td> @l.Loan_Item.Publication.Title </td>
+                                <td> @l.Loan_Type.Name</td>
+                                <td> @l.Register_Date.Date.ToString("d")</td>
+                                <td> @l.End_Date.Date.ToString("d")  </td>
+                                <td> @l.Status </td>
+                            </tr>
+                        }
+                    </table>
+                }
+                else
+                {
+                    <div class="alert alert-danger" role="alert">No hay préstamos que mostrar.</div>
+                }
+            </div>
+
+        </div>
+
+
+    </div>
+</form>

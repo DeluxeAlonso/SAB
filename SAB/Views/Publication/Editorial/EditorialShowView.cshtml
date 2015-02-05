@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "EditorialShowView";
+}
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Detalle Editorial</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Editorial", "EditorialSearch", "Editorial")</li>
+            <li>@Html.ActionLink("Buscar", "EditorialSearch", "Editorial")</li>
+            <li>@Html.ActionLink("Resultados", "EditorialList", "Editorial")</li>
+            <li class="active">Detalle</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="col-md-10">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Cód. Editorial</label>
+                    <input class="form-control" id="disabledImput" type="text" placeholder="E003" disabled>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Fecha de Registro</label>
+                    <input class="form-control" id="disabledImput" type="text" placeholder="25/09/2014" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Razón Social</label>
+                    <input class="form-control" id="disabledImput" type="text" placeholder="Gestión y Sistemas" disabled>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Estado</label>
+                    <input class="form-control" id="disabledImput" type="text" placeholder="Activo" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Botones Limpiar, cancelar, guardar-->
+    <div class=" col-md-3">
+        <!--
+        <div class="btn-toolbar">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                Eliminar
+            </button>
+
+
+
+        </div>
+            -->
+    </div>
+    <div class="col-md-3">
+
+    </div>
+
+    <div class="col-md-3">
+        <!--
+        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" disabled>
+            Guardar
+        </button>
+        -->
+        @Html.ActionLink("Modificar", "EditorialModify", "Editorial", new { id = 1 }, new { @class = "btn btn-primary" })
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label class="control-label">
+                        <!--for="inputFechaInicio" class="control-label"-->
+                        ¿Estas seguro que quieres guardar los
+                    </label>
+                    <label class="control-label">
+                        cambios para esta Editorial?
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary" onclick="window.location.href='EditorialList'">Aceptar</button>
+            </div>
+
+        </div>
+    </div>
+</div>

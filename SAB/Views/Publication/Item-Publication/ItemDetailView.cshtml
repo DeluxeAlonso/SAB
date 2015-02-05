@@ -1,0 +1,88 @@
+﻿@model SAB.Domain.Publication.PublicationItem
+
+@{
+    ViewBag.Title = "Detalle Item";
+}
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Detalle Item</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicacion", "ItemRegisterView", "Item")</li>
+            <li>@Html.ActionLink("Item", "ItemRegisterView", "Item")</li>
+            <li>@Html.ActionLink("Buscar", "ItemSearchView", "Item")</li>
+            <li class="active">Detalle </li>
+        </ol>
+    </div>
+</div>
+
+<div class="col-md-10">
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="Recepcion">N° Recepción</label>
+                <input type="number" name="Id_Recepcion" value="2" class="form-control" readonly>
+
+            </div>
+            <div class="col-md-6">
+                <label for="Cantidad">Cantidad</label>
+                <input type="number" name="quantity" min="1" value="1" class="form-control" readonly>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+
+            <div class="col-md-6">
+                <label for="Biblioteca">Biblioteca</label>
+                @foreach (var bibliotecas in (IEnumerable<SAB.Domain.Library.Local>)ViewData["bibliotecas"])
+                {
+                    if (bibliotecas.Name.Equals(@ViewData["biblioteca"]))
+                    {   
+                        <input type="text" name="Id_Biblioteca" value="@bibliotecas.Name" class="form-control" readonly >
+                    }
+                }
+            </div>
+            <div class="col-md-6">
+                <label for="tipo">Activo</label>
+                <input type="number" name="Id_Activo" value="3" class="form-control" readonly>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+
+            <div class="col-md-6">
+                <label for="tipo">Publicacion</label>
+
+                <input type="text" name="Id_Publication" value="@ViewData["publication"]" class="form-control" readonly>
+
+            </div>
+            <div class="col-md-6">
+                <label for="tipo">Estado</label>
+                <input type="text" name="Estado" value="@ViewData["Estado"]" class="form-control" readonly>
+
+            </div>
+        </div>
+    </div>
+    @{var item = ViewData["item"] as SAB.Domain.Publication.PublicationItem; }
+    <div class="form-group">
+        @Html.ActionLink("Regresar", "Detail", "Publication", new { id = item.Id_Publication }, new { @class = "btn btn-default" })
+    </div>
+
+</div>
+
+
+
+

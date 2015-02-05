@@ -1,0 +1,212 @@
+﻿@{
+    ViewBag.Title = "Detalle Activo";
+}
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Detalle Activo</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Activos", "Search", "Assets")</li>
+            <li class="active">Detalle </li>
+        </ol>
+    </div>
+</div>
+@{SAB.Domain.Assets.Asset activo = (SAB.Domain.Assets.Asset)ViewData["activo"]; }
+@if (activo != null) { 
+<form action="@Url.Action("Update", "Assets", new { id = @activo.Id })" method="post">
+    <div class="col-md-10">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Cód. Activo</label>
+                        <input class="form-control" name="id" id="disabledImput" type="text" value="@activo.Id" disabled>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Fecha de Registro</label>
+                        <input name="registryDate" class="form-control" id="disabledImput" type="text" value="@activo.RegistryDate.Date.ToShortDateString()" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Nombre</label>
+                        <input name="name"  class="form-control" id="disabledImput" type="text" value="@activo.Name" disabled="" >
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Estado</label>
+                        <select name="status" class="form-control" required>
+                            <option value="Activo">Activo</option>
+                            <option value="En reparacion">En reparación</option>
+                            <option value="No activo">No activo</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Tipo Activo</label>
+                       
+
+                        @{IEnumerable<SAB.Domain.Assets.TypeAsset> tipos = (IEnumerable<SAB.Domain.Assets.TypeAsset>)ViewData["tipoActivos"]; }
+                        <select id="idAssetType" name="idAssetType" class="form-control" required="required">
+
+
+                            @{
+                          int j = 1;
+                          foreach (SAB.Domain.Assets.TypeAsset r in tipos)
+                          {
+                              if (@activo.TypeAsset.Id == r.Id)
+                              {
+                                <option value="@r.Id" selected>@r.Name</option>}
+                              else
+                              {
+                                <option value="@r.Id">@r.Name</option>}
+                              j++;
+                          }
+                            }
+
+
+
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Ubicación</label>
+                        @{IEnumerable<SAB.Domain.Library.Local> locales = (IEnumerable<SAB.Domain.Library.Local>)ViewData["locales"]; }
+                        <select id="location" name="location" class="form-control" required="required">
+
+
+                            @{
+                          
+                          foreach (SAB.Domain.Library.Local r in locales)
+                          {
+                              if (@activo.Biblioteca.Id == r.Id)
+                              {
+                                <option value="@r.Id" selected>@r.Name</option>}
+                              else
+                              {
+                                <option value="@r.Id">@r.Name</option>}
+                              j++;
+                          }
+                            }
+
+
+
+                        </select>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Descripción</label>
+                        <input name="description" class="form-control" maxlength="50" id="1" type="text" value="@activo.Description" required pattern="[A-Za-z] [A-Za-z0-9 ]" oninvalid="setCustomValidity('Please enter valid characters')">
+                    </div>
+                </div>
+
+                @{ if ((int)@activo.Quantity != 0)
+                 {
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="searchText">Capacidad</label>
+                            <input class="form-control" id="1" type="number" min="3" max="10" name="quantity" value="@activo.Quantity" required>
+                        </div>
+                    </div>
+                 }
+                }
+
+            </div>
+
+
+        </div>
+</div>
+
+    <!--Botones Limpiar, cancelar, guardar-->
+    <div class=" col-md-3">
+
+    </div>
+    <div class="col-md-3">
+
+    </div>
+
+    <div class="col-md-3">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            Guardar
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label">
+                            <!--for="inputFechaInicio" class="control-label"-->
+                            ¿Estas seguro que quieres guardar los
+                        </label>
+                        <label class="control-label">
+                            cambios para este Activo?
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</form>
+}
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label">
+                            <!--for="inputFechaInicio" class="control-label"-->
+                            ¿Estas seguro que quieres guardar los
+                        </label>
+                        <label class="control-label">
+                            cambios para este Activo?
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>

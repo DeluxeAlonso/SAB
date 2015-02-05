@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Cubículos";
+}
+
+<br />
+<br />  
+
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/Reserves/ReserveCubicleView")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Reserver cubículo
+        </a>
+    </div>
+</div>
+<br>
+
+
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Reserva de cubículos activas</h1>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-10">
+
+        @if (TempData["message"] != null) { 
+            <div class="alert alert-success" role="alert">@TempData["message"]</div>
+        }
+        @if (TempData["alert"] != null) { 
+            <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+        }
+
+
+
+       <!-- <form action="@Url.Action("SearchCubiclesReserves","Reserves")" method="post">
+            <div class="row form-group form-horizontal">
+                <div class="col-sm-5">
+                    <label for="from" class="col-sm-3 control-label">De :</label> 
+                    <div class="col-sm-8">
+                        <input class="form-control generic-datepicker" readonly="readonly" type="date" name="from" value="@ViewData["from"]" />     
+                    </div>              
+                </div>
+                <div class="col-sm-5">
+                    <label for="to" class="col-sm-3 control-label">Hasta :</label>
+                    <div class="col-sm-8">
+                       <input  class="form-control generic-datepicker" readonly="readonly" type="date" name="to" value="@ViewData["to"]" />    
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-primary pull-right">Buscar</button>
+                </div>
+            </div>
+        </form>
+           -->
+        @if(ViewBag.Reserves.Count > 0){
+            <div>
+                <table class="table-responsive table table-striped">
+                    <tr>
+                        <th>Lugar</th>
+                        <th>Biblioteca</th>
+                        <th>Fecha Inicio</th>
+                        <th>Fecha fin</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var reserve in ViewBag.Reserves as List<SAB.Domain.Reserves.Reserve>)
+                    {
+                        <tr>
+                            <td> @reserve.Asset.Name </td>
+                            <td> @reserve.Asset.Biblioteca.Name </td>
+                            <td> @reserve.StartDate </td>
+                            <td> @reserve.EndDate </td>
+                            <td><a href="#"><i class="margin-right-icon glyphicon glyphicon-remove deleteElementClick" data-id="@reserve.Id"  data-toggle="modal" data-target="#deleteModal"></i></a></td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        } else {
+            
+            <div class="alert alert-danger">
+                    No hay reservas activas.
+            </div>
+        
+        }
+
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <form action="@Url.Action("CancelCubicle", "Reserves")" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label"/>
+                            ¿Estas seguro que desea anular la reserva?
+                    </div>
+                </div>
+                <input type="hidden" name="element_id" class="deleteElementInput" value="0" />
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+            
+        </form>
+        
+
+    </div>
+</div>

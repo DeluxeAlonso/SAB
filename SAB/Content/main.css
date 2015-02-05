@@ -1,0 +1,44 @@
+﻿.item-result {
+    border-bottom: 1px solid #e6e6e6;
+    padding:20px;
+}
+.search-result{
+    margin: 20px 0;
+}
+
+.title {
+    margin-bottom: 40px;
+}
+.detail {
+    font-size:17px;
+}
+#page-wrapper{
+    padding: 0 30px;
+}
+
+.detail-container {
+    margin-bottom:30px;
+}
+
+@media (max-width: 992px) {
+    .margin-bottom-sm {
+        margin-bottom:15px;
+    }
+
+}
+.margin-right-icon{
+    margin-right:5px;
+}
+
+.generic-datepicker {
+    background-color: #ffffff !important;
+    cursor: pointer;
+}
+
+.pagination {
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+}

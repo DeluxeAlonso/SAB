@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "Buscar Item";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicaciones", "ItemRegisterView", "Item")</li>
+            <li>@Html.ActionLink("Item", "ItemRegisterView", "Item")</li>
+            <li class="active">Buscar </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda Item</h1>
+
+    </div>
+</div>
+
+<div class="col-md-10 search-result">
+    <div>
+        <div class="item-result">
+            <div class="row">
+                <table class="table-responsive table table-striped">
+                    <tr>
+                        <th class="cod">Cód. Publicación</th>
+                        <th class="fecha">Fecha de Registro</th>
+                        <th class="titulo">Título</th>
+                        <th class="tipo"> Tipo Publicación</th>
+                        <th class="editorial">Editorial</th>
+                        <th class="text-center"> </th>
+                    </tr>
+                    <tr>
+                        <td>000001</td>
+                        <td>01/10/2013</td>
+                        <td>Cien años de Soledad</td>
+                        <td>Libro</td>
+                        <td>Bruño</td>
+                        <td>
+                            <a href="@Url.Action("ItemDetailView", "Item", new { id = 2 })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                            <a href="@Url.Action("ItemModifyView", "Item", new { id = 2 })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                            <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>000003</td>
+                        <td>01/10/2013</td>
+                        <td>La ciudad y los perros</td>
+                        <td>Libro</td>
+                        <td>Bruño</td>
+                        <td>
+                            <a href="@Url.Action("ItemDetailView", "Item", new { id = 2 })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                            <a href="@Url.Action("ItemModifyView", "Item", new { id = 2 })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                            <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>000005</td>
+                        <td>01/10/2013</td>
+                        <td>No culpes a la noche</td>
+                        <td>Libro</td>
+                        <td>Bruño</td>
+                        <td>
+                            <a href="@Url.Action("ItemDetailView", "Item", new { id = 2 })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                            <a href="@Url.Action("ItemModifyView", "Item", new { id = 2 })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                            <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div>
+        <ul class="pagination">
+            <li><a href="#">&laquo;</a></li>
+            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+        </div>
+        <div class="modal-body">
+            <div>
+                <label class="control-label">
+                    <!--for="inputFechaInicio" class="control-label"-->
+                    ¿Estas seguro que quieres eliminiar
+                </label>
+                <label class="control-label">
+                    el ítem seleccionado?
+                </label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="@Url.Action("Delete", "Item", new { id = 4 })" class="btn btn-primary">Aceptar</a>
+            <button type="button" class="btn btn-default">Cancelar</button>
+        </div>
+
+    </div>
+</div>
+</div>

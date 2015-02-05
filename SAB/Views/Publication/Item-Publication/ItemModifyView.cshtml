@@ -1,0 +1,118 @@
+﻿@model SAB.Domain.Publication.PublicationItem
+
+@{
+    ViewBag.Title = "Modificar Item";
+}
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Modificar Item</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicacion", "ItemRegisterView", "Item")</li>
+            <li>@Html.ActionLink("Item", "ItemRegisterView", "Item")</li>
+            <li>@Html.ActionLink("Buscar", "ItemSearchView", "Item")</li>
+            <li>@Html.ActionLink("Detalle", "ItemDetailView", "Item")</li>
+            <li class="active">Modificar </li>
+        </ol>
+    </div>
+</div>
+
+@{
+    SAB.Domain.Publication.PublicationItem item = Model;
+}
+
+@using (Html.BeginForm("Update", "Item"))
+{
+    <div class="col-md-10">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Código</label>
+                        <input class="form-control" type="text" name="Id" value="@item.Id" readonly>
+                        <input type="hidden" name="Id_Publication" value="@item.Id_Publication">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Estante</label>
+                        <input class="form-control" type="text" name="Id_Activo" id="label-selected" value="@item.Id_Activo" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Biblioteca</label>
+                        <select name="Id_Biblioteca" class="form-control" required>
+                            @foreach (var bibliotecas in (IEnumerable<SAB.Domain.Library.Local>)ViewData["bibliotecas"])
+                            {
+                                if (bibliotecas.Name.Equals(@ViewData["biblioteca"]))
+                                {
+                                    <option selected value="@bibliotecas.Id">@bibliotecas.Name</option>
+                                }
+                                else { 
+                                    <option value="@bibliotecas.Id">@bibliotecas.Name</option>
+                                }
+                            }
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Estado</label>
+                        <select name="Estado" class="form-control" id="selected-estado" required>
+                            <option selected value="@ViewData["Estado"]">@ViewData["Estado"]</option>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                            
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                Guardar
+            </button>
+    </div>
+    </div>
+    
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label class="control-label">
+                        <!--for="inputFechaInicio" class="control-label"-->
+                        ¿Estas seguro que quieres modificar
+                    </label>
+                    <label class="control-label">
+                        los datos del Item seleccionado?
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Aceptar</button>
+                <button type="button" class="btn btn-default">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+    
+}
+

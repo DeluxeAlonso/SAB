@@ -1,0 +1,181 @@
+﻿@using SAB.Domain.Acquisition
+@{
+    ViewBag.Title = "Registrar Proveedor";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li class="active">Registrar </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Registrar Proveedor</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+
+</div>
+@{Supplier s = (Supplier)ViewData["proveedor"];}
+@{if (ViewData["proveedor"] == null) { 
+<div class="col-md-10">
+    <form action="@Url.Action("Save","Supplier")" method="post">
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Nombre</label>
+                    <input type="text" name="name" class="form-control" id="exampleInputEmail1" required="required" pattern="[A-Za-z] [A-Za-z0-9 ]" oninvalid="setCustomValidity('Please enter valid characters')" maxlength="25">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Contacto</label>
+                    <input type="text" name="contacto" class="form-control" id="exampleInputEmail1" required="required" pattern="[A-Za-z ]*" oninvalid="setCustomValidity('Please enter letters')" maxlength="50">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">RUC</label>
+                    <input type="text" class="form-control" name="ruc" id="exampleInputEmail1" required="required" pattern="[0-9]*" oninvalid="setCustomValidity('Please enter numbers')" maxlength="11">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Telefono</label>
+                    <input type="text" class="form-control" name="telephone" id="exampleInputEmail1" required="required" pattern="[0-9]*" oninvalid="setCustomValidity('Please enter numbers')">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Correo Electrónico</label>
+                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" required="required">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Dirección</label>
+                    <input type="text" class="form-control" name="address" id="exampleInputEmail1" required="required" pattern="[A-Za-z] [A-Za-z0-9 ]" oninvalid="setCustomValidity('Please enter valid characters')">
+                </div>
+            </div>
+        </div>
+
+
+
+        
+        <div class="col-sm-12" style="height:30px;"></div>
+        <div class="form-group">
+
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary pull-right">
+                    Guardar
+                </button>
+
+
+            </div>
+
+        </div>
+
+    </form>
+</div>
+
+
+}
+
+  else { 
+  
+  <div class="col-md-10">
+    <form action="@Url.Action("Save","Supplier")" method="post">
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Nombre</label>
+                    <input type="text"name="name" class="form-control" id="exampleInputEmail1" required="required" value="@s.Name">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Contacto</label>
+                    <input type="text" name ="contacto"class="form-control" id="exampleInputEmail1" required="required" value="@s.Contacto" >
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">RUC</label>
+                    <input type="text" class="form-control" name="ruc" id="exampleInputEmail1" required="required" value="@s.Ruc">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Telefono</label>
+                    <input type="text" class="form-control" name="telephone"id="exampleInputEmail1"required="required" value="@s.Telephone">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Correo Electrónico</label>
+                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" required="required" name="@s.Email">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Dirección</label>
+                    <input type="text" class="form-control"name="address" id="exampleInputEmail1" required="required" value="@s.Address">
+                </div>
+            </div>
+        </div>
+
+
+
+        
+        <div class="col-sm-12" style="height:30px;"></div>
+        <div class="form-group">
+
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary pull-right">
+                    Guardar
+                </button>
+
+
+            </div>
+
+        </div>
+
+    </form>
+</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+}
+  
+  
+  
+  }

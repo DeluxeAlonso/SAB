@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Buscar Tipos de Activos";
+}
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda Tipo de Activos</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Tipo de Activos", "Search", "AssetsType")</li>
+            <li class="active">Buscar </li>
+        </ol>
+    </div>
+</div>
+
+<div class="col-md-10">
+    
+        <div class="row">
+            <div class="col-md-6">
+                <label for="tipo">Código</label>
+                <input type="number" name="searchCode" value="" min="1" class="form-control" step="1">
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Nombre</label>
+                    <input type="text" name="searchNombre" value=""  class="form-control">
+                </div>
+            </div>
+        </div>
+    
+
+    
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.ActionLink("Buscar", "SearchResult", "AssetsType", new { @class = "btn btn-primary pull-right" })
+            </div>
+        </div>
+    
+</div>

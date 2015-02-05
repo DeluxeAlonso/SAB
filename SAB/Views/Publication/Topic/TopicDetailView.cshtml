@@ -1,0 +1,81 @@
+﻿@model SAB.Domain.Publication.Topic
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicaciones", "Index", "Home")</li>
+            <li>@Html.ActionLink("Tema", "TopicSearch", "Topic")</li>
+            <li class="active">Detalle</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Detalle del Tema</h1>
+    </div>
+</div>
+
+@{
+    SAB.Domain.Publication.Topic topic = Model;
+}
+
+<div class="row">
+    <div class="col-md-10">
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-2">
+                    <label for="tipo">Codigo</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="Id" value="@topic.Id" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-2">
+                    <label for="tipo">Nombre</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="Name" value="@topic.Name" readonly pattern="[A-Za-zá-ú\s]+" title="Solo letras y espacios" required maxlength="50">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-2">
+                    <label for="tipo">Descripción</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="Description" value="@topic.Description" readonly pattern="[A-Za-zá-ú0-9\s]+" title="No se admite caracteres especiales" maxlength="100">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            @Html.ActionLink("Modificar", "TopicModify", "Topic", new { id = topic.Id }, new { @class = "btn btn-primary pull-right" })
+        </div>
+
+    </div>
+</div>

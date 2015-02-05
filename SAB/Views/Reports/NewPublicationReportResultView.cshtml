@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "NewPublicationReportResultView";
+}
+@using SAB.Domain.Acquisition;
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>Reportes</li>
+            <li class="active">Publicaciones Nuevas</li>
+        </ol>
+    </div>
+</div>
+
+@{IEnumerable<PurchaseOrderDetail> purchaseOrderDetails = (IEnumerable<PurchaseOrderDetail>)ViewData["Details"]; }
+<div class="row">
+    <form action="@Url.Action("ExportNewPublication", "Reports")" class="form-horizontal" method="post" role="form">
+        <div class="form-group col-md-10">
+            @if (purchaseOrderDetails != null)
+            {
+                <button class="btn btn-primary">Exportar</button>
+            }
+            else
+            {
+                <button class="btn btn-primary" disabled>Exportar</button>
+            }
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <p class="text-right">Fecha : @ViewData["fecha"]</p>
+            <p class="text-right">Hora  : @ViewData["hora"] </p>
+            <h2 class="text-center"><strong>Reporte de Publicaciones más pedidas</strong></h2>
+            <h3 class="text-center"><strong>Desde @ViewData["fechaD"] hasta @ViewData["fechaH"]</strong></h3>
+        </div>
+        <div class="col-sm-12">
+            <table class="table-striped col-sm-10">
+                <thead>
+                    <tr>
+                        <th>Nº</th>
+                        <th>Codigo de material</th>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var purchaseOrderDetail in (IEnumerable<PurchaseOrderDetail>)ViewData["Details"])
+                    {
+
+                        <tr>
+                            <td>@purchaseOrderDetail.LineNumber</td>
+                            <td>@purchaseOrderDetail.IdPublication</td>
+                            <td>@purchaseOrderDetail.PublicationName</td>
+                            <td>@purchaseOrderDetail.AuthorName</td>
+                            <td>@purchaseOrderDetail.Cantidad</td>
+                        </tr>
+                    }
+
+
+                    <!--
+                    <tr>
+                        <td>LIN-0023</td>
+                        <td>Aves sin nido</td>
+                        <td>55</td>
+                    </tr>
+                    <tr>
+                        <td>LIN-0047</td>
+                        <td>En llamas</td>
+                        <td>43</td>
+                    </tr>
+                    <tr>
+                        <td>LIN-0034</td>
+                        <td>Crimen y castigo</td>
+                        <td>38</td>
+                    </tr>
+                        -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div>
+        <ul class="pagination">
+            <li><a href="#">&laquo;</a></li>
+            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+    </div>
+
+</div>

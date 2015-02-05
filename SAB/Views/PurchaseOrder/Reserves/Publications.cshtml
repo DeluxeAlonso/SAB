@@ -1,0 +1,125 @@
+﻿@using SAB.Domain.Reserves;
+@{
+    ViewBag.Title = "Publicaciones";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li>@Html.ActionLink("Home", "Index", "Home")</li>
+          <li>@Html.ActionLink("Reservas", "Publications", "Reserves")</li>
+          <li class="active">Publicaciones</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Historial de reservas de publicaciones</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+
+        @if (TempData["message"] != null) { 
+            <div class="alert alert-success" role="alert">@TempData["message"]</div>
+        }
+        <form action="@Url.Action("SearchPublications","Reserves")" method="post">
+            <div class="row form-group form-horizontal">
+                <div class="col-sm-5">
+                    <label for="from" class="col-sm-3 control-label">De :</label> 
+                    <div class="col-sm-8">
+                        <input class="form-control" type="date" name="from" value="@ViewData["from"]" />     
+                    </div>              
+                </div>
+                <div class="col-sm-5">
+                    <label for="to" class="col-sm-3 control-label">Hasta :</label>
+                    <div class="col-sm-8">
+                       <input  class="form-control" type="date" name="to" value="@ViewData["to"]" />    
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary pull-right">Buscar</button>
+                </div>
+            </div>
+        </form>
+
+        <div>
+            @{IList<Reserve> reserves =(IList<Reserve>)ViewData["reserves"]; }
+
+            @if ( reserves != null && reserves.Count > 0)
+            {
+                <table class="table-responsive table table-striped">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Tipo de publicación</th>
+                        <th>Fecha de reserva</th>
+                        <th>Fecha fin de reserva</th>
+                        <th></th>
+                    </tr>
+                
+               
+                    @foreach (Reserve r in reserves)
+                    {   
+                        <tr>
+                            <td>@r.Item.Publication.Title</td>
+                            <td>@r.Item.Publication.Type.Name</td>
+                            <td>@r.StartDate</td>
+                            <td>@r.EndDate</td>
+                            <td><a href="#"><i class="margin-right-icon glyphicon glyphicon-remove deleteElementClick" data-id="@r.Id"  data-toggle="modal" data-target="#deleteModal"></i></a></td>
+                        </tr>
+                    } 
+                </table>            
+            } else {
+            
+            <div class="alert alert-danger" role="alert">No hay reservas</div>
+            }
+
+        </div>
+
+        <!--
+        <div>
+            <ul class="pagination">
+                <li><a href="#">&laquo;</a></li>
+                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+        </div>
+        -->
+
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <form action="@Url.Action("CancelReserve", "Reserves")" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label"/>
+                            ¿Estas seguro que desea anular la reserva?
+                    </div>
+                </div>
+                <input type="hidden" name="element_id" class="deleteElementInput" value="0" />
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+        </form>
+        
+
+    </div>
+</div>

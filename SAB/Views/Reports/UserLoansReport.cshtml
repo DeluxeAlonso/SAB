@@ -1,0 +1,66 @@
+﻿@using SAB.Domain.Loan;
+@{
+    ViewBag.Title = "Préstamos de usuario";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>Reportes</li>
+            <li class="active">Reporte de préstamos de un usuario</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h2>Reporte de préstamos de un usuario</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success" role="alert">@TempData["message"]</div>
+        }
+        @if (TempData["alert"] != null)
+        {
+            <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+        }
+        <form action="@Url.Action("LoanReportResult", "Loan")" class="form-horizontal" method="post" role="form">
+            <div class="row form-group form-horizontal">
+                <div class="col-sm-5">
+                    <label for="userID" class="col-sm-3 control-label">Código :</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="number" required="required" min="1" max="999" name="user_id" value="@TempData["user_idR"]" />
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group form-horizontal">
+                <div class="col-sm-5">
+                    <label for="from" class="col-sm-3 control-label">De :</label>
+                    <div class="col-sm-8">
+                        <input class="form-control generic-datepicker" type="text" name="from" value="@TempData["from"]" />
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group form-horizontal">
+                <div class="col-sm-5">
+                    <label for="to" class="col-sm-3 control-label">Hasta :</label>
+                    <div class="col-sm-8">
+                        <input class="form-control generic-datepicker" type="text" name="to" value="@TempData["to"]" />
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group form-horizontal">
+                <div class="col-sm-2">
+                    <button class="btn btn-primary pull-right"><i class="glyphicon glyphicon-floppy-open"></i>     Consultar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>

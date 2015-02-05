@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "PurchaseRequestSearchView";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Adquisiciones", "Adquisiciones", "Adquisiciones")</li>
+            <li>@Html.ActionLink("PurchaseRequest", "PurchaseRequest", "PurchaseRequest")</li>
+            <li class="active">Buscar</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda de Solicitud de Compra</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+</div>
+
+<div class="col-md-10">
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="searchText">Código</label>
+                <input type="text" name="searchText" value=" " class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="searchText">Proveedor</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" value="Planeta">
+                    <span class="input-group-btn">
+                        @Html.ActionLink("Buscar", "SupplierSearch", "Supplier", new { id = 1 }, new { @class = "btn btn-default pull-right" })
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="searchText">Fecha desde</label>
+                <input type="date" name="searchText" value=" " class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="searchText">Solicitante</label>
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        @Html.ActionLink("Buscar", "Search", "User", new { id = 1 }, new { @class = "btn btn-default pull-right" })
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="searchText">Fecha hasta</label>
+                <input type="date" name="searchText" value=" " class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="searchText">Estado</label>
+                <select name="estados" class="form-control">
+                    <option value="0">Todos</option>
+                    <option value="0">Aprobado</option>
+                    <option value="0">Rechazado</option>
+                    <option value="0">Pendiente</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div><label></label></div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.ActionLink("Buscar", "PurchaseRequestSearchResult", "PurchaseRequest", new { @class = "btn btn-primary pull-right" })
+        </div>
+    </div>
+
+
+</div>

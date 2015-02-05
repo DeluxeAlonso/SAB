@@ -1,0 +1,279 @@
+﻿@{
+    ViewBag.Title = "DetailPurchaseOrder";
+}
+@using SAB.Domain.Acquisition
+@using SAB.Domain.Publication
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Orden de Compra", "Search", "PurchaseOrder")</li>
+            <li class="active">Detalle Orden de Compra</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <h1 class="title text-left">Detalle Orden de Compra</h1>
+        <div class="col-md-10">
+            @if (TempData["message"] != null)
+            {
+                <div class="alert alert-success" role="alert">@TempData["message"]</div>
+            }
+            @if (TempData["alert"] != null)
+            {
+                <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+            }
+
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="searchText">Código</label>
+                    <input type="text" class="form-control" value="@(((PurchaseOrder)ViewData["PurchaseOrder"]).Id)" disabled="disabled">
+
+
+                </div>
+            </div>
+            <div class=" row">
+
+
+
+                <div class=" col-md-4">
+                    <label for="searchText">Fecha</label>
+
+                    <input type="text" class="form-control" placeholder="" disabled="disabled" value="@(((PurchaseOrder)ViewData["PurchaseOrder"]).Date.Date.ToShortDateString())">
+                    <label for="searchText">Proveedor</label>
+
+                    <div class="input-group">
+                        <input type="text" class="form-control" disabled="disabled" value="@(((PurchaseOrder)ViewData["PurchaseOrder"]).PurchaseOrder_Provider.Name)">
+
+                    </div><!-- /input-group -->
+
+                    <label for="searchText">Estado</label>
+
+                    <div class="input-group">
+                        <input type="text" class="form-control" disabled="disabled" value="@(((PurchaseOrder)ViewData["PurchaseOrder"]).State)">
+
+                    </div><!-- /input-group -->
+
+                </div>
+                @{
+                    var purchaseOrder = ViewData["PurchaseOrder"] as PurchaseOrder;
+                }
+                @if (purchaseOrder.State.Equals("Activo"))
+                {
+                    <div class=" col-md-2">
+                        <br><br />
+
+                        <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#approveModal">
+                            Aprobar
+                        </button>
+
+                    </div>
+                }
+                @if (purchaseOrder.State.Equals("Activo"))
+                {
+                    <div class=" col-md-2">
+                        <br><br />
+
+                        <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target="#rejectModal">
+                            Rechazar
+                        </button>
+
+                    </div>
+                }
+                @if (purchaseOrder.State.Equals("Aprobado")) { 
+                <div class="col-md-2">
+                    <br><br />
+                    @Html.ActionLink("Recepcionar", "Reception", "PurchaseOrder", new { id = (((PurchaseOrder)ViewData["PurchaseOrder"]).Id) }, new { @class = "btn btn-warning pull-right" })
+                </div>
+                }
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class=" col-md-8">
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading text-center">Solicitud de Compra</div>
+                        <!-- Table -->
+                        <table class="table">
+                            <tr>
+                                <th>Código</th>
+                                <th>Solicitante</th>
+
+                            </tr>
+
+                            @foreach (var purchaseRequest in (IEnumerable<PurchaseRequest>)ViewData["PurchaseRequests"])
+                            {
+
+
+                                <tr>
+                                    <td>@purchaseRequest.Id</td>
+                                    <td>@purchaseRequest.UserName</td>
+
+                                </tr>
+
+                            }
+
+
+
+
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class=" col-md-8">
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading text-center">Materiales</div>
+                        <!-- Table -->
+                        <table class="table">
+                            <tr>
+                                <th>Código</th>
+                                <th>Producto</th>
+                                <th>Cantidad a Recibir </th>
+
+                            </tr>
+
+
+
+                            <!--
+                            <tr>
+                                <td>0001</td>
+                                <td>Don Quijote de la Mancha</td>
+                                <td><input type="text" class="form-control, col-md-4" placeholder="" value="10" disabled="disabled"></td>
+
+                            </tr>
+                            <tr>
+                                <td>0002</td>
+                                <td>ICOE</td>
+                                <td><input type="text" class="form-control, col-md-4" placeholder="" value="3" disabled="disabled"></td>
+
+                            </tr>
+                            <tr>
+                                <td>0003</td>
+                                <td>La guerra del fin del mundo</td>
+                                <td><input type="text" class="form-control, col-md-4" placeholder="" value="5" disabled="disabled"></td>
+
+                            </tr>
+                                -->
+                            @foreach (var purchaseOrderDetail in (IEnumerable<PurchaseOrderDetail>)ViewData["PurchaseOrderDetails"])
+                            {
+
+
+                                <tr>
+                                    <td>@purchaseOrderDetail.LineNumber</td>
+                                    <td>@purchaseOrderDetail.PublicationName</td>
+                                    <td>
+                                        <input type="text" class="form-control, col-md-4" placeholder="" value="@purchaseOrderDetail.Cantidad" disabled="disabled">
+                                    </td>
+
+                                </tr>
+
+                            }
+
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <!--Botones Limpiar, cancelar, guardar-->
+        <div class=" col-md-8">
+            <div class="col-md-3">
+               
+                    @Html.ActionLink("Exportar", "ExportToExcel", "PurchaseOrder",new { id = (((PurchaseOrder)ViewData["PurchaseOrder"]).Id) }, new { @class = "btn btn-primary pull-right" })
+                
+            </div>
+            <div class="col-md-3">
+                @Html.ActionLink("Cancelar", "Search", "PurchaseOrder",  new { @class = "btn btn-primary pull-right" })
+            </div>
+
+           
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="approveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label class="control-label">
+                        <!--for="inputFechaInicio" class="control-label"-->
+                        ¿Estas seguro que quieres Aprobar
+                    </label>
+                    <label class="control-label">
+                        esta Orden de Compra?
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                @Html.ActionLink("Aceptar", "Approve", "PurchaseOrder", new { id = (((PurchaseOrder)ViewData["PurchaseOrder"]).Id) }, new { @class = "btn btn-primary pull-right" })
+                <!--<button id="btnAcceptDeletePurchaseOrder" data-dismiss="modal" class="btn btn-primary">Aceptar</button>-->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label class="control-label">
+                        <!--for="inputFechaInicio" class="control-label"-->
+                        ¿Estas seguro que quieres Rechazar
+                    </label>
+                    <label class="control-label">
+                        esta Orden de Compra?
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                @Html.ActionLink("Aceptar", "Reject", "PurchaseOrder", new { id = (((PurchaseOrder)ViewData["PurchaseOrder"]).Id) }, new { @class = "btn btn-primary pull-right" })
+                <!--<button id="btnAcceptDeletePurchaseOrder" data-dismiss="modal" class="btn btn-primary">Aceptar</button>-->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/PurchaseOrder.js")"></script>
+}

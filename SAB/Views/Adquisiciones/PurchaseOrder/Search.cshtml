@@ -1,0 +1,219 @@
+﻿@model IEnumerable<SAB.Domain.Acquisition.PurchaseOrder>
+
+@{
+    ViewBag.Title = "SearchPurchaseOrder";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Orden de Compra", "Search", "PurchaseOrder")</li>
+            <li class="active">Búsqueda Orden de Compra</li>
+        </ol>
+    </div>
+</div>
+
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/PurchaseOrder/Create")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Nueva Orden de Compra
+        </a>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda de Orden de Compra</h1>
+    </div>
+</div>
+
+
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+
+</div>
+
+
+<div class="col-md-10">
+    <form action="@Url.Action("Search", "PurchaseOrder")" class="form-horizontal" method="post" role="form" id="PO_SearchForm">
+        <div class="form-group">
+            <div class="col-md-8">
+                <label for="searchText">Código</label>
+                <input type="text" step="1" value="@ViewData["codigo"]" name="codigo" pattern="[0-9]*" title="Solo números" placeholder="Búsqueda ..." class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4">
+                <label for="searchText">Fecha desde:</label>
+                <input type="date" value="@ViewData["fechaD"]" name="fechaDesde" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label for="searchText">Fecha hasta:</label>
+                <input type="date" value="@ViewData["fechaH"]" name="fechaHasta" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-8">
+                <label for="searchText">Proveedor</label>
+
+                <input name="proveedor" value="@ViewData["provider"]" type="text" class="form-control">
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-8">
+                <label for="searchText">Estado</label>
+                <div>
+                    <select name="state" class="form-control">
+                        <option value="Todos">Seleccione Uno</option>
+                        <option value="Todos">Todos</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Aprobado">Aprobado</option>
+                        <option value="Rechazado">Rechazado</option>
+                        <option value="Eliminado">Eliminado</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                @if (ViewBag.pageIndex != null)
+                {
+
+                    <input type="hidden" value="@ViewBag.pageIndex" name="pageIndex" id="PO_pageIndex" class="form-control">
+
+                }
+                else
+                {
+                    <input type="hidden" value="1" name="pageIndex" id="PO_pageIndex">
+                }
+            </div>
+            <div class="col-md-8">
+                <button class="btn btn-primary pull-right" type="submit" id="btnPurchaseOrderSearch">Buscar</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+
+<form action="@Url.Action("Detail", "PublicationType")" class="form-horizontal" method="post" role="form">
+    <div class="col-md-8">
+        <div class="row">
+
+            <table class="table-responsive table table-striped">
+                <tr>
+                    <th>#</th>
+                    <th>Codigo</th>
+                    <th>Proveedor</th>
+                    <th>Fecha </th>
+                    <th>Estado</th>
+                    <th>  </th>
+                </tr>
+
+                @foreach (var purchaseOrder in Model)
+                {
+                    <tr>
+                        <td></td>
+                        <td>@purchaseOrder.Id</td>
+                        <td>@purchaseOrder.PurchaseOrder_Provider.Name</td>
+                        <td>@purchaseOrder.Date.Date.ToShortDateString()</td>
+                        <td>@purchaseOrder.State</td>
+                        <td class="text-center">
+
+                            <a href="@Url.Action("Detail", "PurchaseOrder", new { id = @purchaseOrder.Id })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                            @if (@purchaseOrder.State != "Aprobado" && @purchaseOrder.State != "Recepcionado")
+                            {
+                                <a class="DeletePurchaseOrder" data-id="@purchaseOrder.Id"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+            @*----------------------------Paginacion---------------------------------*@
+          
+                <div class="col-md-12 col-md-offset-3 form-horizontal" >
+                    <div class="form-group ">
+                        <div>
+                            <ul class="pagination">
+                                <li><a id="PO_btnFirst">Primero</a></li>
+                                <li><a id="PO_btnPrev">&laquo;</a></li>
+
+                                <li>
+                                    @if (ViewBag.pageIndex != null)
+                                    {
+
+                                        <span>@ViewBag.pageIndex</span>
+
+                                    }
+                                    else
+                                    {
+                                        <span>1</span>
+                                    }
+                                </li>
+                                <li><a id="PO_btnNext">&raquo;</a></li>
+                                <li><a id="PO_btnLast">Último</a></li>
+                            </ul>
+                        </div>
+                        <label for="searchText" class="col-md-2">Ir a la página</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" id="PO_pageIndexChange">
+                        </div>
+
+                        
+                    </div>
+                </div>                
+            
+            @*----------------------------Fin---------------------------------*@
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <label class="control-label">
+                                    <!--for="inputFechaInicio" class="control-label"-->
+                                    ¿Estas seguro que quieres Eliminar
+                                </label>
+                                <label class="control-label">
+                                    esta Orden de Compra?
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button id="btnAcceptDeletePurchaseOrder" data-dismiss="modal" class="btn btn-primary">Aceptar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</form>
+<!-- Modal -->
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/PurchaseOrder.js")"></script>
+}
+

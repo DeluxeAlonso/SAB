@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "PurchaseOrderReportResult";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>Reportes</li>
+            <li class="active">Orden de Compra</li>
+        </ol>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <form class="form-horizontal" role="form">
+        <div class="form-group col-md-12">
+            <div class="col-sm-offset-0 col-sm-1 ">
+                <button type="submit" class="btn btn-primary">Exportar</button>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <p class="text-right">Fecha : 26/09/2014</p>
+                <p class="text-right">Hora  : 20:54 pm  </p>
+                <p class="text-right">Página: 01/01     </p>
+                <h2 class="text-center"><strong>Reporte de Órdenes de compra</strong></h2>
+                <h3 class="text-center"><strong>Desde 01/08/2014 hasta 25/09/2014</strong></h3>
+            </div>
+            <div class="col-sm-12">
+                <table class="table-striped col-sm-10">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Codigo</th>
+                            <th>Fecha</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>ORC-0045</td>
+                            <td>15/16/20</td>
+                            <td>1200</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>ORC-0046</td>
+                            <td>15/16/20</td>
+                            <td>120</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>ORC-0047</td>
+                            <td>15/16/20</td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>ORC-0048</td>
+                            <td>15/16/20</td>
+                            <td>100</td>
+                        </tr>
+
+                    </tbody>
+
+
+                </table>
+            </div>
+        </div>
+        </form>
+        <div>
+            <ul class="pagination">
+                <li><a href="#">&laquo;</a></li>
+                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+        </div>
+
+</div>

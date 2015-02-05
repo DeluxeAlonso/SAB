@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<div class="col-sm-12" style="height:50px;"></div>
+
+<div class="row">
+    <h1>SAB- Sistema de Administración de Bibliotecas <img class="active" src="@Url.Content("~/images/logo_sinName.png")" alt="" height="150" width="300" /> </h1>
+    
+</div>
+
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+
+</div>
+
+<div class="col-sm-12" style="height:15px;"></div>
+
+<img class="active" src="@Url.Content("~/images/biblio.png")" /> 

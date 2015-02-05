@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0F4A30C5-C886-4737-804C-6358CC094F42}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SAB.Infraestructure</RootNamespace>
+    <AssemblyName>SAB.Infraestructure</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Acquisition\PurchaseOrderDetailRepository.cs" />
+    <Compile Include="Acquisition\PurchaseOrderRepository.cs" />
+    <Compile Include="Acquisition\PurchaseRequestRepository.cs" />
+    <Compile Include="Acquisition\PurchaseRequestDetailRepository.cs" />
+    <Compile Include="Acquisition\RenewalRepository.cs" />
+    <Compile Include="Acquisition\SupplierRepository.cs" />
+    <Compile Include="Acquisition\SuscriptionRepository.cs" />
+    <Compile Include="Assets\AssetsRepository.cs" />
+    <Compile Include="Assets\TypeAssetRepository.cs" />
+    <Compile Include="Library\LocalRepository.cs" />
+    <Compile Include="Loan\LoanRepository.cs" />
+    <Compile Include="Politica\DevolutionProfileRepository.cs" />
+    <Compile Include="Politica\UserProfileRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publication\AuthorRepository.cs" />
+    <Compile Include="Publication\EditorialRepository.cs" />
+    <Compile Include="Publication\PublicationItemRepository.cs" />
+    <Compile Include="Publication\PublicationTitleRepository.cs" />
+    <Compile Include="Publication\PublicationTopicRepository.cs" />
+    <Compile Include="Publication\PublicationTypeRepository.cs" />
+    <Compile Include="Publication\TopicRepository.cs" />
+    <Compile Include="Sanctions\SanctionRepository.cs" />
+    <Compile Include="User\ActionRepository.cs" />
+    <Compile Include="User\DocumentTypeRepository.cs" />
+    <Compile Include="User\UserAccountRepository.cs" />
+    <Compile Include="Reserve\ReserveRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SAB.Base\SAB.Base.csproj">
+      <Project>{fad84bbf-ee89-4220-a129-93abda39d816}</Project>
+      <Name>SAB.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAB.Domain\SAB.Domain.csproj">
+      <Project>{d2dd4fdf-e5bd-420e-9d4c-3cce42f04c13}</Project>
+      <Name>SAB.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAB.Shared\SAB.Shared.csproj">
+      <Project>{2c2b9069-97d5-4702-8e18-6e22ac658cc4}</Project>
+      <Name>SAB.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

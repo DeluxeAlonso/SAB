@@ -1,0 +1,235 @@
+﻿@model SAB.Domain.Publication.Author
+
+@{
+    ViewBag.Title = "AuthorDetailView";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicaciones", "AuthorRegisterView", "Author")</li>
+            <li>@Html.ActionLink("Autor", "AuthorRegisterView", "Author")</li>
+            <li class="active">Detalle</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Detalle del Autor</h1>
+    </div>
+</div>
+
+@{
+    SAB.Domain.Publication.Author autor = Model;
+}
+
+@using (Html.BeginForm("UpdateAuthor", "Author"))
+{
+
+    <div class="col-md-10">
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Código</label>
+                    <input type="text" class="form-control" name="Id" id="Id" value="@autor.Id" readonly>
+                    <input type="text" class="form-control" name="Id" value="@autor.Id" style="display:none">
+                </div>
+                <div class="col-md-6">
+                    <label for="searchText">Nombre</label>
+                    <input type="text" class="form-control" name="Name" id="Name" value="@autor.Name" pattern="[A-Za-zá-ú\s]+" title="Solo letras y espacios" maxlength="50" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">País</label>
+                    <div class="form-group">
+                        <select class="form-control" name="Country" id="Country">
+                            @if (autor.Country.Equals("Alemania"))
+                            {
+                                <option selected>Alemania</option>}
+                            else
+                            {
+                                <option>Alemania</option>}
+                            @if (autor.Country.Equals("Argentina"))
+                            {
+                                <option selected>Argentina</option>}
+                            else
+                            {
+                                <option>Argentina</option>}
+                            @if (autor.Country.Equals("Australia"))
+                            {
+                                <option selected>Australia</option>}
+                            else
+                            {
+                                <option>Australia</option>}
+                            @if (autor.Country.Equals("Bolivia"))
+                            {
+                                <option selected>Bolivia</option>}
+                            else
+                            {
+                                <option>Bolivia</option>}
+                            @if (autor.Country.Equals("Brasil"))
+                            {
+                                <option selected>Brasil</option>}
+                            else
+                            {
+                                <option>Brasil</option>}
+                            @if (autor.Country.Equals("Canada"))
+                            {
+                                <option selected>Canada</option>}
+                            else
+                            {
+                                <option>Canada</option>}
+                            @if (autor.Country.Equals("Chile"))
+                            {
+                                <option selected>Chile</option>}
+                            else
+                            {
+                                <option>Chile</option>}
+                            @if (autor.Country.Equals("China"))
+                            {
+                                <option selected>China</option>}
+                            else
+                            {
+                                <option>China</option>}
+                            @if (autor.Country.Equals("Colombia"))
+                            {
+                                <option selected>Colombia</option>}
+                            else
+                            {
+                                <option>Colombia</option>}
+                            @if (autor.Country.Equals("Ecuador"))
+                            {
+                                <option selected>Ecuador</option>}
+                            else
+                            {
+                                <option>Ecuador</option>}
+                            @if (autor.Country.Equals("España"))
+                            {
+                                <option selected>España</option>}
+                            else
+                            {
+                                <option>España</option>}
+                            @if (autor.Country.Equals("Estados Unidos"))
+                            {
+                                <option selected>Estados Unidos</option>}
+                            else
+                            {
+                                <option>Estados Unidos</option>}
+                            @if (autor.Country.Equals("Francia"))
+                            {
+                                <option selected>Francia</option>}
+                            else
+                            {
+                                <option>Francia</option>}
+                            @if (autor.Country.Equals("Italia"))
+                            {
+                                <option selected>Italia</option>}
+                            else
+                            {
+                                <option>Italia</option>}
+                            @if (autor.Country.Equals("Japón"))
+                            {
+                                <option selected>Japón</option>}
+                            else
+                            {
+                                <option>Japón</option>}
+                            @if (autor.Country.Equals("Mexico"))
+                            {
+                                <option selected>Mexico</option>}
+                            else
+                            {
+                                <option>Mexico</option>}
+                            @if (autor.Country.Equals("Perú"))
+                            {
+                                <option selected>Perú</option>}
+                            else
+                            {
+                                <option>Perú</option>}
+                            @if (autor.Country.Equals("Rusia"))
+                            {
+                                <option selected>Rusia</option>}
+                            else
+                            {
+                                <option>Rusia</option>}
+                            @if (autor.Country.Equals("Uruguay"))
+                            {
+                                <option selected>Uruguay</option>}
+                            else
+                            {
+                                <option>Uruguay</option>}
+                            @if (autor.Country.Equals("Venezuela"))
+                            {
+                                <option selected>Venezuela</option>}
+                            else
+                            {
+                                <option>Venezuela</option>}
+                            @if (autor.Country.Equals("Otros"))
+                            {
+                                <option selected>Otros</option>}
+                            else
+                            {
+                                <option>Otros</option>}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="searchText">Apellido Paterno :</label>
+                    <input type="text" class="form-control" name="First_last_Name" id="First_last_Name" value="@autor.First_last_Name" pattern="[A-Za-zá-ú\s]+" title="Solo letras y espacios" maxlength="50" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Ciudad:</label>
+                    <input type="text" class="form-control" name="Hometown" id="Hometown" value="@autor.Hometown" pattern="[A-Za-zá-ú\s]+" title="Solo letras y espacios" maxlength="50" />
+                </div>
+                <div class="col-md-6">
+                    <label for="searchText">Apellido Materno :</label>
+                    <input type="text" class="form-control" name="Second_last_Name" id="Second_last_Name" value="@autor.Second_last_Name" pattern="[A-Za-zá-ú\s]+" title="Solo letras y espacios" maxlength="50" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+            </div>
+        </div>
+
+    </div>
+    
+}
+
+    <!-- Boton Guardar -->
+    <div class="modal fade" id="buttonSave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label">
+                            ¿Estas seguro que quieres guardar los  cambios para este Autor?
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>

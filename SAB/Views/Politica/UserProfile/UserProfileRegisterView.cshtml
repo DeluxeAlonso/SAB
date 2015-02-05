@@ -1,0 +1,355 @@
+﻿
+@using SAB.Domain.User
+@using SAB.Domain.Publication
+@using SAB.Domain.Politica
+
+@{
+    ViewBag.Title = "Registrar perfil de usuario";
+}
+
+@section Scripts
+{
+<script src="@Url.Content("~/Scripts/mustache.js")"></script>
+<script src="@Url.Content("~/Scripts/main.js")"></script>
+<script src="@Url.Content("~/Scripts/UserProfile.js")"></script>
+
+
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Perfil de usuario", "UserProfileRegister", "UserProfile")</li>
+            <li class="active">Registrar</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Registrar perfil de usuario</h1>
+    </div>
+</div>
+
+@using (Html.BeginForm("Save","UserProfile"))
+{
+
+     
+       
+    <div class="col-md-10">
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="tipo">Nombre:</label>
+                    <input type="text" name="name" value="" class="form-control" required="required" maxlength="50" pattern="[a-zA-Z]*" oninvalid="setCustomValidity('Please enter letters')">
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Tipo Usuario:</label>
+                        <select id="tipoUsuario" name="tipoUSuario" class="form-control" required="required">
+                            <option value="">Seleccione</option>
+                            <option value="1">Usuario de Sistema</option>
+                            <option value="2">Usuario de Biblioteca</option>
+                          
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="searchText">Descripción:</label>
+            <input type="text" name="description" value=""  class="form-control" maxlength="25" required="required">
+            
+        </div>
+
+
+
+
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6 margin-bottom-sm">
+                    <label for="searchText">Tipos de publicación que puede sacar:</label>
+                    <p></p>
+                    @{IEnumerable<PublicationType> publicaciones = (IEnumerable<PublicationType>)ViewData["publicaciones"]; }
+                    @if (TempData["alertPublication"] != null)
+                    { <font color="red">@TempData["alertPublication"]</font>}
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <!-- Table -->
+                        
+                        <table id="publicationTable" class="table">
+                            <tr>
+                                <th>Tipo Publicación</th>
+                                <th></th>
+                            </tr>
+                            
+                            @foreach (PublicationType r in publicaciones)
+                            {
+                                <tr>
+                                    <td>@r.Name</td>
+                                    <td><input type="checkbox" name="selectedPublication" value="@r.Id" required></td>
+
+                                </tr>
+                            }
+
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col -md-3">
+            <label for="fields">Número de materiales que puede sacar a la vez:</label>
+            <input type="number" name="maxMaterial" value="" min="1" max="5" required class="form-control">
+            
+        </div>
+
+        <p></p>
+       
+        <div class="form-group">
+            <label for="searchText">Asignación de tareas en el sistema:</label>
+            <p></p>
+            <div class=" col-md-8">
+                @{IList<ActionType> acciones = (IList<ActionType>)ViewData["acciones"]; }
+
+                @if (TempData["alertAction"] != null)
+                { <font color="red">@TempData["alertAction"]</font>}
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <!-- Table -->
+                    <table id="actionTable"class="table">
+                        <tr>
+                            <th>Tareas</th>
+                            <th></th>
+                        </tr>
+                        @foreach (ActionType r in acciones)
+                        {
+                            <tr>
+                                <td>@r.Name</td>
+                                <td><input type="checkbox" name="selectedAction" value="@r.Id" required ></td>
+                                
+                            </tr>
+                        } 
+                       
+
+
+                    </table>
+                </div>
+            </div>
+            
+
+
+        </div>
+
+
+        <div class="form-group">
+            <label for="searchText">Asignación de tiempos máximos de devolución según el periodo de tiempo:</label>
+            <p></p>
+            <div class="row">
+                <div class=" col-md-8">
+                    @if (TempData["alertDevolucion"] != null)
+                    { <font color="red">@TempData["alertDevolucion"]</font>}
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <!-- Table -->
+                        <table class="table" id="myTable">
+                            <tr>
+                                <th>Periodo desde</th>
+                                <th>Periodo hasta</th>
+                                <th>Descripción                       </th>
+                                <th>Tiempo máximo de devolución       </th>
+                                
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Días regulares</td>
+                                <td><input type="number" min="1" max="200"name ="maxdays"class="form-control"  /></td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="date" name="fechaDesde" class="form-control" /></td>
+                                <td><input type="date" name="fechaHasta" class="form-control" /></td>
+                                <td><input type="text" name="descriptions" class="form-control" /></td>
+                                <td><input type="number" name="days"class="form-control" /></td>
+                                <td><a href="#" class="glyphicon glyphicon-remove remove_row"></a></td>
+                            </tr>
+                            <tr class="add_row" data-tpl="hitosTpl">
+                                <td><a href="#">Agregar fila</a></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                
+                            </tr>
+
+
+                        </table>
+                    </div>
+                </div>
+                <!--Botones laterales: Agregar, Eliminar-->
+                 <!--
+                <div class="col-md-4">
+                    <br><br />
+                    <button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#addTiempoMaxPeriodoTiempo">
+                        Agregar
+                    </button>
+                </div>
+            -->
+
+
+
+            </div>
+        </div>
+        
+    </div>
+            <div class="form-group">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-4">
+                <input type="submit" class="btn btn-primary pull-right" value="Guardar" id="checkbtn" />
+            </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label">
+                            <!--for="inputFechaInicio" class="control-label"-->
+                            ¿Estas seguro que quieres
+                        </label>
+                        <label class="control-label">
+                            registrar este Tipo de Perfil?
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" >Aceptar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+
+
+}
+
+
+
+<div class="modal fade" id="addTiempoMaxPeriodoTiempo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Agregar un permiso de días máximo por periodo de tiempo</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="col-md-12">
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="searchText">Descripción</label>
+                                <input type="text" name="Code" value=" " class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="searchText">Número de días permitido</label>
+                                <input type="number" name="Name" value="" min="1" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="searchText">Periodo desde</label>
+                                <input type="date" name="Opening_Date" value=" " class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="searchText">Periodo hasta</label>
+                                <input type="date" name="Opening_Date" value="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div><label></label></div>
+                    <button type="submit" class="btn btn-primary pull-right">Agregar</button>
+                    <br><br />
+                    <br><br />
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="template/mustache" id="hitosTpl">
+    <tr>
+        <td><input type="date" name="fechaDesde" class="form-control" /></td>
+        <td><input type="date" name="fechaHasta" class="form-control" /></td>
+        <td><input type="text" name="descriptions" class="form-control" maxlength="25" /></td>
+        <td><input type="number" name="days" class="form-control" min="1" max="5"/></td>
+        <td><a href="#" class="glyphicon glyphicon-remove remove_row"></a></td>
+    </tr>
+</script>
+
+
+
+
+
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label class="control-label">
+                        <!--for="inputFechaInicio" class="control-label"-->
+                        ¿Estas seguro que quieres eliminar este
+                    </label>
+                    <label class="control-label">
+                        permiso de tiempo máximo por periodo de tiempo?
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <a href="@Url.Action("Delete", "UserProfile", new { id = 4 })" class="btn btn-primary">Aceptar</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

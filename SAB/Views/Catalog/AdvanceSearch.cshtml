@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "Búsqueda avanzada";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li>@Html.ActionLink("Home", "Index", "Home")</li>
+          <li>@Html.ActionLink("Catálogo en línea", "FastSearch", "Catalog")</li>
+          <li class="active">Búsqueda avanzada</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda avanzada</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+</div>
+
+<form action="@Url.Action("AdvancedSearchResult", "Catalog")" method="post" role="form">
+<div class="row">
+    <div class="col-md-10">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="author">Autor :</label>
+                    <input type="text" class="form-control" name="author" />
+                </div>
+                <div class="form-group">
+                    <label for="title">Título :</label>
+                    <input type="text" class="form-control" name="title" />
+                </div>
+                <div class="form-group">
+                    <label for="editorial">Editorial :</label>
+                    <input type="text" class="form-control" name="editorial" />
+                </div>
+                <div class="form-group">
+                    <label for="year">Año de publicación :</label>
+                    <input type="text" class="form-control" name="year" />
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="author">Biblioteca :</label>
+                    @*<select name="biblioteca" class="form-control">
+                        <option value="0">Todas</option>
+                        <option value="1">Biblioteca Central</option>
+                        <option value="2">Biblioteca Secundaria</option>
+                    </select> *@
+                    @Html.DropDownList("local", null, "Todas", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                    <label for="author">Tipo de publiación :</label>
+                    @Html.DropDownList("publicationType", null, "Cualquiera", new { @class = "form-control"})
+                    @*<label for="author">Idioma :</label>
+                    <select name="biblioteca" class="form-control">
+                        <option value="0">Todos</option>
+                        <option value="1">Español</option>
+                        <option value="2">Inglés</option>
+                    </select>*@               
+            </div>
+            <div class="form-group">
+                    <label for="author">Tipo de prestamo :</label>
+                    <select name="loanType" class="form-control">
+                        <option value="0">Cualquiera</option>
+                        <option value="1">A domicilio</option>
+                        <option value="2">A sala</option>
+                    </select>               
+            </div>
+            <div class="form-group">
+                    <label for="author">Ordenar por :</label>
+                    <select name="orderBy" class="form-control">
+                        <option value="0">Ninguno</option>
+                        <option value="1">Título</option>
+                        <option value="2">Autor</option>
+                        <option value="3">Editorial</option>
+                        <option value="4">Más recientes</option>
+                        <option value="5">Menos recientes</option>
+                    </select>               
+            </div>
+        </div>
+            <div class="col-md-12">
+                <div>
+                    @if (ViewBag.pageIndex != null)
+                    {
+
+                        <input type="hidden" value="@ViewBag.pageIndex" name="pageIndex" id="PRS_pageIndex" class="form-control">
+
+                    }
+                    else
+                    {
+                        <input type="hidden" value="1" name="pageIndex" id="PRS_pageIndex">
+                    }
+                </div>
+                <button type="submit" class="btn btn-primary pull-right" id="btnCatalogSearch">Buscar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</form>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Catalog.js")"></script>
+}

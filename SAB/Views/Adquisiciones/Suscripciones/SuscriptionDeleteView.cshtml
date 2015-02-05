@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Borrar Suscriptión";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Suscripcion", "SearchSuscription", "Suscripcion")</li>
+            <li>@Html.ActionLink("Buscar", "SearchSuscription", "Suscripcion")</li>
+            <li>@Html.ActionLink("Detalle", "DetailView", "Suscripcion")</li>
+            <li class="active">Borrar </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Borrar Suscripción</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Código</label>
+                    <input class="form-control" id="disabledImput" type="text" placeholder="1" disabled>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Fecha de Registro</label>
+                    <input class="form-control" id="disabledImput" type="text" placeholder="25/09/2014" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Titulo</label>
+                    <input class="form-control" id="disabledImput" type="text" placeholder="Somos" disabled>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Editorial</label>
+                    <input class="form-control" id="disabledImput" type="text" placeholder="Somos" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Tipo de Pulblicacion</label>
+                    <input class="form-control" id="disabledImput" type="text" placeholder="Revista Impresa" disabled>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Estado</label>
+                    <input class="form-control" id="disabledImput" type="text" placeholder="Registrada" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-4">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                Eliminar
+            </button>
+        </div>
+        <div class="col-sm-4">
+            <input type="button" class="btn btn-primary" value="Modificar" disabled />
+        </div>
+        <div class="col-sm-4">
+            <input type="button" class="btn btn-primary" value="Guardar" disabled />
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label class="control-label">
+                        <!--for="inputFechaInicio" class="control-label"-->
+                        ¿Estas seguro que quieres eliminiar
+                    </label>
+                    <label class="control-label">
+                        la suscripción seleccionada?
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="window.location.href='SearchSuscriptionResult'">Aceptar</button>
+                <button type="button" class="btn btn-default">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+

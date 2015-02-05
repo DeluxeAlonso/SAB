@@ -1,0 +1,21 @@
+﻿@model IEnumerable<SAB.Domain.Publication.Editorial>
+<table class="table-responsive table table-striped" id="editorialTable">
+    <tr>
+        <th>Código</th>
+        <th>Razón Social</th>
+        <th>RUC</th>
+        <th></th>
+    </tr>
+    @foreach (var editorial in Model)
+    {
+        <tr>
+            <td>@editorial.Id</td>
+            <td>@editorial.Company_Name</td>
+            <td>@editorial.RUC</td>
+            <td>
+                <input type="radio" name="Editorial" />
+            </td>
+        </tr>
+    }
+</table>
+

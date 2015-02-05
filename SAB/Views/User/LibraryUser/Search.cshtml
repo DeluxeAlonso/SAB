@@ -1,0 +1,277 @@
+﻿@using SAB.Domain.User;
+@using SAB.Domain.Politica;
+@using SAB.Domain.Library;
+@{
+    ViewBag.Title = "SearchLibraryUser";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Usuario", "Search", "Account")</li>
+            <li class="active">Buscar</li>
+        </ol>
+    </div>
+</div>
+@{IEnumerable<UserProfile> perfiles = (IEnumerable<UserProfile>)ViewData["perfiles"];}
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/UserAccount.js")"></script>
+
+
+
+}
+
+
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/Account/CreateLector")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Nuevo Lector
+        </a>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Buscar Lectores</h1>
+    </div>
+</div>
+@{IEnumerable<UserAccount> usuarios = (IEnumerable<UserAccount>)ViewData["usuarios"]; }
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+
+</div>
+
+<div class="col-md-10">
+
+    <form action="@Url.Action("SearchResult", "Account")"  method="post" id="PRS_SearchForm">
+        <div class=" form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="exampleInputEmail1">Código</label>
+                <input type="number" class="form-control" name="searchCode" min="1"value="@ViewData["searchCode"]" id="exampleInputEmail1">
+            </div>
+            <div class="col-md-6">
+                <label for="exampleInputEmail1">Número Documento</label>
+                <input type="text" class="form-control" name="searchDNI" value="@ViewData["searchDNI"]" id="exampleInputEmail1" pattern="[a-zA-Z0-9_]*" oninvalid="setCustomValidity('Please enter valid characters')">
+            </div>
+
+        </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Nombre</label>
+                    <input type="text" class="form-control" name="searchName" value="@ViewData["searchName"]" maxlength="25" >
+                </div>
+
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Apellido</label>
+                    <input type="text" class="form-control" name="searchApellido" value="@ViewData["searchApellido"]" id="exampleInputEmail1" maxlength="25">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Fecha de Registro desde:</label>
+                    <input type="date" value=" " name="from" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="searchText">Fecha de Registro hasta:</label>
+                    <input type="date" value=" " name="to" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="tipo">Tipo Perfil</label>
+
+
+
+                    <select name="tipo" class="form-control">
+                        <option value="0" selected>Todos</option>
+                        @{
+
+                            int i = 1;
+                            foreach (UserProfile r in perfiles)
+                            {
+                                if ((int)ViewData["tipo"] == r.Id) { 
+                                <option value="@r.Id" selected>@r.Name</option>}
+                                                                      else {
+                                                                          <option value="@r.Id">@r.Name</option>
+                                                                      }
+                            }
+                        }
+                    </select> 
+                </div>
+
+                <div class="col-md-6">
+                    <label for="tipo">Estado</label>
+
+
+
+
+                    <select name="estado" class="form-control">
+                        <option id="0">Todos</option>
+                        <option id="1">Sancionado</option>
+                        <option id="2">Eliminado</option>
+                    </select>
+                </div>
+
+
+             </div>
+        </div>
+
+
+
+
+
+        <div class="col-sm-12" style="height:30px;"></div>
+        <div class="form-group">
+            <div>
+                @if (ViewData["pageIndex"] != null)
+                {
+
+                    <input type="hidden" value="@((int)(ViewData["pageIndex"]))" name="pageIndex" id="PRS_pageIndex" class="form-control">
+
+                }
+                else
+                {
+                    <input type="hidden" value="1" name="pageIndex" id="PRS_pageIndex">
+                }
+            </div>
+            <button class="btn btn-primary pull-right" type="submit">Buscar</button>
+
+        </div>
+        <div class="col-sm-12" style="height:30px;"></div>
+    </form>
+</div>
+
+
+
+<div class="col-md-10">
+        <div class="row">
+
+            <table class="table-responsive table table-striped">
+                <tr>
+                    <th class="cod">Código</th>
+                    <th class="fechaDeRegistro">Fecha de Registro</th>
+                    <th class="nombres">Nombre</th>
+                    <th class="nombres">Estado</th>
+                    <th class="nombres">Tipo Perfil</th>
+                    <th class="text-center"> </th>
+                </tr>
+
+                @{
+
+                if (usuarios!=null){
+                    foreach (UserAccount r in usuarios)
+                    {
+                        <tr>
+                            <td>@r.Id</td>
+                            <td>@r.RegisterDate.ToShortDateString()</td>
+                            <td>@r.Name</td>
+                            <td>@r.Status</td>
+                            <td>@r.TipoPerfil.Name</td>
+
+                            <td>
+                                <a href="@Url.Action("SearchAccountResultDetail", "Account", new { id = @r.Id })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                                <a href="@Url.Action("ModifyAccount", "Account", new { id = @r.Id })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                                <a class="DeleteUserAccount" data-id="@r.Id"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+
+                            </td>
+                        </tr>
+                     }
+                }
+
+                }
+
+
+
+            </table>
+
+            @*----------------------------Paginacion---------------------------------*@
+
+            <div class="col-md-12 col-md-offset-3 form-horizontal">
+                <div class="form-group ">
+                    <div>
+                        <ul class="pagination">
+                            <li><a id="PRS_btnFirst">Primero</a></li>
+                            <li><a id="PRS_btnPrev">&laquo;</a></li>
+
+                            <li>
+                                @if (ViewData["pageIndex"]!= null)
+                                {
+                                    int pageIndex = (int)ViewData["pageIndex"];
+                                    <span>@pageIndex</span>
+
+                                }
+                                else
+                                {
+                                    <span>1</span>
+                                }
+                            </li>
+                            <li><a id="PRS_btnNext">&raquo;</a></li>
+                            <li><a id="PRS_btnLast">Último</a></li>
+                        </ul>
+                    </div>
+                    
+
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label class="control-label">
+                        <!--for="inputFechaInicio" class="control-label"-->
+                        ¿Estas seguro que quieres Eliminar
+                    </label>
+                    <label class="control-label">
+                        este Usuario?
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button id="btnAcceptDeleteUserAccount" data-dismiss="modal" class="btn btn-primary">Aceptar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+

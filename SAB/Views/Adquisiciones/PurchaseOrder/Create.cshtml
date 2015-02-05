@@ -1,0 +1,254 @@
+﻿@{
+    ViewBag.Title = "CreatePurchaseOrder";
+}
+@using SAB.Domain.Acquisition
+@using SAB.Domain.Publication
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Orden de Compra", "Create", "PurchaseOrder")</li>
+            <li class="active">Registrar Orden de Compra</li>
+        </ol>
+    </div>
+    <div class="col-md-10">
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success" role="alert">@TempData["message"]</div>
+        }
+        @if (TempData["alert"] != null)
+        {
+            <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+        }
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-10">
+        <h1 class="title text-left">Registrar Orden de Compra</h1>
+        @using (Html.BeginForm("Save", "PurchaseOrder"))
+        {
+            <div class="form-group">
+                <div class="row">
+                    <div class=" col-md-4">
+                        <label for="searchText">Proveedor</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="providerName" id="providerName" disabled>
+                            <input type="hidden" name="providerID" id="providerID">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#addProvider">Buscar</button>
+                            </span>
+                        </div><!-- /input-group -->
+
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="row">
+                    <div class=" col-md-8">
+
+                        <div class="panel panel-default">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading text-center">Materiales</div>
+                            <!-- Table -->
+                            <table class="table" id="AddedPublicationTable">
+                                <tr>
+                                    <th class="col-md-1">Código</th>
+                                    <th class="col-md-4">Producto</th>
+                                    <th class="col-md-2">Cantidad Solicitada</th>
+                                    <th class="col-md-2"></th>
+                                </tr>
+                                @if (@ViewData["publicationIDs"] != null)
+                                {
+                                    string[] arrayPublication = (string[])ViewData["publicationIDs"];
+                                    string[] arrayPublicationName = (string[])ViewData["publicationNames"];
+                                    string[] arrayQuantities = (string[])ViewData["publicationQuantities"];
+                                    for (int i = 0; i < ((int)ViewData["numPublications"]); i++)
+                                    {
+                                        <tr>
+                                            <td>@(arrayPublication[i])<input type="checkbox" name="publicationIDs" value="@(arrayPublication[i])" hidden checked></td>
+
+                                            <td>@(arrayPublicationName[i])<input type="text" name="publicationNames" value="@(arrayPublicationName[i])" hidden></td>
+
+                                            <td><input name="publicationQuantities" type="number" class="form-control" placeholder="" value="@(arrayQuantities[i])" min="1" max="100" required></td>
+
+                                            <td class="text-center"><a class="deleteEntry"><i class="margin-right-icon glyphicon glyphicon-remove"></i></a></td>
+
+                                        </tr>
+                                    }
+                                }
+
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <br><br />
+                        <button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#addPublicacionModal" id="btnAddPublicacionModal">
+                            Agregar
+                        </button>
+                        <br><br />
+                        <br><br />
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        <!--Botones Limpiar, cancelar, guardar-->
+            <div class=" col-md-8">
+
+                <div class="col-md-4">
+                    @Html.ActionLink("Cancelar", "Search", "PurchaseOrder", new { id = 1 }, new { @class = "btn btn-primary pull-right" })
+                </div>
+
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary pull-right">
+                        Guardar
+                    </button>
+                </div>
+
+            </div>
+        }
+    </div>
+</div>
+
+<div id="addPublicacionModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+
+                <h4 class="modal-title" id="myModalLabel">Agregar publicación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form action="@Url.Action("PublicationSearch", "PurchaseOrder")" method="post" id="publicationForm">
+                        <div class="col-md-12">
+
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="searchText">Titulo</label>
+                                    <input type="text" name="txtTitulo" class="form-control">
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="searchText">Autor</label>
+                                    <input type="text" name="txtAutor" class="form-control">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <select name="tipoPublicacion" class="form-control">
+                                        <option value="0">--Todos--</option>
+                                        @foreach (PublicationType publicationType in ViewBag.PublicationTypes)
+                                        {
+                                            <option value="@publicationType.Id">@publicationType.Name</option>
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button id="btnPublicationSearch" class="btn btn-primary pull-right">Buscar</button>
+
+                            </div>
+                            <br><br />
+                            <br><br />
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div id="resultPublication">
+                                    @{
+                                        IEnumerable<PublicationTitle> listPublication = ViewBag.Publications;
+                                        Html.RenderPartial("~/Views/Adquisiciones/PurchaseOrder/_PartialPublicationTable.cshtml", listPublication);
+
+                                    }
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <button id="addPublication" class="btn btn-primary pull-right" data-dismiss="modal">Agregar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="addProvider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Agregar proveedor</h4>
+            </div>
+            <div class="modal-body">
+                <form action="@Url.Action("ProviderSearch", "PurchaseOrder")" class="form-horizontal" method="post" role="form" id="providerForm">
+
+                    <div class="col-md-12">
+                        <div class=" form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="exampleInputEmail1">RUC</label>
+                                    <input type="text" class="form-control" name="ruc" placeholder="">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="exampleInputEmail1">Nombre</label>
+                                    <input type="text" class="form-control" name="providerName" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="height:30px;"></div>
+                        <div class="form-group">
+                            <button id="btnProviderSearch" class="btn btn-primary pull-right">Buscar</button>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div id="resultProvider">                         
+
+                                @{
+                                    IEnumerable<Supplier> listProviders = ViewBag.Providers;
+                                    Html.RenderPartial("~/Views/Adquisiciones/PurchaseOrder/_PartialProviderTable.cshtml", listProviders);
+
+                                }                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div>
+                    <button id="btnAddProvider" class="btn btn-primary pull-right" data-dismiss="modal">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/PurchaseOrder.js")"></script>
+}
+

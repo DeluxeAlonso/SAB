@@ -1,0 +1,153 @@
+﻿@{
+    ViewBag.Title = "TipoSancionView";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Politicas", "TipoSancionDriver", "TipoSancion")</li>
+            <li class="active">Tipo de Sanción</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <h1 class="title text-left">Mantenimiento de Tipo de Sanción</h1>
+
+        <div class="form-group">
+            <div class="row">
+                <div class=" col-md-8">
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Materiales</div>
+                        <!-- Table -->
+                        <table class="table">
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Unidad</th>
+                                <th>Cantidad</th>
+                                <th>Epoca del año</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td>0001</td>
+                                <td><input type="text" value="Daño a artículo"></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            Dias <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Dias</a></li>
+                                            <li><a href="#">Dinero</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td><input class="col-md-10" type="text" value="5"></td>
+                                <td><input class="col-md-10" type="text" value="1"></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>0002</td>
+                                <td><input type="text" value="Perdida de articulo"></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            Dinero <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Dias</a></li>
+                                            <li><a href="#">Dinero</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td><input class="col-md-10" type="text" value="20"></td>
+                                <td><input class="col-md-10" type="text" value="2"></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>0003</td>
+                                <td><input type="text" value="Tardanza"></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            Dias <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Dias</a></li>
+                                            <li><a href="#">Dinero</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td><input class="col-md-10" type="text" value="3"></td>
+                                <td><input class="col-md-10" type="text" value="3"></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>0004</td>
+                                <td><input type="text"></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            Dias <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Dias</a></li>
+                                            <li><a href="#">Dinero</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td><input class="col-md-10" type="text"></td>
+                                <td><input class="col-md-10" type="text"></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--Botones Limpiar, cancelar, guardar-->
+        <div class=" col-md-8">
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary pull-right">
+                    Limpiar
+                </button>
+            </div>
+            <div class="col-md-3">
+                @Html.ActionLink("Cancelar", "Index", "Home", new { id = 1 }, new { @class = "btn btn-primary pull-right" })
+            </div>
+
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary pull-right">
+                    Eliminar
+                </button>
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary pull-right">
+                    Guardar
+                </button>
+            </div>
+            <!--
+            <div class="col-md-3">
+                @Html.ActionLink("Guardar", "Show", "Publication", new { id = 1 }, new { @class = "btn btn-primary pull-right" })
+            </div>
+            <div class="col-md-3">
+                @Html.ActionLink("Eliminar", "Show", "Publication", new { id = 1 }, new { @class = "btn btn-primary pull-right" })
+            </div>
+                -->
+            <!--BOTON
+            <button type="button" class="btn btn-primary pull-right">
+                Action
+            </button>
+                -->
+        </div>
+    </div>
+</div>

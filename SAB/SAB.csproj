@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D19DFD9A-4024-4E9C-AD88-3C9C60FC896A}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SAB</RootNamespace>
+    <AssemblyName>SAB</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlus">
+      <HintPath>..\packages\EPPlus.3.1.3.3\lib\net35\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.0.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.1.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.2.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Adquisiciones\PurchaseOrder\PurchaseOrderController.cs" />
+    <Compile Include="Controllers\Adquisiciones\PurchaseRequest\PurchaseRequestController.cs" />
+    <Compile Include="Controllers\Adquisiciones\Supplier\SupplierController.cs" />
+    <Compile Include="Controllers\Adquisiciones\Suscripciones\SuscripcionController.cs" />
+    <Compile Include="Controllers\Assets\AssetsController.cs" />
+    <Compile Include="Controllers\Assets\AssetsType\AssetsTypeController.cs" />
+    <Compile Include="Controllers\Catalog\CatalogController.cs" />
+    <Compile Include="Controllers\Locales\LocalesController.cs" />
+    <Compile Include="Controllers\Personal\PersonalController.cs" />
+    <Compile Include="Controllers\Politica\TipoSancion\TipoSancionController.cs" />
+    <Compile Include="Controllers\Politica\UserProfile\UserProfileController.cs" />
+    <Compile Include="Controllers\Publication\Editorial\EditorialController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Loan\LoanController.cs" />
+    <Compile Include="Controllers\Publication\Autor\AuthorController.cs" />
+    <Compile Include="Controllers\Publication\Item-Publication\ItemController.cs" />
+    <Compile Include="Controllers\Publication\PublicationType\PublicationTypeController.cs" />
+    <Compile Include="Controllers\Publication\Publication\PublicationController.cs" />
+    <Compile Include="Controllers\Publication\Topic\TopicController.cs" />
+    <Compile Include="Controllers\Reports\ReportsController.cs" />
+    <Compile Include="Controllers\Reserves\ReservesController.cs" />
+    <Compile Include="Controllers\User\Account\AccountController.cs" />
+    <Compile Include="Extension\HTMLClassHelper.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\App_Data\SW.mdf" />
+    <Content Include="Properties\App_Data\SW_log.ldf">
+      <DependentUpon>SW.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\metisMenu.min.css" />
+    <Content Include="Content\sb-admin-2.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Fronts\d3ef4054-ac9d-4ad6-b585-82258ebd056e.jpeg" />
+    <Content Include="Global.asax" />
+    <Content Include="images\biblio.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\logo_sinName.png" />
+    <Content Include="Scripts\Activo.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\ItemPublication.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\loan.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\metisMenu.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\mustache.js" />
+    <Content Include="Scripts\Publication.js" />
+    <Content Include="Scripts\PurchaseOrder.js" />
+    <Content Include="Scripts\PurchaseRequest.js" />
+    <Content Include="Scripts\Reserves.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\sb-admin-2.js" />
+    <Content Include="Scripts\Supplier.js" />
+    <Content Include="Scripts\Suscription.js" />
+    <Content Include="Scripts\TipoActivo.js" />
+    <Content Include="Scripts\Catalog.js" />
+    <Content Include="Scripts\UserAccount.js" />
+    <Content Include="Scripts\UserProfile.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Publication\Author\AuthorRegisterView.cshtml" />
+    <Content Include="Views\Publication\Author\AuthorSearchView.cshtml" />
+    <Content Include="Views\Catalog\FastSearch.cshtml" />
+    <Content Include="Views\Adquisiciones\Suscripciones\SuscriptionRegisterView.cshtml" />
+    <Content Include="Views\Adquisiciones\Suscripciones\SuscriptionSearchView.cshtml" />
+    <Content Include="Views\Catalog\SearchResult.cshtml" />
+    <Content Include="Views\Loan\LoanRegisterView.cshtml" />
+    <Content Include="Views\Loan\LoanSearchView.cshtml" />
+    <Content Include="Views\Publication\Editorial\EditorialRegisterView.cshtml" />
+    <Content Include="Views\Publication\Editorial\EditorialSearchView.cshtml" />
+    <Content Include="Views\Publication\PublicationType\PublicationTypeRegisterView.cshtml" />
+    <Content Include="Views\Publication\PublicationType\PublicationTypeSearchView.cshtml" />
+    <Content Include="Views\Adquisiciones\Suscripciones\SuscriptionSearchResultView.cshtml" />
+    <Content Include="Views\Adquisiciones\Suscripciones\SuscriptionModifyView.cshtml" />
+    <Content Include="Views\Adquisiciones\Suscripciones\SuscriptionDeleteView.cshtml" />
+    <Content Include="Views\Adquisiciones\Suscripciones\SuscriptionDetailView.cshtml" />
+    <Content Include="Views\Catalog\AdvanceSearch.cshtml" />
+    <Content Include="Views\PurchaseOrder\Reserves\Publications.cshtml" />
+    <Content Include="Views\PurchaseOrder\Reserves\Cubicles.cshtml" />
+    <Content Include="Views\PurchaseOrder\Reserves\ReserveCubicleView.cshtml" />
+    <Content Include="Views\Adquisiciones\PurchaseOrder\Create.cshtml" />
+    <Content Include="Views\Adquisiciones\PurchaseOrder\Search.cshtml" />
+    <Content Include="Views\Adquisiciones\PurchaseOrder\SearchResult.cshtml" />
+    <Content Include="Views\Adquisiciones\PurchaseOrder\Detail.cshtml" />
+    <Content Include="Views\Publication\Publication\PublicationRegisterView.cshtml" />
+    <Content Include="Views\Publication\Publication\PublicationSearchResultView.cshtml" />
+    <Content Include="Views\Publication\Publication\PublicationSearchView.cshtml" />
+    <Content Include="Views\Publication\Publication\PublicationDetailView.cshtml" />
+    <Content Include="Views\Reports\PurchaseOrderReportView.cshtml" />
+    <Content Include="Views\Reports\PurchaseOrderReportResultView.cshtml" />
+    <Content Include="Views\Politica\TipoSancion\TipoSancionView.cshtml" />
+    <Content Include="Views\Locales\LocalesRegisterView.cshtml" />
+    <Content Include="Views\Locales\LocalesSearchView.cshtml" />
+    <Content Include="Views\Locales\LocalesDetailView.cshtml" />
+    <Content Include="Views\Locales\LocalesListView.cshtml" />
+    <Content Include="Views\Personal\PersonalRegisterView.cshtml" />
+    <Content Include="Views\Personal\PersonalSearchView.cshtml" />
+    <Content Include="Views\User\LibraryUser\Create.cshtml" />
+    <Content Include="Views\User\LibraryUser\Search.cshtml" />
+    <Content Include="Views\User\LibraryUser\SearchResult.cshtml" />
+    <Content Include="Views\User\LibraryUser\Detail.cshtml" />
+    <Content Include="Views\User\LibraryUser\Profile.cshtml" />
+    <Content Include="Views\Politica\UserProfile\UserProfileRegisterView.cshtml" />
+    <Content Include="Views\Politica\UserProfile\UserProfileSearchView.cshtml" />
+    <Content Include="Views\Politica\UserProfile\UserProfileListView.cshtml" />
+    <Content Include="Views\Politica\UserProfile\UserProfileDetailView.cshtml" />
+    <Content Include="Views\Reports\LoansBySpecificMaterialReportView.cshtml" />
+    <Content Include="Views\Reports\LoansBySpecificMaterialReportResultView.cshtml" />
+    <Content Include="Views\Personal\PersonalSearchResultView.cshtml" />
+    <Content Include="Views\Personal\PersonalDetailView.cshtml" />
+    <Content Include="Views\Catalog\PublicationShow.cshtml" />
+    <Content Include="Views\Reports\MostWantedMaterialReportView.cshtml" />
+    <Content Include="Views\Reports\MostWantedMaterialReportResultView.cshtml" />
+    <Content Include="Views\Adquisiciones\PurchaseRequest\PurchaseRequestDetailView.cshtml" />
+    <Content Include="Views\Adquisiciones\PurchaseRequest\PurchaseRequestRegisterView.cshtml" />
+    <Content Include="Views\Adquisiciones\PurchaseRequest\PurchaseRequestSearchResultView.cshtml" />
+    <Content Include="Views\Adquisiciones\PurchaseRequest\PurchaseRequestSearchView.cshtml" />
+    <Content Include="Views\Personal\PersonalModifyView.cshtml" />
+    <Content Include="Views\Politica\TipoSancion\Create.cshtml" />
+    <Content Include="Views\Politica\TipoSancion\Search.cshtml" />
+    <Content Include="Views\Politica\TipoSancion\SearchResult.cshtml" />
+    <Content Include="Views\Politica\TipoSancion\Detail.cshtml" />
+    <Content Include="Views\Reports\NewPublicationReportResultView.cshtml" />
+    <Content Include="Views\Reports\NewPublicationReportView.cshtml" />
+    <Content Include="Views\Reports\SanctionsReportResultView.cshtml" />
+    <Content Include="Views\Reports\SanctionsReportView.cshtml" />
+    <Content Include="Views\Reports\UserLoansReport.cshtml" />
+    <Content Include="Views\Reports\UserLoansReportResult.cshtml" />
+    <Content Include="Views\Publication\Item-Publication\ItemRegisterView.cshtml" />
+    <Content Include="Views\Publication\Item-Publication\ItemSearchView.cshtml" />
+    <Content Include="Views\Publication\Item-Publication\ItemDetailView.cshtml" />
+    <Content Include="Views\Publication\Item-Publication\ItemModifyView.cshtml" />
+    <Content Include="Views\Publication\Item-Publication\ItemDeleteView.cshtml" />
+    <Content Include="Views\Publication\Item-Publication\ItemSearchResultView.cshtml" />
+    <Content Include="Views\Locales\LocalesModifyView.cshtml" />
+    <Content Include="Views\Politica\UserProfile\UserProfileModifyView.cshtml" />
+    <Content Include="Views\Assets\AssetsType\Create.cshtml" />
+    <Content Include="Views\Assets\AssetsType\Detail.cshtml" />
+    <Content Include="Views\Assets\AssetsType\Search.cshtml" />
+    <Content Include="Views\Assets\AssetsType\SearchResult.cshtml" />
+    <Content Include="Views\Assets\Create.cshtml" />
+    <Content Include="Views\Assets\Detail.cshtml" />
+    <Content Include="Views\Assets\Search.cshtml" />
+    <Content Include="Views\Assets\SearchResult.cshtml" />
+    <Content Include="Views\Publication\Author\AuthorDetailView.cshtml" />
+    <Content Include="Views\Publication\Author\AuthorSearchResultView.cshtml" />
+    <Content Include="Views\Politica\TipoSancion\Modify.cshtml" />
+    <Content Include="Views\Publication\Publication\PublicationModifyView.cshtml" />
+    <Content Include="Views\Adquisiciones\Supplier\SupplierDetailView.cshtml" />
+    <Content Include="Views\Adquisiciones\Supplier\SupplierModifyView.cshtml" />
+    <Content Include="Views\Adquisiciones\Supplier\SupplierRegisterView.cshtml" />
+    <Content Include="Views\Adquisiciones\Supplier\SupplierSearchResultView.cshtml" />
+    <Content Include="Views\Adquisiciones\Supplier\SupplierSearchView.cshtml" />
+    <Content Include="Views\Publication\Item-Publication\ItemLocationView.cshtml" />
+    <Content Include="Views\Assets\Modify.cshtml" />
+    <Content Include="Views\Adquisiciones\PurchaseOrder\Reception.cshtml" />
+    <Content Include="Views\Assets\AssetsType\Modify.cshtml" />
+    <Content Include="Views\Reserves\Cubicles.cshtml" />
+    <Content Include="Views\Reserves\Publications.cshtml" />
+    <Content Include="Views\Reserves\ReserveCubicleView.cshtml" />
+    <Content Include="Views\Adquisiciones\PurchaseOrder\_PartialRequestTable.cshtml" />
+    <Content Include="Views\Adquisiciones\PurchaseOrder\_PartialPublicationTable.cshtml" />
+    <Content Include="Views\Adquisiciones\PurchaseOrder\_PartialProviderTable.cshtml" />
+    <Content Include="Views\User\LibraryUser\Modify.cshtml" />
+    <Content Include="Views\User\LibraryUser\AccountDetail.cshtml" />
+    <Content Include="Views\Publication\Publication\_PartialAuthorTable.cshtml" />
+    <Content Include="Views\Publication\Publication\_PartialEditorialTable.cshtml" />
+    <Content Include="Views\Loan\LoanUserSearchView.cshtml" />
+    <Content Include="Views\Loan\LoanUserShow.cshtml" />
+    <Content Include="Views\Publication\Author\AuthorModifyView.cshtml" />
+    <Content Include="Views\Publication\PublicationType\Detail.cshtml" />
+    <Content Include="Views\Publication\PublicationType\Modify.cshtml" />
+    <Content Include="Views\Publication\PublicationType\PublicationTypeSearchResultView.cshtml" />
+    <Content Include="Views\User\LibraryUser\AccountDetailModify.cshtml" />
+    <Content Include="Views\Account\LoginForget.cshtml" />
+    <Content Include="Views\Adquisiciones\Suscripciones\SuscriptionRenewalView.cshtml" />
+    <Content Include="Views\Publication\Topic\TopicRegisterView.cshtml" />
+    <Content Include="Views\Publication\Topic\TopicSearchView.cshtml" />
+    <Content Include="Views\Publication\Topic\TopicSearchResultView.cshtml" />
+    <Content Include="Views\Publication\Topic\TopicDetailView.cshtml" />
+    <Content Include="Views\Publication\Topic\TopicModifyView.cshtml" />
+    <Content Include="Views\Publication\Publication\_PartialTopicTable.cshtml" />
+    <Content Include="Views\Publication\Editorial\EditorialSearchResultView.cshtml" />
+    <Content Include="Views\Publication\Editorial\EditorialModifyView.cshtml" />
+    <Content Include="Views\Publication\Editorial\EditorialDetailView.cshtml" />
+    <Content Include="Views\Adquisiciones\Suscripciones\SuscriptionModifyRenewalView.cshtml" />
+    <Content Include="Views\Adquisiciones\PurchaseRequest\NewPublicationRequest.cshtml" />
+    <Content Include="Views\Loan\LoanShowView.cshtml" />
+    <Content Include="Views\Loan\LoanDetailView.cshtml" />
+    <Content Include="Views\Adquisiciones\PurchaseRequest\DetailNew.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Suscripcion\" />
+    <Folder Include="Views\TipoSancion\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SAB.Application\SAB.Application.csproj">
+      <Project>{065391e8-18a9-4f1f-a465-8b557981c354}</Project>
+      <Name>SAB.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAB.Base\SAB.Base.csproj">
+      <Project>{fad84bbf-ee89-4220-a129-93abda39d816}</Project>
+      <Name>SAB.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAB.Domain\SAB.Domain.csproj">
+      <Project>{d2dd4fdf-e5bd-420e-9d4c-3cce42f04c13}</Project>
+      <Name>SAB.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAB.Infraestructure\SAB.Infraestructure.csproj">
+      <Project>{0f4a30c5-c886-4737-804c-6358cc094f42}</Project>
+      <Name>SAB.Infraestructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAB.Shared\SAB.Shared.csproj">
+      <Project>{2c2b9069-97d5-4702-8e18-6e22ac658cc4}</Project>
+      <Name>SAB.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49626</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49626/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Ubicación Item";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>Publicaciones</li>
+            <li>Publicación</li>
+            <li>@Html.ActionLink("Registrar", "PublicationRegisterView", "Publication")</li>
+            <li class="active">Ubicar</li>
+        </ol>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Ubicación de Item - La Ciudad y los Perros</h1>
+    </div>
+</div>
+<div class="col-md-10">
+    <form action="@Url.Action("Save", "Item", new { id = 3 })" method="post">
+        <div class="form-group">
+            <div class="row">
+                <div class=" col-md-8">
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Items</div>
+                        <!-- Table -->
+                        <table class="table">
+                            <tr>
+                                <th>Código</th>
+                                <th>Biblioteca</th>
+                                <th>Estante</th>
+                            </tr>
+                            <tr>
+                                <td>I001</td>
+                                <td>
+                                    <select name="biblioteca" class="form-control">
+                                        <option value="0">Seleccione</option>
+                                        <option value="1">Biblioteca Central</option>
+                                        <option value="2">Biblioteca Secundaria</option>
+
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="estante" class="form-control">
+                                        <option value="0">E001</option>
+                                        <option value="1">E003</option>
+                                        <option value="2">E008</option>
+
+                                    </select>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>I002</td>
+                                <td>
+                                    <select name="biblioteca" class="form-control">
+                                        <option value="0">Seleccione</option>
+                                        <option value="1">Biblioteca Central</option>
+                                        <option value="2">Biblioteca Secundaria</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="estante" class="form-control">
+                                        <option value="0">E001</option>
+                                        <option value="1">E003</option>
+                                        <option value="2">E008</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>I003</td>
+                                <td>
+                                    <select name="biblioteca" class="form-control">
+                                        <option value="0">Seleccione</option>
+                                        <option value="1">Biblioteca Central</option>
+                                        <option value="2">Biblioteca Secundaria</option>
+
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="estante" class="form-control">
+                                        <option value="0">E001</option>
+                                        <option value="1">E003</option>
+                                        <option value="2">E008</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-12" style="height:30px;"></div>
+        <div class="form-group">
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary pull-right">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

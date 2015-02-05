@@ -1,0 +1,135 @@
+﻿@model SAB.Domain.Publication.PublicationTitle
+@using SAB.Domain.Publication;
+
+
+@{
+    ViewBag.Title = "La tentación del fracaso";
+}
+
+@using SAB.Shared;
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li>@Html.ActionLink("Home", "Index", "Home")</li>
+          <li>@Html.ActionLink("Catálogo en línea", "FastSearch", "Catalog")</li>
+          <li class="active">Detalle de publicación</li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10">
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success" role="alert">@TempData["message"]</div>
+        }
+        @if (TempData["alert"] != null)
+        {
+            <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+        }
+    </div>
+</div>
+
+
+<div class="row">
+     <h1 class="title text-center">@Model.Title</h1>
+    <div class="col-md-8 col-md-offset-3 detail-container">
+       
+    
+        <div class="row detail  text-left" >
+            <div class="col-sm-3">
+                Autor :
+            </div>
+            <div class="col-sm-9">
+                @Model.nameAuthor
+            </div>
+            <div class="col-sm-3">
+                Pie de imprenta	:	
+            </div>
+            <div class="col-sm-9">
+                @Model.Imprint
+            </div>
+            <div class="col-sm-3">
+                ISBN:		
+            </div>
+            <div class="col-sm-9">
+                @Model.ISBN
+            </div>
+            <div class="col-sm-3">
+                Temas:		
+            </div>
+            <div class="col-sm-9">
+                @if (ViewBag.tags.Count == 0)
+                {
+                    @:-
+                } 
+                else 
+                {
+                    @ViewBag.tags[0]
+                }
+                                
+                @for (int i = 1; i < ViewBag.tags.Count; i++)
+                {
+                    @:,   @ViewBag.tags[i]
+                }	
+                
+            </div>
+            <div class="col-sm-3">
+                Descripción:		
+            </div>
+            <div class="col-sm-9">
+                @Model.Description
+            </div>
+            <div class="col-sm-3">
+                Año de publicación :	
+            </div>
+            <div class="col-sm-9">
+                 @Model.Year_Publication 
+            </div>
+            
+            <div class="col-sm-3">
+                Editorial :	
+            </div>
+            <div class="col-sm-9">
+                 @Model.nameEditorial 
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-3 ">
+        Items disponibles : @ViewData["Disponibles"]
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="col-md-offset-3  col-md-6">
+        @{ var items = ViewData["Items"] as List<PublicationItem> ;}
+        @if(items.Count() > 0){
+            <table class="table table-data">
+                <tr>
+                    <th>Biblioteca</th>
+                    <th>Cantidad</th>
+                    <th></th>
+                </tr>
+                
+
+                @foreach(var item in items.GroupBy(i => i.Id_Biblioteca)){
+                    <tr>
+                        <td>@item.First().Biblioteca.Name</td>
+                        <td>@item.Count()</td>
+                        <td>
+                                    @Html.ActionLink("Reservar", "ReservePublication", "Reserves",new {id= @Model.Id,id_biblioteca = @item.First().Biblioteca.Id, }, new {@class="btn btn-primary"})
+                        </td>
+
+                    </tr>
+                }
+            </table>
+
+        }
+
+    </div>
+    
+    
+</div>

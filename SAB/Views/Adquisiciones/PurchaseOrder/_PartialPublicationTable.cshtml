@@ -1,0 +1,68 @@
+﻿@model IEnumerable<SAB.Domain.Publication.PublicationTitle>
+@if (ViewBag.pageIndex != null)
+{
+
+    <input type="hidden" name="pageIndex" id="PT_pageIndex" value="@ViewBag.pageIndex" />
+
+}
+else
+{
+    <input type="hidden" name="pageIndex" id="PT_pageIndex" value="1" />
+
+}
+<table class="table-responsive table table-striped" id="publicationTable">
+
+    <tr>
+        <th class="cod">Cód. Publicación</th>
+        <th class="titulo">Título</th>
+        <th class="tipo">ISBN</th>
+        <th class="text-center"> </th>
+    </tr>
+    @foreach (var publication in Model)
+    {
+
+
+        <tr>
+            <td>@publication.Id</td>
+            <td>@publication.Title</td>
+            <td>@publication.ISBN</td>
+            <td>
+                <input type="radio" name="publicaciones" />
+            </td>
+        </tr>
+
+    }
+
+</table>
+
+<div class="col-md-12 col-md-offset-3 form-horizontal">
+    <div class="form-group ">
+        <div>
+            <ul class="pagination">
+                <li><a id="PT_btnFirst">Primero</a></li>
+                <li><a id="PT_btnPrev">&laquo;</a></li>
+
+                <li>
+                    @if (ViewBag.pageIndex != null)
+                    {
+
+                        <span>@ViewBag.pageIndex</span>
+
+                    }
+                    else
+                    {
+                        <span>1</span>
+                    }
+                </li>
+                <li><a id="PT_btnNext">&raquo;</a></li>
+                <li><a id="PT_btnLast">Último</a></li>
+            </ul>
+        </div>
+        <label for="searchText" class="col-md-2">Ir a la página</label>
+        <div class="col-md-2">
+            <input type="text" class="form-control" id="PT_pageIndexChange">
+        </div>
+
+
+    </div>
+</div>    

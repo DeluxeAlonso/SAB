@@ -1,0 +1,194 @@
+﻿@using SAB.Domain.Acquisition
+@{
+    ViewBag.Title = "Buscar Proveedor";
+}
+
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Supplier.js")"></script>
+   
+
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Proveedor", "SearchSupplierResult", "Supplier")</li>
+            <li class="active">Buscar </li>
+        </ol>
+    </div>
+</div>
+
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/Supplier/SupplierRegister")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Nuevo Proveedor
+        </a>
+    </div>
+</div>
+<br>
+@{List<Supplier> proveedores = ViewData["allSupplier"] as List<Supplier>; }
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda Proveedor</h1>
+
+    </div>
+</div>
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+
+</div>
+
+<div class="col-md-10">
+
+    <form action="@Url.Action("SearchSupplierResult", "Supplier")" class="form-horizontal" method="post" role="form">
+        <div class=" form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Código</label>
+                    <input type="number" class="form-control" name="searchCode" id="exampleInputEmail1" min="1">
+                </div>
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">RUC</label>
+                    <input type="text" class="form-control" name="searchRUC" id="exampleInputEmail1" pattern="[0-9]*" oninvalid="setCustomValidity('Please enter numbers')">
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Nombre</label>
+                    <input type="text" class="form-control" name="searchName" id="exampleInputEmail1" pattern="[a-zA-Z]*" oninvalid="setCustomValidity('Please enter letters')" size="25">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Contacto</label>
+                    <input type="text" class="form-control" name="searchContacto" id="exampleInputEmail1" pattern="[a-zA-Z]*" oninvalid="setCustomValidity('Please enter letters')" size="25">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Fecha de Registro desde:</label>
+                    <input type="date"  value=" " name="from" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="searchText">Fecha de Registro hasta:</label>
+                    <input type="date"  value=" " name="to" class="form-control">
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="col-sm-12" style="height:30px;"></div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input type="submit" class="btn btn-primary pull-right" value="Buscar" />
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<form action="@Url.Action("SearchSupplierResultDetail", "Supplier")" class="form-horizontal" method="post" role="form">
+    <div class="col-md-10">
+        <div class="row">
+         
+            <table class="table-responsive table table-striped">
+                <tr>
+                    <th class="cod">Código</th>
+                    <th class="fechaDeRegistro">Fecha de Registro</th>
+                    <th class="nombres">Nombre</th>
+                    <th class="nombres">Contacto</th>
+                    <th class="text-center"> </th>
+                </tr>
+                @{
+                    if (proveedores != null) { 
+                        foreach (Supplier r in proveedores) { 
+                        <tr>
+                            <td>@r.Id</td>
+                            <td>@r.RegisterDate.ToShortDateString() </td>
+                            <td>@r.Name</td>
+                            <td>@r.Contacto</td>
+                    
+                            <td>
+                                <a href="@Url.Action("SearchSupplierResultDetail", "Supplier", new { id = @r.Id })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                                <a href="@Url.Action("ModifySupplier", "Supplier", new { id = @r.Id })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                                <a class="DeleteSupplier" data-id="@r.Id"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+
+                            </td>
+                        </tr>
+                      }
+                     }
+                }
+                
+               
+
+            </table>
+
+            <div>
+                <ul class="pagination">
+                    <li><a href="#">&laquo;</a></li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+</form>
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label class="control-label">
+                        <!--for="inputFechaInicio" class="control-label"-->
+                        ¿Estas seguro que quieres Eliminar
+                    </label>
+                    <label class="control-label">
+                        este Proveedor?
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button id="btnAcceptDeleteSupplier" data-dismiss="modal" class="btn btn-primary">Aceptar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+

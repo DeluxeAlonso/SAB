@@ -1,0 +1,114 @@
+﻿@using SAB.Domain.Loan;
+@{
+    ViewBag.Title = "Registro de Préstamo";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Préstamos", "LoanRegister", "Loan")</li>
+            <li class="active">Registrar</li>
+        </ol>
+    </div>
+</div>
+
+
+
+<form action="@Url.Action("LoanDetail","Loan")" method="post">
+    <div class="row">
+        <div class="col-md-10">
+            <h1 class="title text-left">Registrar Préstamo</h1>
+
+            <div class="col-md-10">
+                @if (TempData["message"] != null)
+                {
+                    <div class="alert alert-success" role="alert">@TempData["message"]</div>
+                }
+                @if (TempData["alert"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+                }
+
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class=" col-md-8">
+                        <label for="searchText">Código de Usuario:</label>
+                        <input type="number" required="required" min="1" max="999" name="user_id" value="@TempData["user_id_reg"]" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-md-8">
+                        
+                        <div class="multi-field-wrapper">
+                            <br>
+                            <label for="searchText">Código de Publicación:</label>
+                            <div class="multi-fields">
+                                <div class="multi-field">
+                                    <div class=" col-md-8">
+                                        <input type="number" class="form-control" required="required" min="1" value=@ViewData["temp"] name="publications[]">
+                                    </div>
+                                    <div class=" col-md-8">
+                                        <select name="id_tipos[]" class="form-control">
+                                            <@foreach (var tipo in (IEnumerable<SAB.Domain.Loan.LoanType>)ViewData["loanTypes"])
+                                            {
+                                                <option value="@tipo.Id">@tipo.Name</option>
+                                            }
+                                        </select>
+
+                                    </div>
+                                    <br><br>
+                                <button type="button" class="remove-field">Quitar</button>
+                                  </div>
+                                <br>
+                            </div>
+                            <br>
+                            <button type="button" class="add-field">Agregar</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Botones Limpiar, cancelar, guardar-->
+            <div class=" col-md-8">
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-4">
+
+                </div>
+
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary pull-right">
+                        Guardar
+                    </button>
+
+
+                </div>
+                <!--
+                <div class="col-md-3">
+                    @Html.ActionLink("Guardar", "Show", "Publication", new { id = 1 }, new { @class = "btn btn-primary pull-right" })
+                </div>
+                <div class="col-md-3">
+                    @Html.ActionLink("Eliminar", "Show", "Publication", new { id = 1 }, new { @class = "btn btn-primary pull-right" })
+                </div>
+                    -->
+                <!--BOTON
+                <button type="button" class="btn btn-primary pull-right">
+                    Action
+                </button>
+                    -->
+            </div>
+        </div>
+    </div>
+
+</form>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/loan.js")"></script>
+}

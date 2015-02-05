@@ -1,0 +1,323 @@
+﻿@model SAB.Domain.Publication.PublicationTitle
+
+@{
+    ViewBag.Title = "La tentación del fracaso";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicaciones", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicaciones", "PublicationSearch", "Publication")</li>
+            <li class="active">Detalle</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Detalle Publicación</h1>
+        <div class="col-md-10">
+            @if (TempData["message"] != null)
+            {
+                <div class="alert alert-success" role="alert">@TempData["message"]</div>
+            }
+            @if (TempData["alert"] != null)
+            {
+                <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@{
+    SAB.Domain.Publication.PublicationTitle publication = Model;
+}
+
+@using (Html.BeginForm("Detail", "Publication"))
+{
+    <div class="row" style="margin-left:0px; margin-bottom:20px">
+
+        <div class="col-md-10 item-result">
+            <div class="form-group">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="tipo">Código</label>
+                            <input type="text" class="form-control" name="Id" value="@publication.Id" readonly>
+                            <input type="text" class="form-control" name="Id" value="@publication.Id" style="display:none">
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo">Titulo</label>
+                            <input type="text" class="form-control" name="Title" value="@publication.Title" maxlength="50" required readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo">ISBN</label>
+                            <input type="text" class="form-control" name="ISBN" pattern="[0-9]{13}" title="13 digitos" value="@publication.ISBN" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tipo">Tipo Publicación</label>
+                            <select class="form-control" name="Id_Type" disabled="disabled">
+                                <option value=nameType>@publication.nameType</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4" style="margin-left: 50px; margin-top: 20px">
+                        @if (publication.Front == "")
+                        {
+                            <div class="form-group">
+                                <img src="/images/book.gif" id="changeFront" width="200" alt="Book" style="text-align:center" />
+                            </div>
+                        }
+                        else
+                        {
+                            var filename = publication.Front;
+                            <div class="form-group">
+                                <img src="/Fronts/@filename" id="changeFront" width="150" height="250" alt="@filename" style="text-align:center" />
+                            </div>
+                        }
+                        <div class="form-group" style="margin-left: 60px">
+                            <label for=" tipo">Portada</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="tipo">Año Publicación</label>
+                        <input type="number" class="form-control" name="Year_Publication" value=@publication.Year_Publication min="1500" max="2014" required readonly />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="tipo">Estado</label>
+                        <input type="text" class="form-control" name="State" disabled value="@publication.State" readonly />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="text">Autor</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="nameAuthor" id="nameAuthor" value="@publication.nameAuthor" disabled>
+                            <input type="text" class="form-control" name="Id_Author" id="Id_Author" value="@publication.Id_Author" style="display:none" readonly>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#addAuthor" disabled>Buscar</button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="text">Editorial</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="nameEditorial" id="nameEditorial" value="@publication.nameEditorial" disabled>
+                            <input type="text" class="form-control" name="Id_Editorial" id="Id_Editorial" value="@publication.Id_Editorial" style="display: none" readonly>
+
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#addEditorial" disabled>Buscar</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="tipo">Pie de Imprenta</label>
+                        <input type="text" class="form-control" name="Imprint" value="@publication.Imprint" maxlength="100" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="tipo">Descripción</label>
+                        <input type="text" class="form-control" name="Description" value="@publication.Description" maxlength="150" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class=" col-md-12">
+                        <div class=" col-md-8 pull-left">
+                            <div class="panel panel-default">
+                                <div class="panel-heading text-center">Temas Asociados</div>
+                                <table class="table" id="AddedTopic">
+                                    <tr>
+                                        <th class="col-md-1">Código</th>
+                                        <th class="col-md-4">Nombre</th>
+                                        <th class="col-md-4">Descripcion</th>
+                                        <th class="col-md-2"></th>
+                                    </tr>
+
+                                    @foreach (var topic in (IEnumerable<SAB.Domain.Publication.Topic>)ViewData["Topics"])
+                                    {
+                                        <tr>
+                                            <td>@topic.Id</td>
+                                            <td>@topic.Name</td>
+                                            <td>@topic.Description</td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-12" style="height:30px;"></div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.ActionLink("Modificar", "Modify", "Publication", new { publication.Id }, new { @class = "btn btn-primary pull-right" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!---------- LISTA DE ITEMS -------------->
+
+
+    <div class="row" style="margin-top:20px">
+        <div class="col-md-9">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <div class="row">
+
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
+                            <label for="tipo">Biblioteca</label>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="input-group">
+                                @{ var Id_Biblioteca = ViewData["Id_Biblioteca"]; }
+                                <select class="form-control" name="Id_Biblioteca" id="Id_Biblioteca">
+                                    @if (Id_Biblioteca.Equals("0"))
+                                    {
+                                        <option selected value="0">Todas</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="0">Todas</option>
+                                    }
+
+                                    @foreach (var bibliotecas in (IEnumerable<SAB.Domain.Library.Local>)ViewData["bibliotecas"])
+                                    {
+                                        if (bibliotecas.Id.ToString().Equals(Id_Biblioteca))
+                                        {
+                                            <option selected value="@bibliotecas.Id">@bibliotecas.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@bibliotecas.Id">@bibliotecas.Name</option>
+                                        }
+                                    }
+                                </select>
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-default">Buscar</button>                                    
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            @Html.ActionLink("Agregar", "ItemRegisterView", "Item", new { id = publication.Id }, new { @class = "btn btn-primary pull-right" })
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-12" style="height:30px;"></div>
+
+                <table class="table-responsive table table-striped">
+                    <tr>
+                        <th>Código</th>
+                        <th>Cod Estante</th>
+                        <th>Biblioteca</th>
+                        <th>Estado</th>
+                        <th> </th>
+                    </tr>
+                    @{var listaBiblio = ViewData["listaBiblio"] as Dictionary<int, string>;}
+                    @foreach (var publicationItem in (IEnumerable<SAB.Domain.Publication.PublicationItem>)ViewData["ItemList"])
+                    {
+                        <tr>
+                            <td>@publicationItem.Id</td>
+
+                            @if (@publicationItem.Estado.Equals("Sin Ubicar"))
+                            {
+                                <td>-</td>
+                            }
+                            else
+                            {
+                                <td>@publicationItem.Id_Activo</td>
+                            }
+
+                            <td>@listaBiblio[publicationItem.Id_Biblioteca]</td>
+                            <td>@publicationItem.Estado</td>
+                            <td>
+                                <!--<a href="@Url.Action("ItemDetailView", "Item", new { id = publicationItem.Id })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>-->
+                                <a href="@Url.Action("ItemModifyView", "Item", new { id = publicationItem.Id })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                                <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove deleteElementClick" data-id="@publicationItem.Id" data-toggle="modal" data-target="#deleteModal"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+            </form>
+        </div>
+    </div>
+
+
+}
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <form action="@Url.Action("Delete", "Item")" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label" />
+                        ¿Estas seguro que desea eliminar el Item?
+                    </div>
+                </div>
+                <input type="hidden" name="Id" class="deleteElementInput" value="0" />
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+
+        </form>
+
+
+    </div>
+</div>
+    
+
+
+
+
+
+

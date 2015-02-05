@@ -1,0 +1,186 @@
+﻿@model IEnumerable<SAB.Domain.Acquisition.Suscription>
+@{
+    ViewBag.Title = "Búsqueda Suscripción";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Suscripcion", "SearchSuscription", "Suscripcion")</li>
+            <li class="active">Buscar </li>
+        </ol>
+    </div>
+</div>
+
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/Suscripcion/RegisterSuscription")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Nueva Suscripción
+        </a>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda Suscripción</h1>
+    </div>
+</div>
+
+
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+</div>
+
+<!---------- BUSCAR SUSCRIPCIONES ------------->
+
+<div class="col-md-10">
+    @using (Html.BeginForm("SearchSuscriptionResult", "Suscripcion"))
+    {
+        <div class="form-group">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="tipo">Tipo Publicacion</label>
+                    <select name="Id_TypePublication" class="form-control">
+                        <option value="0">Seleccione</option>
+                        <option value="1">Revista Impresa</option>
+                        <option value="2">Revista Electrónica</option>
+                        <option value="4">Periodico</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Cód. Suscripción</label>
+                        <input type="number" name="Id" value=" " min="1" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="tipo">Título Publicación</label>
+                <input type="text" name="tituloPub" value=" " class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="tipo">Estado</label>
+                <select name="state" class="form-control">
+                    <option value="">Seleccione</option>
+                    <option value="Vigente">Vigente</option>
+                    <option value="Caducado">Caducado</option>
+                    <option value="Renovado">Renovado</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary pull-right">Buscar</button>
+        </div>
+    
+        <table class="table table-data">
+        
+            <tr>
+            
+                <th>Cod. Suscripcion</th>
+                <th>Nomb. Publicacion</th>
+                <th>Fecha Registro</th>
+                <th>Estado</th>
+                <th>Descripcion</th>
+            </tr>
+            @{var listPub = ViewData["publicacion"] as Dictionary<int, string>;}
+            @{var titulo = ViewData["publicationTitle"] as string;}
+            @{var estado = ViewData["suscriptionState"] as string;}
+            @foreach (var suscripcion in (IEnumerable<SAB.Domain.Acquisition.Suscription>)(ViewData["suscripciones"]))
+            {
+                <tr>
+                    @if (suscripcion.Id.Equals(ViewData["suscriptionID"]))
+                    {
+                        <td>@suscripcion.Id</td>
+                        <td>@listPub[suscripcion.Id_Publication]</td>
+                        <td>@suscripcion.RegTime</td>
+                        <td>@suscripcion.state</td>
+                        <td>@suscripcion.description</td>
+                        <td>
+                            <a href="@Url.Action("DetailView", "Suscripcion", new { id = suscripcion.Id })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                            <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove deleteElementClick" data-id="@suscripcion.Id" data-toggle="modal" data-target="#deleteModal"></i></a>
+                        </td>
+                    }
+                    else
+                    {
+
+                        if (suscripcion.state.Equals(ViewData["suscriptionState"]) || suscripcion.Id_TypePublication.Equals(ViewData["suscriptionIDType"]) && (Int32)ViewData["suscriptionID"] == 0)
+                        {
+                            <td>@suscripcion.Id</td>
+                            <td>@listPub[suscripcion.Id_Publication]</td>
+                            <td>@suscripcion.RegTime</td>
+                            <td>@suscripcion.state</td>
+                            <td>@suscripcion.description</td>
+                            <td>
+                                <a href="@Url.Action("DetailView", "Suscripcion", new { id = suscripcion.Id })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                                <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove deleteElementClick" data-id="@suscripcion.Id" data-toggle="modal" data-target="#deleteModal"></i></a>
+                            </td>
+                        }
+                        else
+                        {
+                            if ((Int32)ViewData["suscriptionID"] == 0 && (Int32)ViewData["suscriptionIDType"] == 0 && estado == null)
+                            { 
+                                <td>@suscripcion.Id</td>
+                                <td>@listPub[suscripcion.Id_Publication]</td>
+                                <td>@suscripcion.RegTime</td>
+                                <td>@suscripcion.state</td>
+                                <td>@suscripcion.description</td>
+                                <td>
+                                    <a href="@Url.Action("DetailView", "Suscripcion", new { id = suscripcion.Id })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                                    <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove deleteElementClick" data-id="@suscripcion.Id" data-toggle="modal" data-target="#deleteModal"></i></a>
+                                </td>
+                            }
+                        }
+                    }
+                </tr>
+            }
+        </table>
+        }
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <form action="@Url.Action("Delete", "Suscripcion")" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label" />
+                        ¿Estas seguro que desea eliminar la suscripción?
+                    </div>
+                </div>
+                <input type="hidden" name="Id" class="deleteElementInput" value="0" />
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+
+        </form>
+
+
+    </div>
+</div>
+
+
+
+

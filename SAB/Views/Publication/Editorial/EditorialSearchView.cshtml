@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Buscar Editorial";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Editorial", "EditorialSearch", "Editorial")</li>
+            <li class="active">Buscar </li>
+        </ol>
+    </div>
+</div>
+
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/Editorial/EditorialRegister")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Nueva Editorial
+        </a>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda Editorial</h1>
+    </div>
+</div>
+
+
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+
+</div>
+
+<div class="row">
+    @using (Html.BeginForm("EditorialSearchResult", "Editorial"))
+    {
+        <div class="col-md-10">
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="searchText">Código</label>
+                        <input class="form-control" type="text" name="codigo" pattern="[0-9]*" title="Solo números" maxlength="10" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="searchText">Razón Social</label>
+                        <input type="text" class="form-control" name="nombre" pattern="[A-Za-zá-ú\s]+" title="Solo letras y espacios" maxlength="50" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="searchText">Desde</label>
+                        <input class="form-control generic-datepicker" type="text" name="desde" id="desde" min="1800-01-01" max="@ViewData["hoy"]"  />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="searchText">Hasta</label>
+                        <input class="form-control generic-datepicker" type="text" name="hasta" id="hasta" min="1800-01-01" max="@ViewData["hoy"]"  />
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                @if (ViewBag.pageIndex != null)
+                {
+                    <input type="hidden" value="@ViewBag.pageIndex" name="pageIndex" id="PRS_pageIndex" class="form-control">
+                }
+                else
+                {
+                    <input type="hidden" value="1" name="pageIndex" id="PRS_pageIndex">
+                }
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary pull-right">Buscar</button>
+            </div>
+
+        </div>
+    }
+</div>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Publication.js")"></script>
+}

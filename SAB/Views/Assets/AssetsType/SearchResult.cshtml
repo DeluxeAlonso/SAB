@@ -1,0 +1,189 @@
+﻿@using SAB.Domain.Assets;
+@{
+    ViewBag.Title = "Buscar Tipo de Activos";
+}
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Tipos de Activos", "SearchResult", "AssetsType")</li>
+            <li class="active">Buscar </li>
+        </ol>
+    </div>
+</div>
+
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/AssetsType/Create")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Nuevo Tipo Activo
+        </a>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda Tipo de Activos</h1>
+    </div>
+</div>
+
+
+@{IEnumerable<TypeAsset> tiposactivos = (IEnumerable<TypeAsset>)ViewData["tipos"];}
+<div class="col-md-10">
+
+    
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success" role="alert">@TempData["message"]</div>
+        }
+        @if (TempData["alert"] != null)
+        {
+            <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+        }
+
+ </div>
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/TipoActivo.js")"></script>
+<script src="@Url.Content("~/Scripts/Activo.js")"></script>
+
+
+
+}
+<div class="col-md-10">
+    <form action="@Url.Action("Search", "AssetsType")" method="post" id="PRS_SearchForm">
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="tipo">Código</label>
+                <input type="number" name="searchCode" value="@ViewData["searchCode"]" min="1" max="2000" class="form-control" step="1">
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Nombre</label>
+                    <input type="text" name="searchName" value="@ViewData["searchName"]" class="form-control" maxlength="50"  pattern="[a-zA-Z]*" oninvalid="setCustomValidity('Please enter letters')">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div>
+                    @if (ViewData["pageIndex"] != null)
+                    {
+
+                        <input type="hidden" value="@((int)(ViewData["pageIndex"]))" name="pageIndex" id="PRS_pageIndex" class="form-control">
+
+                    }
+                    else
+                    {
+                        <input type="hidden" value="1" name="pageIndex" id="PRS_pageIndex">
+                    }
+                </div>
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-primary pull-right">
+                        Buscar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    
+
+</div>
+
+
+<form action="@Url.Action("DetailView", "Suscripcion")" class="form-horizontal" method="post" role="form">
+    <div class="col-md-10">
+        <div class="row">
+
+            <table class="table-responsive table table-striped">
+                <tr>
+                    <th class="cod">Cód. Tipo Activo</th>
+                    <th class="titulo">Nombre</th>
+                    <th class="titulo">Estado</th>
+                    <th class="text-center"> </th>
+                </tr>
+
+                @{foreach(TypeAsset r in tiposactivos){
+                <tr>
+                    <td>@r.Id</td>
+                    <td>@r.Name</td>
+                    <td>@r.Status</td>
+                    <td>
+                        <a href="@Url.Action("Detail", "AssetsType", new { id = @r.Id })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                        <a href="@Url.Action("Modify", "AssetsType", new { id = @r.Id })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                        <a class="DeleteTipoActivo" data-id="@r.Id"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+                    </td>
+                </tr>
+                    }
+                    }
+            </table>
+
+            <div class="col-md-12 col-md-offset-3 form-horizontal">
+                <div class="form-group ">
+                    <div>
+                        <ul class="pagination">
+                            <li><a id="PRS_btnFirst">Primero</a></li>
+                            <li><a id="PRS_btnPrev">&laquo;</a></li>
+
+                            <li>
+                                @if (ViewData["pageIndex"] != null)
+                                {
+                                    int pageIndex = (int)ViewData["pageIndex"];
+                                    <span>@pageIndex</span>
+
+                                }
+                                else
+                                {
+                                    <span>1</span>
+                                }
+                            </li>
+                            <li><a id="PRS_btnNext">&raquo;</a></li>
+                            <li><a id="PRS_btnLast">Último</a></li>
+                        </ul>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+</form>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label class="control-label">
+                        <!--for="inputFechaInicio" class="control-label"-->
+                        ¿Estas seguro que quieres Eliminar
+                    </label>
+                    <label class="control-label">
+                        este Tipo de Activo?
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button id="btnAcceptDeleteTipoActivo" data-dismiss="modal" class="btn btn-primary">Aceptar</button>
+            </div>
+
+        </div>
+    </div>
+</div>

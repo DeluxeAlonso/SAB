@@ -1,0 +1,256 @@
+﻿@using SAB.Domain.Assets
+@{
+    ViewBag.Title = "Buscar Activos";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Activos", "SearchResult", "Assets")</li>
+            <li class="active">Buscar </li>
+        </ol>
+    </div>
+</div>
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/Assets/Create")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Nuevo Activo
+        </a>
+    </div>
+</div>
+<br>
+    <div class="row">
+        <div class="col-md-12 title">
+            <h1>Búsqueda Activos</h1>
+
+        </div>
+    </div>
+
+
+    @section Scripts
+{
+        <script src="@Url.Content("~/Scripts/Activo.js")"></script>
+
+
+
+    }
+    <div class="col-md-10">
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success" role="alert">@TempData["message"]</div>
+        }
+        @if (TempData["alert"] != null)
+        {
+            <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+        }
+
+    </div>
+    @{IEnumerable<TypeAsset> tipos = (IEnumerable<TypeAsset>)ViewData["tipoActivos"];}
+
+
+    <form action="@Url.Action("Search1","Assets")" method="post" id="PRS_SearchForm">
+        <div class="col-md-10">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="tipo">Código</label>
+                        <input type="number" name="id" class="form-control" min="1" max="2000"value="@ViewData["id"]">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="searchText">Tipo Activo</label>
+                            <select name="assetType" class="form-control">
+                                <option value="0">Seleccione</option>
+                                @{
+                                    foreach (TypeAsset r in tipos)
+                                    {
+                                        if ((int)ViewData["assetType"] == r.Id) { 
+                                        <option value="@r.Id" selected>@r.Name</option>}
+                                        else { <option value="@r.Id">@r.Name</option>} }
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="tipo">Fecha desde</label>
+                        <input type="date" name="dateFrom" value=""  class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="tipo">Fecha hasta</label>
+                        <input type="date" name="dateTo" value="" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12" style="height:30px;"></div>
+            <div class="form-group">
+                <div>
+                    @if (ViewData["pageIndex"] != null)
+                    {
+
+                        <input type="hidden" value="@((int)(ViewData["pageIndex"]))" name="pageIndex" id="PRS_pageIndex" class="form-control">
+
+                    }
+                    else
+                    {
+                        <input type="hidden" value="1" name="pageIndex" id="PRS_pageIndex">
+                    }
+                </div>
+                <button class="btn btn-primary pull-right" type="submit">Buscar</button>
+
+            </div>
+            <div class="col-sm-12" style="height:30px;"></div>
+            <div class="col-sm-12" style="height:30px;"></div>
+        </div>
+    </form>
+
+
+    <form action="@Url.Action("Detail", "Assets")" class="form-horizontal" method="post" role="form">
+        <div class="col-md-10">
+            <div class="row">
+
+                <table class="table-responsive table table-striped">
+                    <tr>
+                        <th class="cod">Código</th>
+                        <th class="titulo">Nombre</th>
+                        <th class="fechaDeRegistro">Tipo Activo</th>
+                        <th class="nombres">Estado</th>
+                        <th class="tipoProveedor">Fecha de Registro</th>
+                        <th class="text-center"> </th>
+                    </tr>
+                    @{IEnumerable<SAB.Domain.Assets.Asset> activos = (IEnumerable<SAB.Domain.Assets.Asset>)ViewData["activos"]; }
+                    @if (activos != null)
+                    {
+                        foreach (SAB.Domain.Assets.Asset ac in activos)
+                        {
+                            <tr>
+                                <td>@ac.Id</td>
+                                <td>@ac.Name</td>
+                                <td>@ac.TypeAsset.Name</td>
+                                <td>@ac.State</td>
+                                <td>@ac.RegistryDate.ToShortDateString()</td>
+
+                                <td>
+                                    <a href="@Url.Action("Detail", "Assets", new { id = ac.Id })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                                    <a href="@Url.Action("Modify", "Assets", new { id = ac.Id })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                                    <a class="DeleteActivo" data-id="@ac.Id"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                    @*
+                        <tr>
+                            <td>COMP001</td>
+                            <td>A0001</td>
+                            <td>En uso</td>
+                            <td>01/01/2012</td>
+
+                            <td>
+                                <a href="@Url.Action("Detail", "Assets", new { id = 2 })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                                <a href="@Url.Action("Modify", "Assets", new { id = 2 })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                                <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CMP002</td>
+                            <td>A0001</td>
+                            <td>En uso</td>
+                            <td>01/01/2013</td>
+
+                            <td>
+                                <a href="@Url.Action("Detail", "Assets", new { id = 3 })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                                <a href="@Url.Action("Modify", "Assets", new { id = 3 })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                                <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CMP0003</td>
+                            <td>05/11/2013</td>
+                            <td>Comunidad para Leer Mejor</td>
+                            <td>Luis Barcena.</td>
+
+                            <td>
+                                <a href="@Url.Action("Detail", "Assets", new { id = 4 })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                                <a href="@Url.Action("Modify", "Assets", new { id = 4 })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                                <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+                            </td>
+                        </tr>
+                    *@
+                </table>
+                @*----------------------------Paginacion---------------------------------*@
+
+                <div class="col-md-12 col-md-offset-3 form-horizontal">
+                    <div class="form-group ">
+                        <div>
+                            <ul class="pagination">
+                                <li><a id="PRS_btnFirst">Primero</a></li>
+                                <li><a id="PRS_btnPrev">&laquo;</a></li>
+
+                                <li>
+                                    @if (ViewData["pageIndex"] != null)
+                                    {
+                                        int pageIndex = (int)ViewData["pageIndex"];
+                                        <span>@pageIndex</span>
+
+                                    }
+                                    else
+                                    {
+                                        <span>1</span>
+                                    }
+                                </li>
+                                <li><a id="PRS_btnNext">&raquo;</a></li>
+                                <li><a id="PRS_btnLast">Último</a></li>
+                            </ul>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+    </form>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label">
+                            <!--for="inputFechaInicio" class="control-label"-->
+                            ¿Estas seguro que quieres Eliminar
+                        </label>
+                        <label class="control-label">
+                            este Activo?
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button id="btnAcceptDeleteActivo" data-dismiss="modal" class="btn btn-primary">Aceptar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+

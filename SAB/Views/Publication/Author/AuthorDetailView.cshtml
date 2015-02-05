@@ -1,0 +1,78 @@
+﻿@model SAB.Domain.Publication.Author
+@{
+    ViewBag.Title = "AuthorDetailView";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicaciones", "AuthorRegisterView", "Author")</li>
+            <li>@Html.ActionLink("Autor", "AuthorRegisterView", "Author")</li>
+            <li class="active">Detalle</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Detalle del Autor</h1>
+    </div>
+</div>
+
+@{
+    SAB.Domain.Publication.Author autor = Model;
+}
+<div class="col-md-10">
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="searchText">Código</label>
+                <input type="text" class="form-control" name="Id" id="Id" value="@autor.Id" readonly>
+            </div>
+            <div class="col-md-6">
+                <label for="searchText">Nombre</label>
+                <input type="text" class="form-control" name="Name" id="Name" value="@autor.Name" readonly>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="searchText">País</label>
+                <div class="form-group">
+                    <select name="titulo" class="form-control" disabled>
+                        <option selected>@autor.Country</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="searchText">Apellido Paterno :</label>
+                <input type="text" class="form-control" name="First_last_Name" id="First_last_Name" value="@autor.First_last_Name" readonly>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">          
+            <div class="col-md-6">
+                <label for="searchText">Ciudad:</label>
+                <input type="text" class="form-control" name="Hometown" id="Hometown" value="@autor.Hometown" readonly>
+            </div>
+            <div class="col-md-6">
+                <label for="searchText">Apellido Materno :</label>
+                <input type="text" class="form-control" name="Second_last_Name" id="Second_last_Name" value="@autor.Second_last_Name" readonly>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.ActionLink("Modificar", "AuthorModify", "Author", new { id = autor.Id }, new { @class = "btn btn-primary pull-right" })
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,259 @@
+﻿@model IEnumerable<SAB.Domain.Publication.PublicationTitle>
+@{
+    ViewBag.Title = "Resultado";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li>@Html.ActionLink("Home", "Index", "Home")</li>
+          <li>@Html.ActionLink("Catálogo en línea", "FastSearch", "Catalog")</li>
+          <li class="active">Resultado</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Resultado de la búsqueda</h1>
+    </div>
+</div>
+
+<div class="row">
+
+    @if (ViewBag.tipoBusqueda == 0)
+    {
+        <form action="@Url.Action("FastSearchResult", "Catalog")" class="form-horizontal" method="post" role="form" id="PRS_SearchForm">
+            <input type="hidden" name="searchText" value="@ViewData["searchText"]" class="form-control">
+            <input type="hidden" name="local" value="@ViewData["local"]" class="form-control">
+            <input type="hidden" name="searchFor" value="@ViewData["searchFor"]" class="form-control">
+            <div>
+                @if (ViewBag.pageIndex != null)
+                {
+                    <input type="hidden" value="@ViewBag.pageIndex" name="pageIndex" id="PRS_pageIndex" class="form-control">
+
+                }
+                else
+                {
+                    <input type="hidden" value="1" name="pageIndex" id="PRS_pageIndex">
+                }
+            </div>
+        </form>
+    }
+    else
+    {
+        <form action="@Url.Action("AdvancedSearchResult", "Catalog")" class="form-horizontal" method="post" role="form" id="PRS_SearchForm">
+            <input type="hidden" name="author" value="@ViewData["author"]" class="form-control">
+            <input type="hidden" name="title" value="@ViewData["_title"]" class="form-control">
+            <input type="hidden" name="editorial" value="@ViewData["editorial"]" class="form-control">
+            <input type="hidden" name="year" value="@ViewData["year"]" class="form-control">
+            <input type="hidden" name="local" value="@ViewData["local"]" class="form-control">
+            <input type="hidden" name="publicationType" value="@ViewData["publicationType"]" class="form-control">
+            <input type="hidden" name="loanType" value="@ViewData["loanType"]" class="form-control">
+            <input type="hidden" name="orderBy" value="@ViewData["orderBy"]" class="form-control">
+            <div>
+                @if (ViewBag.pageIndex != null)
+                {
+                    <input type="hidden" value="@ViewBag.pageIndex" name="pageIndex" id="PRS_pageIndex" class="form-control">
+                }
+                else
+                {
+                    <input type="hidden" value="1" name="pageIndex" id="PRS_pageIndex">
+                }
+            </div>
+        </form>
+    }
+
+
+    <div class="col-md-8">
+        Número de resultados: @ViewBag.cantResultado
+    </div>
+
+
+    <div class="col-md-10 search-result">
+        <div>
+            @foreach (var p in Model) { 
+            <div class="item-result">
+                <div class="row">
+                    <div class="col-sm-4 tex-center">
+                        @if (p.Front == "" || p.Front == null)
+                        {
+                            <div class="form-group">
+                                <img src="/images/book.gif" id="changeFront" width="200" alt="Book" style="text-align:center" />
+                            </div>
+                        }
+                        else
+                        {
+                            var filename = p.Front;
+                            <div class="form-group">
+                                <img src="/Fronts/@filename" id="changeFront" width="150" height="250" alt="@filename" style="text-align:center" />
+                            </div>
+                        }
+                    </div>
+                    <div class="col-sm-8">
+                        @*<h4>La tentación del fracaso</h4>*@
+                        <h4>@p.Title</h4>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                @*<p>Ribeyro, Julio Ramón</p>*@
+                                <p>@p.nameAuthor</p>
+                                @*<p>Lima, Perú, Editor, 1992- 1. ed.</p>*@
+                            </div>
+                            <div class="col-sm-6">
+                                @*<p>Cantindad de libros a sala: 5 </p>
+                                <p>Cantindad de libros a domicilio: 5 </p>*@
+                                <p>Cantidad de ítems disponibles: @ViewBag.cantidades[p.Id]</p>
+                                @Html.ActionLink("Ver detalle", "Show", "Catalog",new {id = p.Id}, new {@class="btn btn-primary pull-right"})
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>}
+            @*<div class="item-result">
+                <div class="row">
+                    <div class="col-sm-4 tex-center">
+                        <img src="/images/book.gif" width="150" alt="Book" />
+                    </div>
+                    <div class="col-sm-8">
+                        <h4>Cartas a Juan Antonio</h4>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Ribeyro, Julio Ramón</p>
+                                <p>Lima, Perú : J. Campodónico, 1996- 1. ed.</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p>Cantindad de libros a sala:3</p>
+                                <p>Cantindad de libros a domicilio: 2 </p>
+                                @Html.ActionLink("Ver detalle", "Show", "Catalog",new {id=1}, new {@class="btn btn-primary pull-right"})
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="item-result">
+                <div class="row">
+                    <div class="col-sm-4 tex-center">
+                        <img src="/images/book.gif" width="150" alt="Book" />
+                    </div>
+                    <div class="col-sm-8">
+                        <h4>J. R. Ribeyro y sus dobles</h4>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Luchting, Wolfgang A. (Wolfgang Alexander), 1927-</p>
+                                <p>Lima : Instituto Nacional de Cultura, 1971</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p>Cantindad de libros a sala:3</p>
+                                <p>Cantindad de libros a domicilio: 2 </p>                           
+                                @Html.ActionLink("Ver detalle", "Show", "Catalog",new {id=1}, new {@class="btn btn-primary pull-right"})
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="item-result">
+                <div class="row">
+                    <div class="col-sm-4 tex-center">
+                        <img src="/images/book.gif" width="150" alt="Book" />
+                    </div>
+                    <div class="col-sm-8">
+                        <h4>El archivo personal de Julio Ramón Ribeyro</h4>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Lima : Instituto Raúl Porras Barrenechea, UNMSM : Fondo Editorial Cultura Peruana, 2006. 1. ed.
+                                </p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p>Cantindad de libros a sala:3</p>
+                                <p>Cantindad de libros a domicilio: 2 </p>
+                                @Html.ActionLink("Ver detalle", "Show", "Catalog",new {id=1}, new {@class="btn btn-primary pull-right"})
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="item-result">
+                <div class="row">
+                    <div class="col-sm-4 tex-center">
+                        <img src="/images/book.gif" width="150" alt="Book" />
+                    </div>
+                    <div class="col-sm-8">
+                        <h4>La ciudad en la obra de Julio Ramón Ribeyro</h4>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Valero Juan, Eva Ma. (Eva María)</p>
+                                <p>Alicante : Universidad de Alicante, 2003.</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p>Cantindad de libros a sala:3</p>
+                                <p>Cantindad de libros a domicilio: 2 </p>
+                                @Html.ActionLink("Ver detalle", "Show", "Catalog",new {id=1}, new {@class="btn btn-primary pull-right"})
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>*@
+        </div>
+  
+            
+        @*<div>
+            <ul class="pagination">
+                <li><a href="#">&laquo;</a></li>
+                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+        </div>*@
+
+        @*----------------------------Paginacion---------------------------------*@
+
+        <div class="col-md-12 col-md-offset-3 form-horizontal">
+            <div class="form-group ">
+                <div>
+                    <ul class="pagination">
+                        <li><a id="PRS_btnFirst">Primero</a></li>
+                        <li><a id="PRS_btnPrev">&laquo;</a></li>
+
+                        <li>
+                            @if (ViewBag.pageIndex != null)
+                            {
+
+                                <span>@ViewBag.pageIndex</span>
+
+                            }
+                            else
+                            {
+                                <span>1</span>
+                            }
+                        </li>
+                        <li><a id="PRS_btnNext">&raquo;</a></li>
+                        <li><a id="PRS_btnLast">Último</a></li>
+                    </ul>
+                </div>
+                <label for="searchText" class="col-md-2">Ir a la página</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="PRS_pageIndexChange">
+                </div>
+
+
+            </div>
+        </div>
+
+        @*----------------------------Fin---------------------------------*@
+
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Catalog.js")"></script>
+}

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<SAB.Domain.Publication.Author>
+
+@if (ViewBag.pageIndex != null)
+{
+    <input type="hidden" name="pageIndex" id="PAT_pageIndex" value="@ViewBag.pageIndex" />
+}
+else
+{
+    <input type="hidden" name="pageIndex" id="PAT_pageIndex" value="1" />
+}
+
+<table class="table-responsive table table-striped" id="authorTable">
+    <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>País</th>
+        <th></th>
+    </tr>
+    @foreach (var autor in Model)
+    {
+        <tr>
+            <td>@autor.Id</td>
+            <td>@autor.Name @autor.First_last_Name @autor.Second_last_Name</td>
+            <td>@autor.Country</td>
+            <td>
+                <input type="radio" name="Author" />
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="col-md-12 col-md-offset-3 form-horizontal">
+    <div class="form-group ">
+        <div>
+            <ul class="pagination">
+                <li><a id="PAT_btnFirst">Primero</a></li>
+                <li><a id="PAT_btnPrev">&laquo;</a></li>
+
+                <li>
+                    @if (ViewBag.pageIndex != null)
+                    {
+                        <span>@ViewBag.pageIndex</span>
+                    }
+                    else
+                    {
+                        <span>1</span>
+                    }
+                </li>
+                <li><a id="PAT_btnNext">&raquo;</a></li>
+                <li><a id="PAT_btnLast">Último</a></li>
+            </ul>
+        </div>
+    </div>
+</div>   

@@ -1,0 +1,119 @@
+﻿@using SAB.Domain.Politica
+@using SAB.Domain.User
+@{
+    ViewBag.Title = "CreateLibraryUser";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Usuario", "Index", "Home")</li>
+            <li class="active">Registrar</li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Modificar Usuario</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+
+</div>
+
+@{UserAccount user = (UserAccount)ViewData["user"];}
+@{IEnumerable<UserProfile> perfiles = (IEnumerable<UserProfile>)ViewData["perfiles"];}
+    <div class="col-md-10">
+        <form action="@Url.Action("Update","Account")" method="post">
+            <div class="form-group">
+                <div class="row">
+
+
+                    <div class="col-md-6">
+                        <label for="exampleInputEmail1">Código</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="name" value="@user.Id" disabled="disabled">
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <label for="exampleInputEmail1">Nombres</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" size="50" name="name" value="@user.Name" pattern="[a-zA-Z ]*" oninvalid="setCustomValidity('Please enter letters')">
+                    </div>
+                   
+
+
+
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="exampleInputEmail1">Apellido Paterno</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" size="25" name="lastname1" value="@user.Lastname1" pattern="[a-zA-Z ]*" oninvalid="setCustomValidity('Please enter letters')">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="exampleInputEmail1">Apellido Materno</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" size="25" name="lastname2" value="@user.Lastname2" pattern="[a-zA-Z ]*" oninvalid="setCustomValidity('Please enter letters')">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="exampleInputEmail1">Numero Documento</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="dni" value="@user.NumeroDocumento" disabled="disabled">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="exampleInputEmail1">DNI</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="dni" value="@user.Document.Name" disabled="disabled">
+                    </div>
+
+                    
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="row">
+                    
+                    <div class="col-md-6">
+                        <label for="exampleInputEmail1">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" name="correo" value="@user.Correo" disabled="disabled">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary pull-right">
+                Modificar
+            </button>
+
+
+
+
+          
+           </form>
+
+
+
+    </div>
+
+
+
+

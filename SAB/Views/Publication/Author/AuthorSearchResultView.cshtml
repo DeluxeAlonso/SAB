@@ -1,0 +1,241 @@
+﻿@model IEnumerable<SAB.Domain.Publication.Author>
+@{
+    ViewBag.Title = "AuthorSearchResultView";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicaciones", "AuthorSearch", "Author")</li>
+            <li>@Html.ActionLink("Autor", "AuthorSearch", "Author")</li>
+            <li class="active">Buscar</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/Author/AuthorRegister")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Nuevo Autor
+        </a>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda Autor</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+</div>
+
+<div class="col-md-10">
+    <form action="@Url.Action("AuthorSearchResult", "Author")" method="post" id="PRS_SearchForm">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Código</label>
+                    <input type="text" class="form-control" name="codigo" id="codigo" value="@ViewData["codigo"]" pattern="[0-9]*" title="Solo números" maxlength="10">
+                </div>
+                <div class="col-md-6">
+                    <label for="searchText">País</label>
+                    <div class="form-group">
+                        <select class="form-control" name="pais" id="pais">
+                            @if( ViewData["pais"].Equals("")){<option selected>Todos</option>}
+                            else {<option>Todos</option>}
+                            @if (ViewData["pais"].Equals("Alemania")){<option selected>Alemania</option>}
+                            else{<option>Alemania</option>}
+                            @if (ViewData["pais"].Equals("Argentina")){<option selected>Argentina</option>}
+                            else{<option>Argentina</option>}                                                                      
+                            @if (ViewData["pais"].Equals("Australia")){<option selected>Australia</option>}
+                            else{<option>Australia</option>}
+                            @if (ViewData["pais"].Equals("Bolivia")){<option selected>Bolivia</option>}
+                            else{<option>Bolivia</option>}
+                            @if (ViewData["pais"].Equals("Brasil")){<option selected>Brasil</option>}
+                            else{<option>Brasil</option>}
+                            @if (ViewData["pais"].Equals("Canada")){<option selected>Canada</option>}
+                            else{<option>Canada</option>}
+                            @if (ViewData["pais"].Equals("Chile")){<option selected>Chile</option>}
+                            else{<option>Chile</option>}
+                            @if (ViewData["pais"].Equals("China")){<option selected>China</option>}
+                            else{<option>China</option>}
+                            @if (ViewData["pais"].Equals("Colombia")){<option selected>Colombia</option>}
+                            else{<option>Colombia</option>}
+                            @if (ViewData["pais"].Equals("Ecuador")){<option selected>Ecuador</option>}
+                            else{<option>Ecuador</option>}
+                            @if (ViewData["pais"].Equals("España")){<option selected>España</option>}
+                            else{<option>España</option>}
+                            @if (ViewData["pais"].Equals("Estados Unidos")){<option selected>Estados Unidos</option>}
+                            else{<option>Estados Unidos</option>}
+                            @if (ViewData["pais"].Equals("Francia")){<option selected>Francia</option>}
+                            else{<option>Francia</option>}
+                            @if (ViewData["pais"].Equals("Italia")){<option selected>Italia</option>}
+                            else{<option>Italia</option>}
+                            @if (ViewData["pais"].Equals("Japón")){<option selected>Japón</option>}
+                            else{<option>Japón</option>}
+                            @if (ViewData["pais"].Equals("Mexico")){<option selected>Mexico</option>}
+                            else{<option>Mexico</option>}
+                            @if (ViewData["pais"].Equals("Perú")){<option selected>Perú</option>}
+                            else{<option>Perú</option>}
+                            @if (ViewData["pais"].Equals("Rusia")){<option selected>Rusia</option>}
+                            else{<option>Rusia</option>}
+                            @if (ViewData["pais"].Equals("Uruguay")){<option selected>Uruguay</option>}
+                            else{<option>Uruguay</option>}
+                            @if (ViewData["pais"].Equals("Venezuela")){<option selected>Venezuela</option>}
+                            else{<option>Venezuela</option>}
+                            @if (ViewData["pais"].Equals("Otros")){<option selected>Otros</option>}
+                            else{<option>Otros</option>}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre" value="@ViewData["nombre"]" pattern="[A-Za-zá-ú\s]+" title="Solo letras y espacios" maxlength="50" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div >
+                @if (ViewBag.pageIndex != null)
+                {
+                    <input type="hidden" value="@ViewBag.pageIndex" name="pageIndex" id="PRS_pageIndex" class="form-control">
+                }
+                else
+                {
+                    <input type="hidden" value="1" name="pageIndex" id="PRS_pageIndex">
+                }
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-primary pull-right" type="submit" id="btnAuthorSearchResut">Buscar</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+<!---------- LISTA AUTOR ------------->
+
+<div class="form-group">
+    <div class="col-md-10">
+        <div class="row">
+
+            <table class="table-responsive table table-striped">
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>País</th>
+                    <th></th>
+                </tr>
+                @foreach (var autor in Model)
+                {
+                    <tr>
+                        <td>@autor.Id</td>
+                        <td>@autor.Name @autor.First_last_Name</td>
+                        <td>@autor.Country</td>
+                        <td>
+                            <a href="@Url.Action("AuthorDetail", "Author", new { id = autor.Id })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                            <a href="@Url.Action("AuthorModify", "Author", new { id = autor.Id })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                        </td>
+                    </tr>
+                }
+            </table>
+
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <label class="control-label">
+                                    ¿Estas seguro que quieres Eliminar este Autor?
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button id="btnAcceptDeleteAuthor" data-dismiss="modal" class="btn btn-primary">Aceptar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            @*----------------------------Paginacion---------------------------------*@
+
+            <div class="col-md-12 col-md-offset-3 form-horizontal">
+                <div class="form-group ">
+                    <div>
+                        <ul class="pagination">
+                            <li><a id="PRS_btnFirst">Primero</a></li>
+                            <li><a id="PRS_btnPrev">&laquo;</a></li>
+
+                            <li>
+                                @if (ViewBag.pageIndex != null)
+                                {
+                                    <span>@ViewBag.pageIndex</span>
+                                }
+                                else
+                                {
+                                    <span>1</span>
+                                }
+                            </li>
+                            <li><a id="PRS_btnNext">&raquo;</a></li>
+                            <li><a id="PRS_btnLast">Último</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Detele Author-->
+<div class="modal fade" id="deleteModalAuthor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label class="control-label">
+                        ¿Estas seguro que quieres Eliminar los cambios para este Autor?
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <a href="@Url.Action("DeleteAuthor", "Author", new { id = 2 })" class="btn btn-primary">Aceptar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Publication.js")"></script>
+}

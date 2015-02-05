@@ -1,0 +1,272 @@
+﻿@using SAB.Domain.Politica
+@using SAB.Domain.User
+@{
+    ViewBag.Title = "CreateLibraryUser";
+}
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Usuario", "Index", "Home")</li>
+            <li class="active">Registrar</li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Registrar Lector</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+
+</div>
+
+@{UserAccount user = (UserAccount)ViewData["user"];}
+@{IEnumerable<UserProfile> perfiles = (IEnumerable<UserProfile>)ViewData["perfiles"];}
+@{IEnumerable<DocumentType> tipodocumentos = (IEnumerable<DocumentType>)ViewData["tipodocumentos"];}
+@if(user==null){
+<div class="col-md-10">
+    <form action="@Url.Action("SaveLector", "Account")" method="post" >
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Nombres</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="name" required="required" pattern="[A-Za-z] [A-Za-z0-9 ]" oninvalid="setCustomValidity('Please enter valid characters')">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="tipo">Tipo Perfil</label>
+
+                    <select required="required" name="tipo" class="form-control" >
+                             @{
+                             <option value="" selected>Seleccione</option>
+                            int i = 1;
+                            foreach (UserProfile r in perfiles)
+                            {
+                                    <option value="@r.Id">@r.Name</option>
+                                i++;
+                            }
+                            }
+                    </select>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Apellido Paterno</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="lastname1" required="required" pattern="[A-Za-z ]" oninvalid="setCustomValidity('Please enter letters')">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Apellido Materno</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="lastname2" required="required" pattern="[A-Za-z ] " oninvalid="setCustomValidity('Please enter letters')">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <label for="tipo">Tipo Documento</label>
+
+                    <select required="required" name="tipoDocumento" class="form-control">
+                        @{
+                            <option value="" selected>Seleccione</option>
+                            
+                            foreach (DocumentType r in tipodocumentos)
+                            {
+                                <option value="@r.Id">@r.Name</option>
+                                
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Numero Documento</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="numerodocumento" required="required">
+                </div>
+
+               
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="row">
+                
+
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" name="correo" required="required">
+                </div>
+            </div>
+        </div>
+
+        
+
+
+        
+        <div class="col-sm-12" style="height:30px;"></div>
+        <div class="form-group">
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary pull-right">
+                    Guardar
+                </button>
+
+
+            </div>
+
+
+        </div>
+        </form>
+
+</div>
+}
+else
+{
+    <div class="col-md-10">
+        <form action="@Url.Action("SaveLector", "Account")" method="post">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="exampleInputEmail1">Nombres</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="name" value="@user.Name" required="required" pattern="[A-Za-z ]" oninvalid="setCustomValidity('Please enter letters')">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="tipo">Tipo Perfil</label>
+
+                        
+
+                        <select required="required" name="tipo" class="form-control">
+                            @{
+                                <option value="" >Seleccione</option>
+                         int i = 1;
+                        foreach (UserProfile r in perfiles)
+                        {
+                            if (r.Id == user.IdPerfil) {  <option value="@r.Id" selected>@r.Name</option>}
+                                                                                                         else {
+                             <option value="@r.Id">@r.Name</option>}
+                           
+                               i++;
+                        }
+                            }
+                        </select>
+
+
+
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="exampleInputEmail1">Apellido Paterno</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="lastname1" value="@user.Lastname1" required="required" pattern="[A-Za-z] [A-Za-z0-9 ]" oninvalid="setCustomValidity('Please enter valid characters')">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="exampleInputEmail1">Apellido Materno</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="lastname2" value="@user.Lastname2" required="required" pattern="[A-Za-z] [A-Za-z0-9 ]" oninvalid="setCustomValidity('Please enter valid characters')">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label for="tipo">Tipo Documento</label>
+
+                        <select required="required" name="tipoDocumento" class="form-control">
+                            @{
+                                <option value="" selected>Seleccione</option>
+
+                        foreach (DocumentType r in tipodocumentos)
+                        {
+                            if (r.Id == user.IdTipoDocumento)
+                            {
+                            <option value="@r.Id" selected>@r.Name</option>}
+                            else
+                            {
+                            <option value="@r.Id" selected>@r.Name</option>}
+
+                        }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="exampleInputEmail1">Numero Documento</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="numerodocumento" required="required" value="@user.NumeroDocumento">
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="form-group">
+                <div class="row">
+                   
+
+                    <div class="col-md-6">
+                        <label for="exampleInputEmail1">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" name="correo" value="@user.Correo" required="required">
+                    </div>
+                </div>
+            </div>
+
+            
+
+
+
+          
+            <div class="col-sm-12" style="height:30px;"></div>
+            <div class="col-sm-12" style="height:30px;"></div>
+            <div class="col-sm-12" style="height:30px;"></div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary pull-right">
+                        Guardar
+                    </button>
+
+
+                </div>
+
+
+            </div>
+        </form>
+
+    </div>
+
+}
+

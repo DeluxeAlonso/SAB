@@ -1,0 +1,194 @@
+﻿@model SAB.Domain.Acquisition.Suscription
+@{
+    ViewBag.Title = "Detalle Suscripción";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Suscripcion", "SearchSuscription", "Suscripcion")</li>
+            <li>@Html.ActionLink("Buscar", "SearchSuscription", "Suscripcion")</li>
+            <li class="active">Detalle </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Detalle Suscripción</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Código</label>
+                    <input class="form-control" id="disabledImput" type="text" value="@Model.Id" disabled>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Fecha de Registro</label>
+                    <input class="form-control" id="disabledImput" type="text" value="@Model.RegTime.ToShortDateString()" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Titulo</label>
+                    <input class="form-control" id="disabledImput" type="text" value="@ViewData["publicacion"]" disabled>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Editorial</label>
+                    <input class="form-control" id="disabledImput" type="text" value="@ViewData["editorial"]" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Tipo de Pulblicacion</label>
+                    <input class="form-control" id="disabledImput" type="text" value="@ViewData["tipo_publicacion"]" disabled>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="searchText">Estado</label>
+                    <input class="form-control" id="disabledImput" type="text" value="@Model.state" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-12">
+
+                @Html.ActionLink("Modificar", "ModifySuscription", "Suscripcion", new { id = Model.Id }, new { @class = "btn btn-primary pull-right" })
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="row">
+        <div class=" col-md-10">
+
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading text-center"> <h4>Renovaciones</h4> </div>
+                @if (ViewData["renovaciones"] == null)
+                {
+                    <div class="alert alert-danger" role="alert">No se pudieron cargar las renovaciones. Intente de nuevo.</div>
+                }
+                else
+                {
+                    <!-- Table -->
+                <table class="table">
+                    <tr>
+                        <th>Código</th>
+                        <th>Cantidad</th>
+                        <th>Fecha inicio</th>
+                        <th>Fecha fin</th>
+                        <th>Frecuencia</th>
+                        <th>Costo (S/.)</th>
+                        <th>Estado</th>
+                        <th class="tipo text-center"></th>
+                    </tr>
+                    
+                    @foreach (var renewal in (IEnumerable<SAB.Domain.Acquisition.Renewal>)ViewData["renovaciones"])
+                    {
+
+
+                        <tr>
+                            <td>@renewal.Id</td>
+                            <td>@renewal.Amount</td>
+                            <td>@renewal.Start_date.Date.ToShortDateString()</td>
+                            <td>@renewal.End_date.Date.ToShortDateString()</td>
+                            <td>@renewal.Frequency</td>
+                            <td>@renewal.Cost</td>
+                            <td>@renewal.State</td>
+                            <td>
+                                @*<a href="#"><i class="margin-right-icon glyphicon glyphicon-pencil modifyElementClick" data-id="@renewal.Id"></i></a>*@
+                                @if (renewal.State != "Caducada")
+                                {
+                                    <a href="@Url.Action("ModifyRenewal", "Suscripcion", new { id = renewal.Id })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                                }
+                                <a href="#"><i class="margin-right-icon glyphicon glyphicon-remove deleteElementClick" data-id="@renewal.Id" data-toggle="modal" data-target="#deleteModal"></i></a>
+                            </td>
+                        </tr>
+
+                    }
+
+                </table>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@if (ViewBag.renovar)
+{
+    <div class="col-md-10">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    @Html.ActionLink("Renovar", "Renew", "Suscripcion", new { id = Model.Id }, new { @class = "btn btn-primary pull-right" })
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <form action="@Url.Action("DeleteRenewal", "Suscripcion", new { id = Model.Id})" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label">
+                            ¿Estás seguro que quieres eliminar
+                        </label>
+                        <label class="control-label">
+                            esta renovación?
+                        </label>
+                    </div>
+                </div>
+                <input type="hidden" name="element_id" class="deleteElementInput" value="0" />
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+

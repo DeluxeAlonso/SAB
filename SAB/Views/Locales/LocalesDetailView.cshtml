@@ -1,0 +1,93 @@
+﻿@model SAB.Domain.Library.Local
+@{
+    ViewBag.Title = "Detalle de biblioteca";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Locales", "LocalesDetail", "Locales")</li>
+            <li class="active">Detalle</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Detalle de biblioteca</h1>
+    </div>
+</div>
+
+
+<div class="col-md-10">
+    <div class="form-group">
+        <label for="searchText">Código:</label>
+        @Html.TextBoxFor(model => model.Id, new { @class = "form-control", @id = "disabledImput", @disabled = "disabled" })
+        @*<input class="form-control" id="disabledImput" type="text" placeholder="BIB001" disabled> *@
+    </div>
+    <div class="form-group">
+        <label for="searchText">Nombre:</label>
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @id = "disabledImput", @disabled = "disabled" })
+        @*<input class="form-control" id="disabledImput" type="text" placeholder="Biblioteca Central" disabled>*@
+    </div>
+    <div class="form-group">
+        <label for="biblioteca">Fecha de apertura:</label>
+        @*@Html.TextBoxFor(model => model.Opening_Date.ToShortDateString(), new { @class = "form-control", @id = "disabledImput", @disabled = "disabled" })*@
+        <input class="form-control" id="disabledImput" type="text" value="@string.Concat(Model.Opening_Date.Day,"/",Model.Opening_Date.Month,"/", Model.Opening_Date.Year)" disabled>
+    </div>
+    <div class="form-group">
+        <label for="searchText">Dirección:</label>
+        @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @id = "disabledImput", @disabled = "disabled" })
+        @*<input class="form-control" id="disabledImput" type="text" placeholder="Avenida Universitaria 1010" disabled>*@
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="fields">Distrito:</label>
+                @Html.TextBoxFor(model => model.Distric, new { @class = "form-control", @id = "disabledImput", @disabled = "disabled" })
+                @*<input class="form-control" id="disabledImput" type="text" placeholder="San Miguel" disabled>*@
+            </div>
+            <div class="col-md-6 margin-bottom-sm">
+                <label for="biblioteca">Ciudad:</label>
+                @Html.TextBoxFor(model => model.City, new { @class = "form-control", @id = "disabledImput", @disabled = "disabled" })
+                @*<input class="form-control" id="disabledImput" type="text" placeholder="Lima" disabled>*@
+            </div>         
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6 margin-bottom-sm">
+                <label for="searchText">Correo electrónico:</label>
+                @Html.TextBoxFor(model => model.Mail, new { @class = "form-control", @id = "disabledImput", @disabled = "disabled" })
+                @*<input class="form-control" id="disabledImput" type="text" placeholder="biblioteca.central@bibliotecasweb.com" disabled>*@
+            </div>
+            <div class="col-md-6">
+                <label for="fields">Teléfono:</label>
+                @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @id = "disabledImput", @disabled = "disabled" })
+                @*<input class="form-control" id="disabledImput" type="text" placeholder="01 555-5555" disabled>*@
+            </div>
+        </div>
+    </div>
+    @*<div class="form-group">
+        <div class="row">
+            <div class="col-md-6 margin-bottom-sm">
+                <label for="biblioteca">N° de secciones:</label>
+                <input class="form-control" id="disabledImput" type="text" placeholder="19" disabled>
+            </div>
+            <div class="col-md-6">
+                <label for="fields">N° de pisos:</label>
+                <input class="form-control" id="disabledImput" type="text" placeholder="4" disabled>
+            </div>
+        </div>
+    </div>*@
+
+    
+    <div class="col-md-3">
+
+        @Html.ActionLink("Modificar", "LocalesModify", "Locales", new { id = Model.Id }, new { @class = "btn btn-primary" })
+    </div>
+</div>
+

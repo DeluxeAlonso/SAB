@@ -1,0 +1,248 @@
+D:\SW1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+D:\SW1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+D:\SW1\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+D:\SW1\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+D:\SW1\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Temp\SW\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Temp\SW\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Temp\SW\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Temp\SW\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Temp\SW\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\alulab14\Desktop\Biblioteca\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\alulab14\Desktop\Biblioteca\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\alulab14\Desktop\Biblioteca\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\alulab14\Desktop\Biblioteca\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\alulab14\Desktop\Biblioteca\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\alulab14\Desktop\Biblioteca_v2\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\alulab14\Desktop\Biblioteca_v2\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\alulab14\Desktop\Biblioteca_v2\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\alulab14\Desktop\Biblioteca_v2\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\alulab14\Desktop\Biblioteca_v2\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v4\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+H:\Software\Proyecto\Biblioteca_v4\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v4\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+H:\Software\Proyecto\Biblioteca_v4\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+H:\Software\Proyecto\Biblioteca_v4\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\Bibliotecas sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\Bibliotecas sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\Bibliotecas sw\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\Bibliotecas sw\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\Bibliotecas sw\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v5\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+H:\Software\Proyecto\Biblioteca_v5\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v5\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+H:\Software\Proyecto\Biblioteca_v5\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v5\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+H:\Software\Proyecto\Biblioteca_v5\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+H:\Software\Proyecto\Biblioteca_v5\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+H:\Software\Proyecto\Biblioteca_v6\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+H:\Software\Proyecto\Biblioteca_v6\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v6\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+H:\Software\Proyecto\Biblioteca_v6\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+H:\Software\Proyecto\Biblioteca_v6\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+H:\Software\Proyecto\Biblioteca_v6\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+H:\Software\Proyecto\Biblioteca_v6\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v8\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+H:\Software\Proyecto\Biblioteca_v8\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v8\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+H:\Software\Proyecto\Biblioteca_v8\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+H:\Software\Proyecto\Biblioteca_v8\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+H:\Software\Proyecto\Biblioteca_v8\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+H:\Software\Proyecto\Biblioteca_v8\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Temp\SW\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Temp\SW\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\joca\Desktop\SW\Project\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\joca\Desktop\SW\Project\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\joca\Desktop\SW\Project\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\joca\Desktop\SW\Project\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\joca\Desktop\SW\Project\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\joca\Desktop\SW\Project\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\joca\Desktop\SW\Project\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v4\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+H:\Software\Proyecto\Biblioteca_v4\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\SAB\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\SAB\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\SAB\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\alulab14.INF.000\Desktop\sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\alulab14.INF.000\Desktop\sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\alulab14.INF.000\Desktop\sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\alulab14.INF.000\Desktop\sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\alulab14.INF.000\Desktop\sw\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\alulab14.INF.000\Desktop\sw\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\alulab14.INF.000\Desktop\sw\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\Bibliotecas sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\Bibliotecas sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+D:\SW1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+D:\SW1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\alulab14\Desktop\Biblio_v1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\alulab14\Desktop\Biblio_v1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\alulab14\Desktop\Biblio_v1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\alulab14\Desktop\Biblio_v1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\alulab14\Desktop\Biblio_v1\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\alulab14\Desktop\Biblio_v1\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\alulab14\Desktop\Biblio_v1\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\alulab14\Desktop\library-system-sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\alulab14\Desktop\library-system-sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\alulab14\Desktop\library-system-sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\alulab14\Desktop\library-system-sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\alulab14\Desktop\library-system-sw\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\alulab14\Desktop\library-system-sw\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\alulab14\Desktop\library-system-sw\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+D:\SW2\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+D:\SW2\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+D:\SW2\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+D:\SW2\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+D:\SW2\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+D:\SW2\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+D:\SW2\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\alulab14.INF.000\Desktop\library-system-sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\alulab14.INF.000\Desktop\library-system-sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\alulab14.INF.000\Desktop\library-system-sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\alulab14.INF.000\Desktop\library-system-sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\alulab14.INF.000\Desktop\library-system-sw\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\alulab14.INF.000\Desktop\library-system-sw\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\alulab14.INF.000\Desktop\library-system-sw\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v9\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+H:\Software\Proyecto\Biblioteca_v9\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v9\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+H:\Software\Proyecto\Biblioteca_v9\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+H:\Software\Proyecto\Biblioteca_v9\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+H:\Software\Proyecto\Biblioteca_v9\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+H:\Software\Proyecto\Biblioteca_v9\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+H:\Software\Proyecto\Biblioteca_v1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+H:\Software\Proyecto\Biblioteca_v1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+H:\Software\Proyecto\Biblioteca_v1\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+H:\Software\Proyecto\Biblioteca_v1\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+H:\Software\Proyecto\Biblioteca_v1\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\alulab14\Desktop\sw_v1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\alulab14\Desktop\sw_v1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\alulab14\Desktop\sw_v1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\alulab14\Desktop\sw_v1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\alulab14\Desktop\sw_v1\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\alulab14\Desktop\sw_v1\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\alulab14\Desktop\sw_v1\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\Nuevamente sab\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\Nuevamente sab\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\Nuevamente sab\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\Nuevamente sab\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\Nuevamente sab\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\Nuevamente sab\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\Nuevamente sab\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\KEVIN BROWN\Documents\SW\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\KEVIN BROWN\Documents\SW\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\KEVIN BROWN\Documents\SW\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\KEVIN BROWN\Documents\SW\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\KEVIN BROWN\Documents\SW\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\KEVIN BROWN\Documents\SW\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\KEVIN BROWN\Documents\SW\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\alulab14\Desktop\sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\alulab14\Desktop\sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\alulab14\Desktop\sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\alulab14\Desktop\sw\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\alulab14\Desktop\sw\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\alulab14\Desktop\sw\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\alulab14\Desktop\sw\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\Mariella\Desktop\SW-FINAL\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\Mariella\Desktop\SW-FINAL\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\Mariella\Desktop\SW-FINAL\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\Mariella\Desktop\SW-FINAL\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\Mariella\Desktop\SW-FINAL\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\Mariella\Desktop\SW-FINAL\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\Mariella\Desktop\SW-FINAL\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v2\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+H:\Software\Proyecto\Biblioteca_v2\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v2\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+H:\Software\Proyecto\Biblioteca_v2\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+H:\Software\Proyecto\Biblioteca_v2\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+H:\Software\Proyecto\Biblioteca_v2\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+H:\Software\Proyecto\Biblioteca_v2\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.2 Sistema SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.2 Sistema SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.2 Sistema SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.2 Sistema SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.2 Sistema SAB\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.2 Sistema SAB\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.2 Sistema SAB\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v3\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+H:\Software\Proyecto\Biblioteca_v3\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+H:\Software\Proyecto\Biblioteca_v3\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+H:\Software\Proyecto\Biblioteca_v3\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+H:\Software\Proyecto\Biblioteca_v3\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+H:\Software\Proyecto\Biblioteca_v3\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+H:\Software\Proyecto\Biblioteca_v3\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.3 Sistema SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.3 Sistema SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.3 Sistema SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.3 Sistema SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.3 Sistema SAB\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.3 Sistema SAB\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.3 Sistema SAB\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\SAB 1.1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\SAB 1.1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\SAB 1.1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\SAB 1.1\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\SAB 1.1\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\SAB 1.1\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\USUARIO\Documents\Archivos Jorge Signol\Archivos Jorge Signol\Proyecto de Ingeniería de Software\SAB 1.1\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\Administrador\Desktop\Proyecto SW\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\Administrador\Desktop\Proyecto SW\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\Administrador\Desktop\Proyecto SW\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\Administrador\Desktop\Proyecto SW\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\Administrador\Desktop\Proyecto SW\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Desktop\Proyecto SW\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\Administrador\Desktop\Proyecto SW\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.4 Sistema SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.4 Sistema SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.4 Sistema SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.4 Sistema SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.4 Sistema SAB\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.4 Sistema SAB\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.4 Sistema SAB\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.5 Sistema SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.5 Sistema SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.5 Sistema SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.5 Sistema SAB\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.5 Sistema SAB\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.5 Sistema SAB\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\user\Documents\Pucp\Software\Labs\SAB\1.5 Sistema SAB\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\Nevermade\Documents\pucp\sw\Proyecto\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\Nevermade\Documents\pucp\sw\Proyecto\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\Nevermade\Documents\pucp\sw\Proyecto\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\Nevermade\Documents\pucp\sw\Proyecto\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\Nevermade\Documents\pucp\sw\Proyecto\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\Nevermade\Documents\pucp\sw\Proyecto\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\Nevermade\Documents\pucp\sw\Proyecto\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+C:\Users\Mariella\Desktop\finales\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+C:\Users\Mariella\Desktop\finales\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+C:\Users\Mariella\Desktop\finales\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+C:\Users\Mariella\Desktop\finales\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+C:\Users\Mariella\Desktop\finales\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+C:\Users\Mariella\Desktop\finales\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+C:\Users\Mariella\Desktop\finales\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+H:\Software\Biblioteca\Biblio_v2\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+H:\Software\Biblioteca\Biblio_v2\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+H:\Software\Biblioteca\Biblio_v2\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+H:\Software\Biblioteca\Biblio_v2\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+H:\Software\Biblioteca\Biblio_v2\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+H:\Software\Biblioteca\Biblio_v2\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+H:\Software\Biblioteca\Biblio_v2\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+D:\SW\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+D:\SW\trunk\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+D:\SW\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+D:\SW\trunk\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+D:\SW\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+D:\SW\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+D:\SW\trunk\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb
+E:\Projects\SAB\SAB\SAB.Shared\bin\Debug\SAB.Shared.dll
+E:\Projects\SAB\SAB\SAB.Shared\bin\Debug\SAB.Shared.pdb
+E:\Projects\SAB\SAB\SAB.Shared\bin\Debug\SAB.Domain.dll
+E:\Projects\SAB\SAB\SAB.Shared\bin\Debug\SAB.Domain.pdb
+E:\Projects\SAB\SAB\SAB.Shared\obj\Debug\SAB.Shared.csprojResolveAssemblyReference.cache
+E:\Projects\SAB\SAB\SAB.Shared\obj\Debug\SAB.Shared.dll
+E:\Projects\SAB\SAB\SAB.Shared\obj\Debug\SAB.Shared.pdb

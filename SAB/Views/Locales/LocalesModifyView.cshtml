@@ -1,0 +1,129 @@
+﻿@model SAB.Domain.Library.Local
+@{
+    ViewBag.Title = "Modificar biblioteca";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Locales", "LocalesDetail", "Locales")</li>
+            <li class="active">Modificar</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Modificar biblioteca</h1>
+    </div>
+</div>
+
+<form action="@Url.Action("Update", "Locales", new { id = Model.Id })" method="post">
+    <div class="col-md-10">
+        <div class="form-group">
+            <label for="searchText">Código:</label>
+            @Html.TextBoxFor(model => model.Id, new { @class = "form-control", @id = "disabledImput", @type="text", @disabled = "disabled" })
+            @*<input class="form-control" id="disabledImput" type="text" disabled>*@
+        </div>
+        <div class="form-group">
+            <label for="searchText">Nombre:</label>
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @required = "required", @maxlength = "50" })
+            @*<input type="text" name="searchText" value="Biblioteca Central" class="form-control">*@
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="form-group">
+            <label for="biblioteca">Fecha de apertura:</label>
+            @*@Html.TextBoxFor(model => model.Opening_Date, new { @class = "form-control", @id = "disabledImput", @disabled = "disabled" })*@
+            <input type="text" name="Opening_Date" class="form-control" value="@Model.Opening_Date.ToShortDateString()" disabled>
+        </div>
+        <div class="form-group">
+            <label for="searchText">Dirección:</label>
+            @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @required = "required", @maxlength = "100" })
+            @*<input type="text" name="searchText" value="Avenida Universitaria 1010" placeholder="Búsqueda ..." class="form-control">*@
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6 margin-bottom-sm">
+                    <label for="fields">Distrito:</label>
+                    @Html.TextBoxFor(model => model.Distric, new { @class = "form-control", @required = "required", @maxlength = "50" })
+                    @*<input type="text" name="searchText" value="San Miguel" placeholder="Búsqueda ..." class="form-control">*@
+                    @Html.ValidationMessageFor(model => model.Distric)
+                </div>
+                <div class="col-md-6">
+                    <label for="biblioteca">Ciudad:</label>
+                    @Html.TextBoxFor(model => model.City, new { @class = "form-control", @required = "required", @maxlength = "50" })
+                    @*<input type="text" name="searchText" value="Lima" placeholder="Búsqueda ..." class="form-control">*@
+                    @Html.ValidationMessageFor(model => model.City)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6 margin-bottom-sm">
+                    <label for="searchText">Correo electrónico:</label>
+                    @Html.TextBoxFor(model => model.Mail, new { @class = "form-control", @maxlength = "50", @type = "email" })
+                    @*<input type="text" name="searchText" value="biblioteca.central@bibliotecasweb.com" placeholder="Búsqueda ..." class="form-control">*@
+                    @Html.ValidationMessageFor(model => model.Mail)
+                </div>
+                <div class="col-md-6">
+                    <label for="fields">Teléfono:</label>
+                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @maxlength = "20" })
+                    @*<input type="text" name="searchText" value="01 555-5555" placeholder="Búsqueda ..." class="form-control">*@
+                    @Html.ValidationMessageFor(model => model.Phone)
+                </div>
+            </div>
+        </div>
+        @*
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6 margin-bottom-sm">
+                    <label for="biblioteca">N° de secciones:</label>
+                    <input type="text" name="searchText" value="19" placeholder="Búsqueda ..." class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="fields">N° de pisos:</label>
+                    <input type="text" name="searchText" value="4" placeholder="Búsqueda ..." class="form-control">
+                </div>
+            </div>
+        </div>*@
+
+
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary" @*data-toggle="modal" data-target="#myModal"*@ >
+                Guardar    
+            </button>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label">
+                            <!--for="inputFechaInicio" class="control-label"-->
+                            ¿Estas seguro que quieres guardar los
+                        </label>
+                        <label class="control-label">
+                            cambios para esta Biblioteca?
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,200 @@
+﻿@model IEnumerable<SAB.Domain.Publication.PublicationTitle>
+@using SAB.Domain.Publication
+@{
+    ViewBag.Title = "EditorialSearchView";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicaciones", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicaciones", "PublicationSearch", "Publication")</li>
+            <li class="active">Buscar</li>
+        </ol>
+    </div>
+</div>
+
+<div class="col-md-10">
+    <div class="pull-right">
+        <a href="@Url.Content("~/Publication/PublicationRegister")" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i> Nueva Publicación
+        </a>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda Publicación</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+</div>
+
+<!---------- BUSCAR PUBLICACION ------------->
+
+<div class="col-md-10">
+
+    <form action="@Url.Action("PublicationSearchResult", "Publication")" method="post" id="PRS_SearchForm">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Codigo</label>
+                    <input class="form-control" type="text" name="codigo" pattern="[0-9]*" title="Solo números" maxlength="10" value="@ViewData["Id"]" />
+                </div>
+                <div class="col-md-6">
+                    <label for="searchText">Tipo Publicación</label>
+
+                    <select class="form-control" name="Id_Type">
+                        <option value="0">Todos</option>
+                        @foreach (var tipo in (IEnumerable<SAB.Domain.Publication.PublicationType>)ViewData["publicationType"])
+                        {
+                            var tipoPublicacion = ViewData["Id_Type"];
+
+                            if (tipo.Id.Equals(tipoPublicacion))
+                            {
+                                <option selected value="@tipo.Id">@tipo.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@tipo.Id">@tipo.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="text">Autor</label>
+                    <input type="text" class="form-control" name="nameAuthor" id="nameAuthor" pattern="[A-Za-zá-ú\s]+" title="Solo letras y espacios" value="@ViewData["nameAuthor"]" maxlength="50" />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="text">Editorial</label>
+                    <input type="text" class="form-control" name="nameEditorial" id="nameEditorial" pattern="[A-Za-zá-ú\s]+" title="Solo letras y espacios" value="@ViewData["nameEditorial"]" maxlength="50" />
+                </div>
+            </div>
+        </div>
+
+        @if (ViewBag.pageIndex != null)
+        {
+            <input type="hidden" value="@ViewBag.pageIndex" name="pageIndex" id="PRS_pageIndex" class="form-control">
+        }
+        else
+        {
+            <input type="hidden" value="1" name="pageIndex" id="PRS_pageIndex">
+        }
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary pull-right" style="margin-top:20px; margin-bottom: 30px">Buscar</button>
+        </div>
+
+    </form>
+
+</div>
+
+    
+<!---------- LISTA PUBLICACION ------------->
+
+<div class="form-group">
+    <div class="col-md-10">
+        <div class="row">
+            
+            <table class="table-responsive table table-striped">
+                <tr>
+                    <th>Código</th>
+                    <th>Título</th>
+                    <th>Tipo</th>
+                    <th>Editorial</th>
+                    <th>Autor</th>
+                    <th> </th>
+                </tr>
+                @foreach (var publicationList in Model)
+                {
+                    <tr>
+                        <td>@publicationList.Id</td>
+                        <td>@publicationList.Title</td>
+                        <td>@publicationList.nameType</td>
+                        <td>@publicationList.nameEditorial</td>
+                        <td>@publicationList.nameAuthor</td>
+
+                        <td>
+                            <a href="@Url.Action("Detail", "Publication", new { id = publicationList.Id, Id_Biblioteca = 0 })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                            <a href="@Url.Action("Modify", "Publication", new { id = publicationList.Id })"><i class="margin-right-icon glyphicon glyphicon-pencil"></i></a>
+                            <a class="DeletePublication" data-id="@publicationList.Id"><i class="margin-right-icon glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal"></i></a>
+                        </td>
+                    </tr>
+                }
+            </table>
+
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <label class="control-label">
+                                    ¿Estas seguro que quieres Eliminar esta Publicación?
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button id="btnAcceptDeletePublication" data-dismiss="modal" class="btn btn-primary">Aceptar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+            @*----------------------------Paginacion---------------------------------*@
+
+            <div class="col-md-12 col-md-offset-3 form-horizontal">
+                <div class="form-group ">
+                    <div>
+                        <ul class="pagination">
+                            <li><a id="PRS_btnFirst">Primero</a></li>
+                            <li><a id="PRS_btnPrev">&laquo;</a></li>
+
+                            <li>
+                                @if (ViewBag.pageIndex != null)
+                                {
+                                    <span>@ViewBag.pageIndex</span>
+                                }
+                                else
+                                {
+                                    <span>1</span>
+                                }
+                            </li>
+                            <li><a id="PRS_btnNext">&raquo;</a></li>
+                            <li><a id="PRS_btnLast">Último</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Publication.js")"></script>
+}
+
+

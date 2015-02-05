@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = "Reservar nuevo cubículo";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li>@Html.ActionLink("Home", "Index", "Home")</li>
+          <li>@Html.ActionLink("Reservas", "Publications", "Reserves")</li>
+          <li class="active">Reservar Cubículos</li>
+        </ol>
+    </div>
+</div>
+
+@if (TempData["alert"] != null)
+{
+    <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+}
+
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Reservar nuevo cubículo</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <form action="@Url.Action("SearchCubicles","Reserves")" id="ReserveCubicleForm" method="post">
+            <input type="hidden" id="PRS_pageIndex" name="pageIndex" value="@ViewBag.pageIndex" />
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="from">Fecha:</label>
+                        <input type="text" name="from" value="@ViewData["date"]" id="daySelect" readonly="readonly" class="form-control generic-datepicker" />
+                    </div>
+                    <div class="form-group">
+                        <label for="hour">Hora:</label>
+                        <select id="hourSelect" name="hour" class="form-control">
+                            @for (int i = 8; i < 22; i++)
+                            {
+                                <option @if((int)ViewData["iniHour"] == i){<text>selected </text>} value="@i">@i:00</option> 
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                     <div class="form-group">
+                        <label for="time">Tiempo:</label>
+                        <select id="cantHourSelect" name="cantHours" class="form-control">
+                            <option value="1" @if((int)ViewData["cantHour"] == 1){<text>selected </text>} >1h</option>
+                            <option value="2" @if((int)ViewData["cantHour"] == 2){<text>selected </text>}>2h</option>
+                            <option value="3" @if((int)ViewData["cantHour"] == 3){<text>selected </text>}>3h</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Capacidad:</label>
+                        <select id="quantity" name="quantity" class="form-control">
+                            <option value="-1" @if((int)ViewData["quantity"] == -1){<text>selected </text>} >Todas</option>
+                            @for (int i = 1; i < 11; i++)
+                            {
+                                <option @if((int)ViewData["quantity"] == i){<text>selected </text>} value="@i">@i</option> 
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden"  name="page" value="1" />
+                        <label for="">&nbsp;</label>
+                        <div>
+                            <button type="submit" id="submit-search" class="btn btn-primary pull-right">Buscar</button>
+                            <br />
+                            <br />
+                        </div>                   
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+  
+    <div class="col-md-10">
+        
+           
+            @if(ViewBag.CountCubicles > 0){          
+                 <table class="table table-data">
+                    <tr>
+                        <th>Lugar</th>
+                        <th>Biblioteca</th>
+                        <th>Capacidad</th>
+                        <th>Acción</th>
+                    </tr>
+
+                    @foreach(var cubicle in ViewBag.cubicles){
+                    <tr>
+                        <td> @cubicle.Name </td>
+                        <td> @cubicle.Biblioteca.Name </td> 
+                        <td> @cubicle.Quantity</td>
+                        <td><a href="#" class="reserveCubicle btn btn-primary" 
+                            data-date="@ViewData["date"]"
+                            data-iniHour="@ViewData["iniHour"]"
+                            data-cantHour="@ViewData["cantHour"]"             
+                            data-id="@cubicle.Id"  data-toggle="modal" data-target="#deleteModal" >Reservar</a></td> 
+                    </tr>
+                    }
+                </table>
+                
+                <div>
+                    <ul class="pagination">
+                        <li><a id="PRS_btnFirst">Primero</a></li>
+                        <li><a id="PRS_btnPrev">&laquo;</a></li>
+
+                        <li>
+                            @if (ViewBag.pageIndex != null)
+                            {
+
+                                <span>@ViewBag.pageIndex</span>
+
+                            }
+                            else
+                            {
+                                <span>1</span>
+                            }
+                        </li>
+                        <li><a id="PRS_btnNext">&raquo;</a></li>
+                        <li><a id="PRS_btnLast">Último</a></li>
+                    </ul>
+                </div>
+            }
+            
+        
+        
+    </div>
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <form action="@Url.Action("ReserveCubicle","Reserves")" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label"/>
+                            ¿Estas seguro que desea reservar el cubículo?
+                    </div>
+                </div>
+                <input type="hidden" name="element_id" class="deleteElementInput" value="0" />
+                <input type="hidden" name="hour" class="hourInput" value="0" />
+                <input type="hidden" name="cantHours" class="cantHourInput" value="0" />
+                <input type="hidden" name="from" class="dayInput" value="0" />
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+            
+        </form>
+        
+
+    </div>
+</div>
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Reserves.js")"></script>
+}

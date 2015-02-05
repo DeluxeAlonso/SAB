@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Buscar Suscripcion";
+}
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Búsqueda Suscripción</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Suscripcion", "SearchSuscription", "Suscripcion")</li>
+            <li class="active">Buscar </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+    <form action="@Url.Action("SearchSuscriptionResult", "Suscripcion")" method="post">
+        <div class="form-group">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="tipo">Tipo Publicacion</label>
+                    <select name="tipo" class="form-control">
+                        <option value="0">Seleccione</option>
+                        <option value="1">Revista Impresa</option>
+                        <option value="2">Revista Electrónica</option>
+                        <option value="4">Periodico</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchText">Cód. Suscripción</label>
+                        <input type="number" name="searchText" value=" " min="1" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="tipo">Título Publicación</label>
+                    <input type="text" name="searchText" value=" " class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="tipo">Estado</label>
+                    <select name="tipo" class="form-control">
+                        <option value="">Seleccione</option>
+                        <option value="Vigente">Vigente</option>
+                        <option value="Caducado">Caducado</option>
+                        <option value="Renovado">Renovado</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12">
+                    <input type="submit" class="btn btn-primary pull-right" value="Buscar" />
+                </div>
+            </div>
+        </div>
+
+        
+        
+    </form>
+</div>
+

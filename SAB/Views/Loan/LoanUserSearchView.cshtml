@@ -1,0 +1,210 @@
+﻿@using SAB.Domain.Loan;
+@{
+    ViewBag.Title = "Búsqueda";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Préstamos", "LoanSearch", "Loan")</li>
+            <li class="active">Búsqueda</li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Mis préstamos</h1>
+    </div>
+</div>
+
+<div class="col-md-10">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["message"]</div>
+    }
+    @if (TempData["alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["alert"]</div>
+    }
+
+</div>
+
+<div class="col-md-10">
+    <form action="@Url.Action("UserSearch", "Loan")" class="form-horizontal" method="post" role="form" id="SearchLoanForm">
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Código de Publicación:</label>
+                    <input class="form-control" type="number" min="1" max="9999" name="publication_id" value="@ViewData["publication_id"]">
+                </div>
+                <div class="col-md-6">
+                    <label for="searchText">Estado</label>
+                    <select name="estados" class="form-control">
+                        @if ((bool)ViewData["all"])
+                        {
+                            <option selected value="Todos">Todos</option> }
+                        else
+                        {
+                            <option value="Todos">Todos</option> }
+                        @if ((bool)ViewData["active"])
+                        {
+                            <option selected value="Activo">Activo</option> }
+                        else
+                        {
+                            <option value="Activo">Activo</option>}
+                        @if ((bool)ViewData["ended"])
+                        {
+                            <option selected="" value="Finalizado">Finalizado</option> }
+                        else
+                        {
+                            <option value="Finalizado">Finalizado</option> }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="searchText">Desde:</label>
+                    <input type="text" name="from" value="@ViewData["from"]" class="form-control generic-datepicker">
+                </div>
+                <div class="col-md-6">
+                    <label for="searchText">Hasta:</label>
+                    <input type="text" name="to" value="@ViewData["to"]" class="form-control generic-datepicker">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <div>
+                            @if (ViewBag.pageIndex != null)
+                            {
+
+                                <input type="hidden" value="@ViewBag.pageIndex" name="pageIndex" id="PRS_pageIndex" class="form-control">
+
+                            }
+                            else
+                            {
+                                <input type="hidden" value="1" name="pageIndex" id="PRS_pageIndex">
+                            }
+                        </div>
+                        <br>
+                        <button class="btn btn-primary pull-right">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+    <form action="@Url.Action("LoanUserShow", "Loan")" class="form-horizontal" method="post" role="form">
+        <div class="col-md-10">
+            <div class="row">
+                @{IList<Loan> loans = (IList<Loan>)ViewData["loans"]; }
+
+                @if (loans != null && loans.Count > 0)
+                {
+                    <table class="table-responsive table table-striped">
+                        <tr>
+                            <th class="cod">Cód. Préstamo</th>
+                            <th class="titulo">Nombre de la Publicación</th>
+                            <th class="tipo">Cód. Item</th>
+                            <th class="tipo">Estado</th>
+                            <th class="tipo"></th>
+
+                        </tr>
+                        @foreach (Loan l in loans)
+                        {
+                            <tr>
+                                <td>@l.Id</td>
+                                <td>@l.Loan_Item.Publication.Title</td>
+                                <td>@l.Loan_Item.Id</td>
+                                <td>@l.Status</td>
+                                <td>
+                                    <a href="@Url.Action("LoanUserShow", "Loan", new { id = @l.Id })"><i class="margin-right-icon glyphicon glyphicon-zoom-in"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
+                else
+                {
+                    <div class="alert alert-danger" role="alert">No hay préstamos que mostrar.</div>
+                }
+                <div class="col-md-12 col-md-offset-3 form-horizontal">
+                    <div class="form-group ">
+                        <div>
+                            <ul class="pagination">
+                                <li><a id="PRS_btnFirst">Primero</a></li>
+                                <li><a id="PRS_btnPrev">&laquo;</a></li>
+
+                                <li>
+                                    @if (ViewBag.pageIndex != null)
+                                    {
+
+                                        <span>@ViewBag.pageIndex</span>
+
+                                    }
+                                    else
+                                    {
+                                        <span>1</span>
+                                    }
+                                </li>
+                                <li><a id="PRS_btnNext">&raquo;</a></li>
+                                <li><a id="PRS_btnLast">Último</a></li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label class="control-label">
+                        <!--for="inputFechaInicio" class="control-label"-->
+                        ¿Estas seguro que quieres Eliminar los
+                    </label>
+                    <label class="control-label">
+                        cambios para este Tipo de Sanción?
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <a href="@Url.Action("Delete", "Editorial", new { id = 4 })" class="btn btn-primary">Aceptar</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/loan.js")"></script>
+}

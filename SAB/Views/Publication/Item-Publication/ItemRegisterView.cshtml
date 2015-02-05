@@ -1,0 +1,92 @@
+﻿@model SAB.Domain.Publication.PublicationItem
+@{
+    ViewBag.Title = "Registrar Item";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicaciones", "Index", "Home")</li>
+            <li>@Html.ActionLink("Publicaciones", "PublicationSearch", "Publication")</li>
+            <li>@Html.ActionLink("Item", "ItemRegisterView", "Item")</li>
+            <li class="active">Añadir</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 title">
+        <h1>Registrar Item</h1>      
+    </div>
+</div>
+
+
+@using (Html.BeginForm("Save","Item"))
+{
+    
+<div class="col-md-10">
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="tipo">Titulo Publicaión</label>
+                <input type="text" value="@ViewData["publication"]" class="form-control" readonly>
+                <input type="text" name="Id_Publication" value="@ViewData["publicationID"]" class="form-control hidden" readonly>
+            </div>
+            <div class="col-md-6">
+                <label for="tipo">Autor</label>
+                <input type="text" value="@ViewData["author"]" class="form-control" readonly>
+                <input type="text" name="nameAuthor" value="@ViewData["author"]" class="form-control hidden" readonly>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="Biblioteca">Biblioteca</label>
+                <select class="form-control" name="Id_Biblioteca" required>
+
+                    <option value="">Seleccione</option>
+                    @foreach (var bibliotecas in (IEnumerable<SAB.Domain.Library.Local>)ViewData["bibliotecas"])
+                    {
+                        <option value="@bibliotecas.Id">@bibliotecas.Name</option>
+                    }
+                </select>
+                <label for="Recepcion" hidden>N° Recepción</label>
+                <input type="number" name="Id_Recepcion" value="2" class="form-control hidden"  readonly>
+            </div>
+
+            <div class="col-md-6">
+                <label for="Cantidad">Cantidad</label>
+                <input type="number" name="quantity" min="1" max="100" value="1" class="form-control" required>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">              
+            <div class="col-md-6">
+                <label for="tipo">Estado</label>
+                <select name="Estado" class="form-control" id="selected-estado" required>
+                    <option selected value="Sin Ubicar">Sin Ubicar</option>
+                    <option value="En Estante">En Estante</option>
+                </select>                    
+            </div>
+            <div class="col-md-6">
+                <label for="tipo">Estante</label>                   
+                <input type="number" id="label-selected" name="Id_Activo" value="3" class="form-control" readonly>                   
+            </div>
+       </div>
+    </div>
+        
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+    </div>
+
+</div>
+}
